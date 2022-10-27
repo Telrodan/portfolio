@@ -1,11 +1,12 @@
 <div class="landing">
   <div class="header">
     <p [attr.aria-label]="logo.innerText + 'Logo'" class="logo" #logo>KNB<span>.</span></p>
-    <nav class="navigation">
+    <nav *ngIf="!isMobileView" class="navigation">
       <a aria-label="Download CV" href=""><i class="fa-regular fa-file"></i>CV</a>
       <a href=""><i class="fa-regular fa-user"></i>About me</a>
       <a href=""><i class="fa-regular fa-address-card"></i>Contact</a>
     </nav>
+    <button class="hamburger-button" *ngIf="isMobileView"><i class="fa-solid fa-bars"></i></button>
   </div>
   <div class="landing-content">
     <div class="personal-container">
