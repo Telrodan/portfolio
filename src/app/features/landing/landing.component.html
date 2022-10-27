@@ -1,1 +1,20 @@
-<p>landing works!</p>
+<div class="landing">
+  <div class="header">
+    <p [attr.aria-label]="logo.innerText + 'Logo'" class="logo" #logo>KNB<span>.</span></p>
+    <nav class="navigation">
+      <a aria-label="Download CV" href=""><i class="fa-regular fa-file"></i>CV</a>
+      <a href=""><i class="fa-regular fa-user"></i>About me</a>
+      <a href=""><i class="fa-regular fa-address-card"></i>Contact</a>
+    </nav>
+  </div>
+  <div class="landing-content">
+    <div class="personal-container">
+      <h2>This is</h2>
+      <h1>Bence Keresztes<span>-</span>Nagy</h1>
+      <h3>FrontEnd Developer<span>.</span></h3>
+      <p>Stick around to see some of my work.</p>
+      <a class="portfolio-button button-primary">Portfolio</a>
+    </div>
+    <img src="../../../assets/landing-illustration.svg" alt="Computer Illustration">
+  </div>
+</div>

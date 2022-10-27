@@ -1,0 +1,155 @@
+@import "mixins";
+
+.landing {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 4rem 5.5rem;
+
+  @include mobile {
+    padding: 2rem 1rem;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    @include mobile {
+      margin-bottom: 5rem;
+    }
+
+    .logo {
+      color: var(--color-white);
+      font-family: "Odibee Sans", cursive;
+      font-size: 4rem;
+
+      span {
+        color: var(--color-primary);
+      }
+    }
+
+    .navigation {
+      display: flex;
+      align-items: center;
+
+      a {
+        color: var(--color-white);
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        transition: all 0.3s ease-in;
+
+        &:hover {
+          color: var(--color-primary);
+        }
+
+        &:not(:last-child) {
+          margin-right: 5rem;
+
+          @include mobile {
+            margin-right: 2.5rem;
+          }
+        }
+
+        i {
+          margin-right: 0.5rem;
+        }
+      }
+    }
+  }
+
+  .landing-content {
+    display: flex;
+    height: 100%;
+
+    @include mobile {
+      flex-direction: column;
+    }
+
+    .personal-container {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      width: 50%;
+
+      @include mobile {
+        width: 100%;
+        text-align: center;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-family: "Odibee Sans", cursive;
+        font-weight: 400;
+      }
+
+      h2 {
+        margin-bottom: -1rem;
+        color: var(--color-primary);
+        font-size: 3.5rem;
+        letter-spacing: 2px;
+
+        @include mobile {
+          margin-bottom: 0.5rem;
+          font-size: 3rem;
+        }
+      }
+
+      h1 {
+        margin-left: 2rem;
+        font-size: 7rem;
+
+        @include mobile {
+          margin: 0;
+          font-size: 5rem;
+        }
+
+        span {
+          color: var(--color-primary);
+        }
+      }
+
+      h3 {
+        margin-top: -1rem;
+        margin-left: 5rem;
+        color: var(--color-secondary);
+        font-size: 4rem;
+
+        @include mobile {
+          margin: 0.5rem 0 0;
+          font-size: 3rem;
+        }
+
+        span {
+          color: var(--color-white);
+        }
+      }
+
+      p {
+        margin-top: 2rem;
+        margin-left: 7rem;
+        font-family: "Source Code Pro", monospace;
+        font-size: 2rem;
+
+        @include mobile {
+          margin: 2.5rem 0 0;
+        }
+      }
+
+      a {
+        margin: 4rem auto 0 0;
+        width: 50%;
+      }
+    }
+
+    img {
+      width: 50%;
+
+      @include mobile {
+        width: 100%;
+        margin-top: 7rem;
+      }
+    }
+  }
+}
