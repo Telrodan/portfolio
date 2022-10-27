@@ -1,75 +1,19 @@
 @import "mixins";
 
 .landing {
-  display: flex;
-  flex-direction: column;
+  padding: 0 7rem;
   height: 100%;
-  padding: 4rem 5.5rem;
 
   @include mobile {
-    padding: 2rem 1rem;
+    flex-direction: column;
+    padding: 0 2rem;
   }
 
   .header {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-
-    @include mobile {
-      margin-bottom: 5rem;
-    }
-
-    .logo {
-      color: var(--color-white);
-      font-family: "Odibee Sans", cursive;
-      font-size: 4rem;
-
-      span {
-        color: var(--color-primary);
-      }
-    }
-
-    .navigation {
-      display: flex;
-      align-items: center;
-
-      a {
-        color: var(--color-white);
-        font-size: 1.6rem;
-        text-transform: uppercase;
-        transition: all 0.3s ease-in;
-
-        &:hover {
-          color: var(--color-primary);
-        }
-
-        &:not(:last-child) {
-          margin-right: 5rem;
-
-          @include mobile {
-            margin-right: 2.5rem;
-          }
-        }
-
-        i {
-          margin-right: 0.5rem;
-          color: var(--color-primary);
-        }
-      }
-    }
-
-    .hamburger-button {
-      color: var(--color-primary);
-      background-color: transparent;
-      border: none;
-      font-size: 3.5rem;
-      cursor: pointer;
-    }
-  }
-
-  .landing-content {
-    display: flex;
-    height: 100%;
+    width: 100%;
+    margin-bottom: 20rem;
 
     @include mobile {
       flex-direction: column;
@@ -77,26 +21,25 @@
 
     .personal-container {
       display: flex;
-      justify-content: center;
       flex-direction: column;
+      align-items: center;
+      justify-content: center;
       width: 50%;
 
       @include mobile {
         width: 100%;
-        text-align: center;
       }
 
-      h1,
-      h2,
-      h3 {
+      .personal-heading,
+      .name,
+      .title {
         font-family: "Odibee Sans", cursive;
         font-weight: 400;
       }
 
-      h2 {
-        margin-bottom: -1rem;
+      .personal-heading {
         color: var(--color-primary);
-        font-size: 3.5rem;
+        font-size: 4rem;
         letter-spacing: 2px;
 
         @include mobile {
@@ -105,8 +48,8 @@
         }
       }
 
-      h1 {
-        margin-left: 2rem;
+      .name {
+        margin-bottom: 1rem;
         font-size: 7rem;
 
         @include mobile {
@@ -119,9 +62,7 @@
         }
       }
 
-      h3 {
-        margin-top: -1rem;
-        margin-left: 5rem;
+      .title {
         color: var(--color-secondary);
         font-size: 4rem;
 
@@ -135,7 +76,7 @@
         }
       }
 
-      p {
+      .message {
         margin-top: 2rem;
         margin-left: 7rem;
         font-family: "Source Code Pro", monospace;
@@ -146,22 +87,102 @@
         }
       }
 
-      a {
-        margin: 4rem auto 0 0;
+      .cv-button {
+        margin: 4rem auto 0;
         width: 50%;
+        text-align: center;
 
         @include mobile {
           margin: 4rem auto 0;
         }
       }
+
+      .scroll {
+        position: absolute;
+        bottom: 2rem;
+        left: 7rem;
+        text-transform: uppercase;
+
+        writing-mode: vertical-rl;
+        text-orientation: upright;
+        direction: rtl;
+
+        i {
+          font-size: 1.6rem;
+          color: var(--color-primary);
+        }
+      }
     }
 
     img {
-      width: 50%;
+      margin-left: auto;
+      width: 40%;
 
       @include mobile {
         width: 100%;
         margin-top: 7rem;
+      }
+    }
+  }
+
+  .details-container {
+    .detail-card {
+      display: flex;
+      width: 80%;
+      margin: 0 auto 15rem;
+
+      .illustration {
+        width: 35%;
+      }
+
+      .container {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        width: 65%;
+        padding: 5rem;
+
+        .heading {
+          margin-bottom: 1rem;
+          color: var(--color-primary);
+          font-size: 5rem;
+          font-family: "Odibee Sans", cursive;
+          font-weight: 400;
+
+          span {
+            color: var(--color-white);
+          }
+        }
+
+        .text {
+          margin-bottom: 4rem;
+          font-size: 1.6rem;
+          line-height: 2.5rem;
+        }
+
+        .skills-icons {
+          display: flex;
+
+          .icon-card {
+            text-align: center;
+            color: var(--color-primary);
+
+            &:not(:last-child) {
+              margin-right: 3rem;
+            }
+
+            i {
+              margin-bottom: 0.5rem;
+              font-size: 4rem;
+            }
+
+            p {
+              color: var(--color-white);
+              font-size: 1.4rem;
+            }
+          }
+        }
       }
     }
   }

@@ -1,21 +1,64 @@
 <div class="landing">
   <div class="header">
-    <p [attr.aria-label]="logo.innerText + 'Logo'" class="logo" #logo>KNB<span>.</span></p>
-    <nav *ngIf="!isMobileView" class="navigation">
-      <a aria-label="Download CV" href=""><i class="fa-regular fa-file"></i>CV</a>
-      <a href=""><i class="fa-regular fa-user"></i>About me</a>
-      <a href=""><i class="fa-regular fa-address-card"></i>Contact</a>
-    </nav>
-    <button class="hamburger-button" *ngIf="isMobileView"><i class="fa-solid fa-bars"></i></button>
-  </div>
-  <div class="landing-content">
     <div class="personal-container">
-      <h2>This is</h2>
-      <h1>Bence Keresztes<span>-</span>Nagy</h1>
-      <h3>FrontEnd Developer<span>.</span></h3>
-      <p>Stick around to see some of my work.</p>
-      <a class="portfolio-button button-primary">Portfolio</a>
+      <h2 class="personal-heading">This is</h2>
+      <h1 class="name">Keresztes<span>-</span>Nagy Bence</h1>
+      <h3 class="title">FrontEnd Developer<span>.</span></h3>
+      <p class="message">Stick around to see some of my work.</p>
+      <a href="../../../assets/Keresztes-Nagy-Bence-CV.pdf" class="cv-button button-primary"><i
+          class="fa-regular fa-file"></i> Download CV</a>
+      <p class="scroll"><i class="fa-solid fa-arrow-down-long"></i> Scroll</p>
     </div>
-    <img src="../../../assets/landing-illustration.svg" alt="Computer Illustration">
+    <img src="../../../assets/landing-illustration.svg" alt="Computer illustration">
+  </div>
+  <div class="details-container">
+    <div class="detail-card">
+      <img class="illustration" src="../../../assets/about-me.svg" alt="About me illustration">
+      <div class="container">
+        <h3 class="heading">About <span>me</span></h3>
+        <p class="text">Enthusiastic self-taught Frontend Developer, learning coding and practice in my spare
+          time, seeking an entry-level position to use my skills in coding.</p>
+        <a href="../../../assets/Keresztes-Nagy-Bence-CV.pdf" class="cv-button button-primary"><i
+            class="fa-regular fa-file"></i> Download CV</a>
+      </div>
+    </div>
+    <div class="detail-card">
+      <div class="container">
+        <h3 class="heading">Skills</h3>
+        <p class="text">I enjoy creating things that live on the internet, whether that be websites, applications or
+          anything in between.</p>
+        <div class="skills-icons">
+          <div class="icon-card">
+            <i class="fa-brands fa-html5"></i>
+            <p>HTML5</p>
+          </div>
+          <div class="icon-card">
+            <i class="fa-brands fa-css3-alt"></i>
+            <p>CSS3</p>
+          </div>
+          <div class="icon-card">
+            <i class="fa-brands fa-sass"></i>
+            <p>SASS</p>
+          </div>
+          <div class="icon-card">
+            <i class="fa-brands fa-square-js"></i>
+            <p>JavaScript</p>
+          </div>
+          <div class="icon-card">
+            <i class="fa-brands fa-angular"></i>
+            <p>Angular</p>
+          </div>
+          <div class="icon-card">
+            <i class="fa-brands fa-git"></i>
+            <p>Git</p>
+          </div>
+          <div class="icon-card">
+            <i class="fa-brands fa-github"></i>
+            <p>GitHub</p>
+          </div>
+        </div>
+      </div>
+      <img class="illustration" src="../../../assets/skills.svg" alt="Skills illustration">
+    </div>
   </div>
 </div>
