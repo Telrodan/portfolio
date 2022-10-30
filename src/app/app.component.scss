@@ -1,6 +1,9 @@
 @import "mixins";
 
-.app-container {
-  .content {
+.app-layout {
+  display: flex;
+
+  .app-content {
+    transition: all 0.3s ease-in;
   }
 }

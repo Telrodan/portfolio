@@ -5,11 +5,9 @@
   align-items: center;
   justify-content: space-between;
   padding: 3rem 7rem;
-  margin-bottom: 7rem;
 
   @include mobile {
     padding: 1rem 2rem;
-    margin-bottom: 4rem;
   }
 
   .logo {
@@ -17,6 +15,7 @@
     font-family: "Odibee Sans", cursive;
     font-size: 4.5rem;
 
+    i,
     span {
       color: var(--color-primary);
     }
@@ -26,22 +25,24 @@
     display: flex;
     align-items: center;
 
-    a {
+    .navigation-link {
       color: var(--color-white);
       font-size: 1.6rem;
       text-transform: uppercase;
       transition: all 0.3s ease-in;
-
-      &:hover {
-        color: var(--color-primary);
-      }
+      cursor: pointer;
 
       &:not(:last-child) {
         margin-right: 5rem;
+      }
 
-        @include mobile {
-          margin-right: 2.5rem;
-        }
+      @include mobile {
+        margin-right: 4rem;
+        display: none;
+      }
+
+      &:hover {
+        color: var(--color-primary);
       }
 
       i {
@@ -52,10 +53,15 @@
   }
 
   .hamburger-button {
+    display: none;
     color: var(--color-primary);
     background-color: transparent;
     border: none;
     font-size: 3.5rem;
     cursor: pointer;
+
+    @include mobile {
+      display: block;
+    }
   }
 }

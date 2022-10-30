@@ -1,12 +1,13 @@
 @import "mixins";
 
 .landing {
-  padding: 0 7rem;
-  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
   @include mobile {
-    flex-direction: column;
     padding: 0 2rem;
+    margin-top: 10rem;
   }
 
   .header {
@@ -17,7 +18,7 @@
 
     @include mobile {
       flex-direction: column;
-      margin-bottom: 15rem;
+      margin-bottom: 20rem;
     }
 
     .personal-container {
@@ -67,6 +68,8 @@
       .title {
         color: var(--color-secondary);
         font-size: 4rem;
+        padding-bottom: 2rem;
+        border-bottom: 1px solid var(--color-secondary);
 
         @include mobile {
           margin: 0.5rem 0 0;
@@ -78,25 +81,26 @@
         }
       }
 
-      .message {
-        margin-top: 2rem;
-        margin-left: 7rem;
-        font-family: "Source Code Pro", monospace;
-        font-size: 2rem;
+      .about-me-link,
+      .contact-link {
+        color: var(--color-white);
+        font-size: 1.6rem;
+        text-transform: uppercase;
+        transition: all 0.3s ease-in;
+        cursor: pointer;
 
-        @include mobile {
-          margin: 2.5rem 0 0;
+        &:hover {
+          color: var(--color-primary);
+        }
+
+        i {
+          margin-right: 0.5rem;
+          color: var(--color-primary);
         }
       }
 
-      .cv-button {
-        margin: 4rem auto 0;
-        width: 50%;
-        text-align: center;
-
-        @include mobile {
-          margin: 4rem auto 0;
-        }
+      .about-me-link {
+        margin: 2rem 0 1rem;
       }
 
       .scroll {
@@ -121,34 +125,43 @@
     }
 
     img {
-      margin-left: auto;
-      width: 40%;
+      padding: 5rem;
+      width: 50%;
 
       @include mobile {
         width: 100%;
+        padding: 0;
         margin-top: 4rem;
       }
     }
   }
 
   .details-container {
+    width: 80%;
+    margin-bottom: 25rem;
+
+    @include mobile {
+      width: 100%;
+    }
+
     .detail-card {
       display: flex;
-      width: 80%;
-      margin: 0 auto 15rem;
+
+      &:not(:last-child) {
+        margin-bottom: 20rem;
+      }
 
       @include mobile {
         flex-direction: column;
-        width: 100%;
       }
 
       .illustration {
-        width: 35%;
+        width: 30%;
 
         @include mobile {
           order: 1;
           width: 60%;
-          margin: 0 auto 3rem;
+          margin: 0 auto 2rem;
         }
       }
 
@@ -225,33 +238,53 @@
     display: flex;
     width: 70%;
     padding: 5rem;
-    margin: 0 auto 20rem;
-    box-shadow: 0 0 15rem var(--color-primary);
+    box-shadow: 0 0 15rem -5rem var(--color-primary);
     border-radius: 2rem;
+    margin-bottom: 20rem;
 
     @include mobile {
       flex-direction: column;
       width: 100%;
       padding: 3rem;
+      box-shadow: 0 0 10rem -5rem var(--color-primary);
     }
 
-    .heading {
-      margin: auto 0;
-      padding-right: 10rem;
-      font-family: "Odibee Sans", cursive;
-      font-weight: 400;
-      font-size: 4rem;
+    .form-header {
+      display: flex;
+      flex-direction: column;
       width: 50%;
-
-      span {
-        color: var(--color-primary);
-      }
+      padding: 0 4rem;
 
       @include mobile {
         width: 100%;
         padding: 0;
-        margin-bottom: 3rem;
-        text-align: center;
+        margin-bottom: 5rem;
+      }
+
+      .heading {
+        font-family: "Odibee Sans", cursive;
+        font-weight: 400;
+        font-size: 4rem;
+
+        span {
+          color: var(--color-primary);
+        }
+
+        @include mobile {
+          width: 100%;
+          padding: 0;
+          margin-bottom: 3rem;
+          text-align: center;
+        }
+      }
+
+      .message-image {
+        width: 50%;
+        margin: 0 auto;
+
+        @include mobile {
+          width: 30%;
+        }
       }
     }
 
@@ -260,6 +293,7 @@
 
       @include mobile {
         width: 100%;
+        text-align: center;
       }
 
       .form {

@@ -1,0 +1,8 @@
+<div class="side-menu" [ngStyle]="{ 'width': isOpen ? ( isMobileView ? 'calc(100vw + 9rem)': '25rem') : '9rem' }">
+  <div class="menu-container" [ngStyle]="{ 'width': isOpen ? '25rem' : '9rem' }">
+    <button class="hamburger-button" *ngIf="!isOpen" (click)="openSideMenu()"><i class="fa-solid fa-bars"></i></button>
+    <button class="close-button" *ngIf="isOpen" (click)="closeSideMenu()"><i class="fa-solid fa-xmark"></i></button>
+    <nav class="menu-navigation">
+    </nav>
+  </div>
+</div>

@@ -3,8 +3,8 @@
 .button-primary {
   position: relative;
   padding: 1.5rem 3.5rem;
-  color: var(--color-white);
-  background-color: var(--color-danger);
+  color: var(--color-background);
+  background-color: var(--color-primary);
   box-shadow: 0 10px 30px var(--primary-button-shadow);
   border: none;
   border-radius: 500rem;
@@ -32,5 +32,9 @@
     height: 2px;
     background-color: var(--color-white);
     transition: right 0.3s ease-in;
+  }
+
+  i {
+    font-size: 1.6rem;
   }
 }

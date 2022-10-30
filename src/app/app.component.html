@@ -1,7 +1,11 @@
-<div class="app-container">
-  <portfolio-header></portfolio-header>
-  <div class="content">
+<div class="app-layout">
+  <div class="app-content"
+    [ngStyle]="{ 'padding-right': isSideMenuOpen ? ( isMobileView ? '0' :'25rem') : ( isMobileView ? '0' :'9rem') }">
+    <portfolio-header></portfolio-header>
     <router-outlet></router-outlet>
+    <portfolio-footer></portfolio-footer>
   </div>
-  <portfolio-footer></portfolio-footer>
+  <div class="app-side-menu">
+    <portfolio-side-menu></portfolio-side-menu>
+  </div>
 </div>

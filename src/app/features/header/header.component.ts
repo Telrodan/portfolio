@@ -1,5 +1,6 @@
-import { Component, HostListener, OnInit } from '@angular/core';
-import { isMobileView } from 'src/app/shared/utils/mobile-view';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ScrollService } from 'src/app/core/services/scroll.service';
+import { SideMenuService } from 'src/app/core/services/side-menu.service';
 
 @Component({
   selector: 'portfolio-header',
@@ -7,16 +8,18 @@ import { isMobileView } from 'src/app/shared/utils/mobile-view';
   styleUrls: ['./header.component.scss'],
 })
 export class HeaderComponent implements OnInit {
-  public isMobileView: boolean = false;
+  constructor(
+    private sideMenuService: SideMenuService,
+    public scrollService: ScrollService
+  ) {}
 
-  constructor() {}
+  public ngOnInit(): void {}
 
-  public ngOnInit(): void {
-    this.onResize();
+  public scrollToElement(element: string) {
+    this.scrollService.scrollToElement(element);
   }
 
-  @HostListener('window:resize', ['$event'])
-  public onResize() {
-    this.isMobileView = isMobileView();
+  public openSideMenu(): void {
+    this.sideMenuService.openSideMenu();
   }
 }
