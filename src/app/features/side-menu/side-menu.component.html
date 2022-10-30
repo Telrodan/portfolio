@@ -5,7 +5,8 @@
     <button class="close-button" *ngIf="isOpen" (click)="closeSideMenu()"><i class="fa-solid fa-xmark"></i></button>
     <nav class="menu-navigation">
     </nav>
-    <button class="hide-side-menu-button" (click)="hideSideMenu()">Hide Side Menu</button>
+    <button class="hide-side-menu-button" (click)="hideSideMenu()"><i class="fa-regular fa-eye-slash"></i>Hide</button>
   </div>
 </div>
-<button class="show-side-menu-button" *ngIf="isHidden" (click)="showSideMenu()">Show Side Menu</button>
+<button [@fadeInAndOutAnimation] class="show-side-menu-button" *ngIf="isHidden" (click)="showSideMenu()"><i
+    class="fa-solid fa-circle-arrow-left"></i></button>

@@ -16,8 +16,10 @@
   }
 
   .menu-container {
+    position: relative;
     padding: 3rem;
     width: 100%;
+    height: 100%;
     transition: all 0.3s ease-in;
 
     .hamburger-button,
@@ -35,18 +37,45 @@
     }
 
     .hide-side-menu-button {
+      position: absolute;
+      bottom: 2rem;
+      left: 2rem;
+      color: var(--color-side-menu-icon);
+      background-color: transparent;
+      border: none;
+      font-size: 1.6rem;
+      transition: all 0.3s ease-in;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--color-white);
+      }
+
       @include mobile() {
         display: none;
+      }
+
+      i {
+        margin-right: 0.5rem;
       }
     }
   }
 }
 
 .show-side-menu-button {
-  position: absolute;
-  right: 0;
+  position: fixed;
+  right: 1.5rem;
   top: 50%;
+  color: var(--color-side-menu-icon);
+  background-color: transparent;
+  border: none;
+  font-size: 3rem;
+  transition: all 0.3s ease-in;
+  cursor: pointer;
 
+  &:hover {
+    color: var(--color-white);
+  }
   @include mobile() {
     display: none;
   }
