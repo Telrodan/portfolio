@@ -1,4 +1,5 @@
-import { Component, HostListener, OnInit } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
+import { Component, HostListener, OnInit, Inject } from '@angular/core';
 import { SideMenuService } from './core/services/side-menu.service';
 import { isMobileView } from './shared/utils/mobile-view';
 
@@ -12,17 +13,25 @@ export class AppComponent implements OnInit {
   public isSideMenuOpen: boolean = false;
   public isSideMenuShowing: boolean = true;
 
-  constructor(private sideMenuService: SideMenuService) {}
+  constructor(
+    @Inject(DOCUMENT) private document: Document,
+    private sideMenuService: SideMenuService
+  ) {}
 
   public ngOnInit(): void {
     this.onResize();
-    this.sideMenuService.isSideMenuShowing.subscribe((boolean) => {
-      this.isSideMenuShowing = boolean;
-      console.log(this.isSideMenuShowing);
-    });
-    this.sideMenuService.isSideMenuOpen.subscribe(
-      (boolean) => (this.isSideMenuOpen = boolean)
+    this.sideMenuService.isSideMenuShowing.subscribe(
+      (boolean) => (this.isSideMenuShowing = boolean)
     );
+
+    this.sideMenuService.isSideMenuOpen.subscribe((boolean) => {
+      this.isSideMenuOpen = boolean;
+      if (boolean && this.isMobileView) {
+        this.document.body.style.overflowY = 'hidden';
+      } else {
+        this.document.body.style.overflowY = 'auto';
+      }
+    });
   }
 
   @HostListener('window:resize', ['$event'])
