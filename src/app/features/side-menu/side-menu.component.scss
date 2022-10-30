@@ -4,7 +4,6 @@
   position: fixed;
   right: 0;
   height: 100%;
-  width: 9rem;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -12,15 +11,13 @@
   box-shadow: 15px 0 20px var(--color-primary);
   transition: all 0.3s ease-in;
 
-  @include mobile {
-    right: -9rem;
+  @include mobile() {
     box-shadow: none;
   }
 
   .menu-container {
-    position: fixed;
-    top: 0;
     padding: 3rem;
+    width: 100%;
     transition: all 0.3s ease-in;
 
     .hamburger-button,
@@ -36,5 +33,21 @@
         color: var(--color-white);
       }
     }
+
+    .hide-side-menu-button {
+      @include mobile() {
+        display: none;
+      }
+    }
+  }
+}
+
+.show-side-menu-button {
+  position: absolute;
+  right: 0;
+  top: 50%;
+
+  @include mobile() {
+    display: none;
   }
 }

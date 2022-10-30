@@ -9,15 +9,16 @@ import { isMobileView } from 'src/app/shared/utils/mobile-view';
 })
 export class SideMenuComponent implements OnInit {
   public isOpen: boolean = false;
+  public isHidden: boolean = false;
   public isMobileView: boolean = false;
 
   constructor(private sideMenuService: SideMenuService) {}
 
   ngOnInit(): void {
+    this.onResize();
     this.sideMenuService.isSideMenuOpen.subscribe(
       (boolean) => (this.isOpen = boolean)
     );
-    this.onResize();
   }
 
   @HostListener('window:resize', ['$event'])
@@ -27,10 +28,22 @@ export class SideMenuComponent implements OnInit {
 
   public openSideMenu(): void {
     this.sideMenuService.openSideMenu();
-    console.log('open');
+    this.isOpen = true;
   }
 
   public closeSideMenu(): void {
     this.sideMenuService.closeSideMenu();
+    this.isOpen = false;
+  }
+
+  public showSideMenu(): void {
+    this.sideMenuService.showSideMenu();
+    this.isHidden = false;
+  }
+
+  public hideSideMenu(): void {
+    this.sideMenuService.hideSideMenu();
+    this.isHidden = true;
+    this.closeSideMenu();
   }
 }

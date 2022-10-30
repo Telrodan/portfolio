@@ -1,6 +1,6 @@
-import { Component, HostListener, OnInit, ViewChild } from '@angular/core';
+import { Component, HostListener, OnInit } from '@angular/core';
 import { SideMenuService } from './core/services/side-menu.service';
-import { isMobileView } from 'src/app/shared/utils/mobile-view';
+import { isMobileView } from './shared/utils/mobile-view';
 
 @Component({
   selector: 'app-root',
@@ -8,14 +8,18 @@ import { isMobileView } from 'src/app/shared/utils/mobile-view';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  public isSideMenuOpen: boolean = false;
   public isMobileView: boolean = false;
+  public isSideMenuOpen: boolean = false;
+  public isSideMenuShowing: boolean = true;
 
   constructor(private sideMenuService: SideMenuService) {}
 
   public ngOnInit(): void {
     this.onResize();
-    console.log(this.isMobileView);
+    this.sideMenuService.isSideMenuShowing.subscribe((boolean) => {
+      this.isSideMenuShowing = boolean;
+      console.log(this.isSideMenuShowing);
+    });
     this.sideMenuService.isSideMenuOpen.subscribe(
       (boolean) => (this.isSideMenuOpen = boolean)
     );
@@ -24,9 +28,5 @@ export class AppComponent implements OnInit {
   @HostListener('window:resize', ['$event'])
   public onResize(): void {
     this.isMobileView = isMobileView();
-  }
-
-  public scroll(event: string) {
-    console.log(event);
   }
 }
