@@ -1,13 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './features/landing/landing.component';
+import { ProjectsComponent } from './features/projects/projects.component';
 
 const landingModule = () =>
   import('./features/landing/landing.module').then((m) => m.LandingModule);
+const projectsModule = () =>
+  import('./features/projects/projects.module').then((m) => m.ProjectsModule);
 
 const routes: Routes = [
   { path: '', redirectTo: '/landing', pathMatch: 'full' },
   { path: 'landing', component: LandingComponent, loadChildren: landingModule },
+  {
+    path: 'projects',
+    component: ProjectsComponent,
+    loadChildren: projectsModule,
+  },
 ];
 
 @NgModule({

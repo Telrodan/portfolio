@@ -22,7 +22,7 @@ import { animate, style, transition, trigger } from '@angular/animations';
 })
 export class SideMenuComponent implements OnInit {
   public isOpen: boolean = false;
-  public isHidden: boolean = false;
+  public isHidden: boolean = true;
   public isMobileView: boolean = false;
 
   constructor(private sideMenuService: SideMenuService) {}

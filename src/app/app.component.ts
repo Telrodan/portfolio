@@ -11,7 +11,7 @@ import { isMobileView } from './shared/utils/mobile-view';
 export class AppComponent implements OnInit {
   public isMobileView: boolean = false;
   public isSideMenuOpen: boolean = false;
-  public isSideMenuShowing: boolean = true;
+  public isSideMenuShowing: boolean = false;
 
   constructor(
     @Inject(DOCUMENT) private document: Document,

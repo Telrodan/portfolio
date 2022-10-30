@@ -6,6 +6,7 @@ import { FooterComponent } from './features/footer/footer.component';
 import { HeaderComponent } from './features/header/header.component';
 import { SideMenuComponent } from './features/side-menu/side-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ProjectsComponent } from './features/projects/projects.component';
 
 @NgModule({
   declarations: [
@@ -13,6 +14,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     FooterComponent,
     HeaderComponent,
     SideMenuComponent,
+    ProjectsComponent,
   ],
   imports: [BrowserModule, BrowserAnimationsModule, AppRoutingModule],
   providers: [],

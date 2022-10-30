@@ -76,7 +76,13 @@
   &:hover {
     color: var(--color-white);
   }
+
   @include mobile() {
     display: none;
+  }
+
+  i {
+    border-radius: 50rem;
+    box-shadow: 0 0 10px var(--color-secondary);
   }
 }
