@@ -5,6 +5,7 @@
       <h1 class="name">Keresztes<span>-</span>Nagy Bence</h1>
       <h3 class="title">FrontEnd Developer<span>.</span></h3>
       <a class="about-me-link" (click)="scrollToElement(aboutMe)"><i class="fa-regular fa-user"></i>About me</a>
+      <a class="projects-link" routerLink="/projects"><i class="fa-solid fa-layer-group"></i>Projects</a>
       <a class="contact-link" (click)="scrollToElement(contact)"><i class="fa-regular fa-address-card"></i>Contact</a>
       <p class="scroll"><i class="fa-solid fa-arrow-down-long"></i> Scroll</p>
     </div>
@@ -15,8 +16,9 @@
       <img class="illustration" src="../../../assets/about-me.svg" alt="About me illustration">
       <div class="container">
         <h3 class="heading">About <span>me</span></h3>
-        <p class="text">Enthusiastic self-taught Frontend Developer, learning coding and practice in my spare
-          time, seeking an entry-level position to use my skills in coding.</p>
+        <p class="text">Enthusiastic self-taught Frontend Developer, learning to code and practicing in my spare time,
+          seeking an entry-level
+          position to use my skills in coding.</p>
         <a href="../../../assets/Keresztes-Nagy-Bence-CV.pdf" class="cv-button button-primary"><i
             class="fa-regular fa-file"></i> Download CV</a>
       </div>
@@ -24,8 +26,7 @@
     <div class="detail-card">
       <div class="container">
         <h3 class="heading">Skills</h3>
-        <p class="text">I enjoy creating things that live on the internet, whether that be websites, applications or
-          anything in between.</p>
+        <p class="text">Technologies I learned and worked with so far.</p>
         <div class="skills-icons">
           <div class="icon-card">
             <i class="fa-brands fa-html5"></i>
@@ -58,6 +59,14 @@
         </div>
       </div>
       <img class="illustration" src="../../../assets/skills.svg" alt="Skills illustration">
+    </div>
+    <div class="detail-card">
+      <img class="illustration" src="../../../assets/projects.svg" alt="About me illustration">
+      <div class="container">
+        <h3 class="heading">Projects</h3>
+        <p class="text">I enjoy creating things that live on the internet.</p>
+        <a routerLink="/projects" class="cv-button button-primary"><i class="fa-solid fa-layer-group"></i> Projects</a>
+      </div>
     </div>
   </div>
   <div class="contact-me-container" id="contact" #contact>

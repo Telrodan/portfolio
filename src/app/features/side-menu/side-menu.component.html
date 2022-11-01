@@ -4,6 +4,12 @@
     <button class="hamburger-button" *ngIf="!isOpen" (click)="openSideMenu()"><i class="fa-solid fa-bars"></i></button>
     <button class="close-button" *ngIf="isOpen" (click)="closeSideMenu()"><i class="fa-solid fa-xmark"></i></button>
     <nav class="menu-navigation">
+      <a class="navigation-link" routerLink="landing" routerLinkActive="navigation-link--active"
+        (click)="isMobileView ? closeSideMenu() : null"><i class="fa-solid fa-house"></i><span [@fadeInAndOutAnimation]
+          *ngIf="isOpen">Home</span></a>
+      <a class="navigation-link" routerLink="projects" routerLinkActive="navigation-link--active"
+        (click)="isMobileView ? closeSideMenu() : null"><i class="fa-solid fa-layer-group"></i><span
+          [@fadeInAndOutAnimation] *ngIf="isOpen">Projects</span></a>
     </nav>
     <button class="hide-side-menu-button" (click)="hideSideMenu()"><i class="fa-regular fa-eye-slash"></i>Hide</button>
   </div>

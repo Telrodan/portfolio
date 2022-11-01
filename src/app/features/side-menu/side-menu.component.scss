@@ -3,7 +3,7 @@
 .side-menu {
   position: fixed;
   right: 0;
-  height: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -33,6 +33,41 @@
 
       &:hover {
         color: var(--color-white);
+      }
+    }
+
+    .menu-navigation {
+      display: flex;
+      flex-direction: column;
+      padding-top: 2rem;
+      width: 30rem;
+
+      .navigation-link {
+        color: var(--color-primary);
+        font-size: 2.5rem;
+        transition: all 0.3s ease-in;
+        font-family: "Odibee Sans", cursive;
+        letter-spacing: 1px;
+
+        &:not(:last-child) {
+          margin-bottom: 1rem;
+        }
+
+        &:hover {
+          color: var(--color-secondary);
+        }
+
+        &--active {
+          color: var(--color-white);
+
+          &:hover {
+            color: var(--color-white);
+          }
+        }
+
+        i {
+          margin-right: 1rem;
+        }
       }
     }
 

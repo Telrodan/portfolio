@@ -1,3 +1,13 @@
-.div {
-  width: 100%;
+@import "mixins";
+
+img {
+  width: 40%;
+  margin: 0 auto 10rem;
+
+  @include mobile() {
+    height: 100%;
+    width: 80%;
+
+    margin: 0 auto 5rem;
+  }
 }
