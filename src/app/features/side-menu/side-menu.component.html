@@ -1,40 +1,41 @@
-<div class="side-menu" [ngStyle]="{ right: isOpen ? '0' : '-100%' }">
+<div
+  class="side-menu"
+  *ngIf="isMobileView"
+  [ngStyle]="{ right: isOpen ? '0' : '-100%' }"
+>
   <div class="menu-container">
     <nav class="menu-navigation">
-      <button class="hamburger-button" *ngIf="!isOpen" (click)="openSideMenu()">
-        <i class="fa-solid fa-bars"></i>
-      </button>
-      <button class="close-button" *ngIf="isOpen" (click)="closeSideMenu()">
+      <button class="close-button" (click)="closeSideMenu()">
         <i class="fa-solid fa-xmark"></i>
       </button>
-
       <a
         class="navigation-link"
-        routerLink="landing"
+        routerLink="home"
         routerLinkActive="navigation-link--active"
-        (click)="isMobileView ? closeSideMenu() : null"
-        ><i class="fa-solid fa-house"></i
+        ><i class="fa-solid fa-house fa-fw"></i
         ><span [@fadeInAndOutAnimation] *ngIf="isOpen">Home</span></a
       >
       <a
         class="navigation-link"
-        routerLink="projects"
+        routerLink="works"
         routerLinkActive="navigation-link--active"
-        (click)="isMobileView ? closeSideMenu() : null"
-        ><i class="fa-solid fa-layer-group"></i
-        ><span [@fadeInAndOutAnimation] *ngIf="isOpen">Projects</span></a
+        ><i class="fa-solid fa-layer-group fa-fw"></i
+        ><span [@fadeInAndOutAnimation] *ngIf="isOpen">Works</span></a
+      >
+      <a
+        class="navigation-link"
+        routerLink="blog"
+        routerLinkActive="navigation-link--active"
+        ><i class="fa-solid fa-comment fa-fw"></i
+        ><span [@fadeInAndOutAnimation] *ngIf="isOpen">Blog</span></a
+      >
+      <a
+        class="navigation-link"
+        routerLink="contact"
+        routerLinkActive="navigation-link--active"
+        ><i class="fa-solid fa-envelope fa-fw"></i
+        ><span [@fadeInAndOutAnimation] *ngIf="isOpen">Contact</span></a
       >
     </nav>
-    <button class="hide-side-menu-button" (click)="hideSideMenu()">
-      <i class="fa-regular fa-eye-slash"></i>Hide
-    </button>
   </div>
 </div>
-<button
-  [@fadeInAndOutAnimation]
-  class="show-side-menu-button"
-  *ngIf="isHidden"
-  (click)="showSideMenu()"
->
-  <i class="fa-solid fa-circle-arrow-left"></i>
-</button>

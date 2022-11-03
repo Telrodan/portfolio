@@ -6,15 +6,8 @@
   top: 0;
   width: 100vw;
   height: 100vh;
-  display: flex;
-  flex-direction: column;
   background-color: var(--color-side-menu);
-  box-shadow: 15px 0 20px var(--color-primary);
   transition: all 0.3s ease-in;
-
-  @include mobile() {
-    box-shadow: none;
-  }
 
   .menu-container {
     position: relative;
@@ -25,8 +18,8 @@
     .menu-navigation {
       display: flex;
       flex-direction: column;
+      padding: 3rem;
 
-      .hamburger-button,
       .close-button {
         color: var(--color-side-menu-icon);
         background-color: transparent;
@@ -36,7 +29,6 @@
         transition: all 0.3s ease-in;
         align-self: flex-start;
         margin-bottom: 2rem;
-        padding: 3rem 3rem;
 
         &:hover {
           color: var(--color-white);
@@ -44,6 +36,7 @@
       }
 
       .navigation-link {
+        padding: 1rem;
         color: var(--color-primary);
         font-size: 2.5rem;
         transition: all 0.3s ease-in;
@@ -56,21 +49,14 @@
           margin-bottom: 1rem;
         }
 
-        &:hover {
-          color: var(--color-secondary);
-        }
-
         &--active {
           color: var(--color-white);
-          background-color: var(--color-danger);
-
-          &:hover {
-            color: var(--color-side-menu);
-          }
+          background-color: var(--color-side-menu-icon);
         }
 
         i {
-          padding: 1rem;
+          margin-right: 1rem;
+          color: var(--color-white);
         }
       }
     }

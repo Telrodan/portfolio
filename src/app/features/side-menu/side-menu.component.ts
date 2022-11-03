@@ -48,15 +48,4 @@ export class SideMenuComponent implements OnInit {
     this.sideMenuService.closeSideMenu();
     this.isOpen = false;
   }
-
-  public showSideMenu(): void {
-    this.sideMenuService.showSideMenu();
-    this.isHidden = false;
-  }
-
-  public hideSideMenu(): void {
-    this.sideMenuService.hideSideMenu();
-    this.isHidden = true;
-    this.closeSideMenu();
-  }
 }
