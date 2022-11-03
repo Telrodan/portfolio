@@ -1,0 +1,234 @@
+@import 'mixins';
+
+.home {
+  .header {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 20rem;
+
+    @include mobile {
+      flex-direction: column;
+      margin-top: 5rem;
+    }
+
+    &__container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 50%;
+
+      @include mobile {
+        width: 100%;
+        text-align: center;
+      }
+    }
+
+    &__heading,
+    &__name,
+    &__title {
+      font-family: 'Odibee Sans', cursive;
+      font-weight: 400;
+    }
+
+    &__heading {
+      color: var(--color-primary);
+      font-size: 2.6rem;
+      letter-spacing: 2px;
+
+      @include mobile {
+        margin-bottom: 0.5rem;
+        font-size: 3rem;
+      }
+    }
+
+    &__name {
+      margin-bottom: 1rem;
+      font-size: 7rem;
+
+      @include mobile {
+        margin: 0;
+        font-size: 5rem;
+      }
+
+      span {
+        color: var(--color-primary);
+      }
+    }
+
+    &__title {
+      color: var(--color-secondary);
+      font-size: 4.5rem;
+      padding-bottom: 1.5rem;
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--color-secondary);
+
+      @include mobile {
+        margin-top: 0.5rem;
+        font-size: 3rem;
+      }
+
+      span {
+        color: var(--color-white);
+      }
+    }
+
+    &__link {
+      margin-bottom: 1rem;
+      color: var(--color-white);
+      font-size: 1.6rem;
+      transition: all 0.3s ease-in;
+      cursor: pointer;
+
+      &:hover {
+        color: var(--color-primary);
+      }
+
+      i {
+        margin-right: 0.6rem;
+        color: var(--color-primary);
+      }
+    }
+
+    &__cv-button {
+      margin-top: 1rem;
+    }
+
+    &__illustration {
+      padding: 5rem;
+      width: 50%;
+
+      @include mobile {
+        width: 100%;
+        padding: 0;
+        margin-top: 4rem;
+      }
+    }
+  }
+
+  .details {
+    width: 80%;
+    margin: 0 auto 15rem;
+
+    @include mobile {
+      width: 100%;
+    }
+
+    &__card {
+      display: flex;
+
+      &:not(:last-child) {
+        margin-bottom: 15rem;
+
+        @include mobile {
+          margin-bottom: 15rem;
+        }
+      }
+
+      @include mobile {
+        flex-direction: column;
+      }
+
+      &__illustration {
+        width: 30%;
+
+        @include mobile {
+          order: 1;
+          width: 80%;
+          margin: 0 auto 3rem;
+        }
+      }
+
+      &__content {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        justify-content: center;
+        width: 65%;
+        padding: 5rem;
+
+        @include mobile {
+          width: 100%;
+          padding: 0;
+          order: 2;
+        }
+      }
+
+      &__heading {
+        margin-bottom: 1rem;
+        color: var(--color-secondary);
+        font-size: 5rem;
+        font-family: 'Odibee Sans', cursive;
+        font-weight: 400;
+
+        span {
+          color: var(--color-white);
+        }
+      }
+
+      &__description {
+        margin-bottom: 4rem;
+        font-size: 1.6rem;
+        line-height: 2.5rem;
+      }
+
+      &__icon-wrapper {
+        display: flex;
+        width: 100%;
+        justify-content: center;
+
+        @include mobile {
+          flex-wrap: wrap;
+          justify-content: flex-start;
+        }
+      }
+
+      &__icon {
+        text-align: center;
+        color: var(--color-primary);
+
+        &:not(:last-child) {
+          margin-right: 3rem;
+        }
+
+        @include mobile {
+          margin-bottom: 2rem;
+        }
+
+        i {
+          margin-bottom: 0.5rem;
+          font-size: 4rem;
+        }
+
+        p {
+          color: var(--color-white);
+          font-size: 1.4rem;
+        }
+      }
+    }
+  }
+
+  .scroll {
+    position: absolute;
+    bottom: 2rem;
+    left: 7rem;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+    direction: rtl;
+
+    @include mobile {
+      left: 0.5rem;
+    }
+
+    i {
+      margin-top: 0.8rem;
+      font-size: 1.6rem;
+      color: var(--color-primary);
+    }
+  }
+}

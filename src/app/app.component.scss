@@ -1,10 +1,14 @@
-@import "mixins";
+@import 'mixins';
 
 .app-layout {
-  display: flex;
+  background-color: var(--color-background);
 
   .app-content {
-    width: 100%;
-    transition: all 0.3s ease-in;
+    min-height: 100vh;
+    padding: 0 7rem;
+
+    @include mobile() {
+      padding: 0 2rem;
+    }
   }
 }

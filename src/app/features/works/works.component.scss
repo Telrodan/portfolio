@@ -1,0 +1,15 @@
+@import 'mixins';
+
+.works {
+  display: flex;
+  justify-content: center;
+
+  img {
+    width: 55rem;
+
+    @include mobile() {
+      margin-top: 15rem;
+      width: 100%;
+    }
+  }
+}

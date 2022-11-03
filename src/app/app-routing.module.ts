@@ -1,31 +1,20 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { LandingComponent } from './features/landing/landing.component';
-import { ProjectsComponent } from './features/projects/projects.component';
-
-const landingModule = () =>
-  import('./features/landing/landing.module').then((m) => m.LandingModule);
-const projectsModule = () =>
-  import('./features/projects/projects.module').then((m) => m.ProjectsModule);
+import { HomeComponent } from './features/home/home.component';
+import { WorksComponent } from './features/works/works.component';
+import { BlogComponent } from './features/blog/blog.component';
+import { ContactComponent } from './features/contact/contact.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/landing', pathMatch: 'full' },
-  { path: 'landing', component: LandingComponent, loadChildren: landingModule },
-  {
-    path: 'projects',
-    component: ProjectsComponent,
-    loadChildren: projectsModule,
-  },
+  { path: '', redirectTo: '/home', pathMatch: 'full' },
+  { path: 'home', component: HomeComponent },
+  { path: 'works', component: WorksComponent },
+  { path: 'blog', component: BlogComponent },
+  { path: 'contact', component: ContactComponent }
 ];
 
 @NgModule({
-  imports: [
-    RouterModule.forRoot(routes, {
-      scrollPositionRestoration: 'enabled',
-      anchorScrolling: 'enabled',
-      scrollOffset: [0, 64],
-    }),
-  ],
-  exports: [RouterModule],
+  imports: [RouterModule.forRoot(routes)],
+  exports: [RouterModule]
 })
 export class AppRoutingModule {}

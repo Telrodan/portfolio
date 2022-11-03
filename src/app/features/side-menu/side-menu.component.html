@@ -1,18 +1,40 @@
-<div class="side-menu"
-  [ngStyle]="{ 'width': isOpen ? ( isMobileView ? 'calc(100vw + 9rem)' : '25rem' ) : '9rem', 'right': ( isMobileView ? '-9rem' : isHidden ? ( isOpen ? '-34rem' : '-9rem' ) : '0' )  }">
+<div class="side-menu" [ngStyle]="{ right: isOpen ? '0' : '-100%' }">
   <div class="menu-container">
-    <button class="hamburger-button" *ngIf="!isOpen" (click)="openSideMenu()"><i class="fa-solid fa-bars"></i></button>
-    <button class="close-button" *ngIf="isOpen" (click)="closeSideMenu()"><i class="fa-solid fa-xmark"></i></button>
     <nav class="menu-navigation">
-      <a class="navigation-link" routerLink="landing" routerLinkActive="navigation-link--active"
-        (click)="isMobileView ? closeSideMenu() : null"><i class="fa-solid fa-house"></i><span [@fadeInAndOutAnimation]
-          *ngIf="isOpen">Home</span></a>
-      <a class="navigation-link" routerLink="projects" routerLinkActive="navigation-link--active"
-        (click)="isMobileView ? closeSideMenu() : null"><i class="fa-solid fa-layer-group"></i><span
-          [@fadeInAndOutAnimation] *ngIf="isOpen">Projects</span></a>
+      <button class="hamburger-button" *ngIf="!isOpen" (click)="openSideMenu()">
+        <i class="fa-solid fa-bars"></i>
+      </button>
+      <button class="close-button" *ngIf="isOpen" (click)="closeSideMenu()">
+        <i class="fa-solid fa-xmark"></i>
+      </button>
+
+      <a
+        class="navigation-link"
+        routerLink="landing"
+        routerLinkActive="navigation-link--active"
+        (click)="isMobileView ? closeSideMenu() : null"
+        ><i class="fa-solid fa-house"></i
+        ><span [@fadeInAndOutAnimation] *ngIf="isOpen">Home</span></a
+      >
+      <a
+        class="navigation-link"
+        routerLink="projects"
+        routerLinkActive="navigation-link--active"
+        (click)="isMobileView ? closeSideMenu() : null"
+        ><i class="fa-solid fa-layer-group"></i
+        ><span [@fadeInAndOutAnimation] *ngIf="isOpen">Projects</span></a
+      >
     </nav>
-    <button class="hide-side-menu-button" (click)="hideSideMenu()"><i class="fa-regular fa-eye-slash"></i>Hide</button>
+    <button class="hide-side-menu-button" (click)="hideSideMenu()">
+      <i class="fa-regular fa-eye-slash"></i>Hide
+    </button>
   </div>
 </div>
-<button [@fadeInAndOutAnimation] class="show-side-menu-button" *ngIf="isHidden" (click)="showSideMenu()"><i
-    class="fa-solid fa-circle-arrow-left"></i></button>
+<button
+  [@fadeInAndOutAnimation]
+  class="show-side-menu-button"
+  *ngIf="isHidden"
+  (click)="showSideMenu()"
+>
+  <i class="fa-solid fa-circle-arrow-left"></i>
+</button>
