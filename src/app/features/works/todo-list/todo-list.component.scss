@@ -1,0 +1,30 @@
+.close-button {
+  position: absolute;
+  top: 2rem;
+  right: 2rem;
+
+  background-color: transparent;
+  border: none;
+
+  i {
+    font-size: 1.6rem;
+  }
+}
+
+.todo-list {
+  padding: 2rem;
+  margin-top: 2rem;
+
+  .heading {
+  }
+
+  .add-list-group {
+    display: flex;
+  }
+
+  div {
+    .p-card-shadow {
+      margin: 2rem;
+    }
+  }
+}

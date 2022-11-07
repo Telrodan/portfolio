@@ -1,0 +1,12 @@
+<div class="add-list">
+  <h2>Add new list</h2>
+  <span class="p-float-label">
+    <input id="float-input" type="text" pInputText [(ngModel)]="newListName" />
+    <label for="float-input">New list name</label>
+  </span>
+  <p-dropdown
+    [options]="priorities"
+    [(ngModel)]="selectedPriority"
+    optionLabel="name"
+  ></p-dropdown>
+</div>
