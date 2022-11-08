@@ -11,6 +11,12 @@ import { environment } from 'src/environments/environment';
 })
 export class TodoListService {
   public todoLists: Array<TodoList> = [];
+  private selectedList: TodoList = {
+    id: '',
+    listName: 'string',
+    tasks: [],
+    priority: 'string'
+  };
 
   constructor(private http: HttpClient) {}
 
@@ -31,14 +37,25 @@ export class TodoListService {
             }
           });
         });
-        console.log(typeof this.todoLists);
         return this.todoLists;
       })
     );
   }
 
+  public selectList(list: TodoList): void {
+    this.selectedList = list;
+    console.log(this.selectedList);
+  }
+
   public addNewList(list: TodoList): void {
     this.http.post<TodoList>(environment.todoListDatabase, list).subscribe();
+  }
+
+  public getTodoListById(id: string): TodoList | undefined {
+    const list = this.todoLists.find((list) => {
+      return list.id === id;
+    });
+    return list;
   }
 
   public addNewTask(task: Task): void {

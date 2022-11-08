@@ -22,6 +22,9 @@ import { CardModule } from 'primeng/card';
 import { AddTaskComponent } from './features/works/todo-list/add-task/add-task.component';
 import { AddListComponent } from './features/works/todo-list/add-list/add-list.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { MessageService } from 'primeng/api';
+import { PaginatorModule } from 'primeng/paginator';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -49,9 +52,11 @@ import { DropdownModule } from 'primeng/dropdown';
     ToastModule,
     HttpClientModule,
     CardModule,
-    DropdownModule
+    DropdownModule,
+    PaginatorModule,
+    ProgressSpinnerModule
   ],
-  providers: [],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

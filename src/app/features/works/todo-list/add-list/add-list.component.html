@@ -1,12 +1,30 @@
 <div class="add-list">
   <h2>Add new list</h2>
-  <span class="p-float-label">
-    <input id="float-input" type="text" pInputText [(ngModel)]="newListName" />
-    <label for="float-input">New list name</label>
-  </span>
-  <p-dropdown
-    [options]="priorities"
-    [(ngModel)]="selectedPriority"
-    optionLabel="name"
-  ></p-dropdown>
+
+  <div class="p-inputgroup">
+    <span class="p-inputgroup-addon"><i class="pi pi-list"></i></span>
+    <input
+      type="text"
+      pInputText
+      placeholder="List name"
+      [(ngModel)]="newListName"
+    />
+  </div>
+
+  <div class="priority-wrapper">
+    <label>Priority</label>
+    <p-dropdown
+      [style]="{ marginBottom: '2rem' }"
+      [options]="priorities"
+      [(ngModel)]="selectedPriority"
+      optionLabel="name"
+      optionGroupLabe="Priority"
+      [showTransitionOptions]="'100ms'"
+    ></p-dropdown>
+    <p-button
+      label="Add new list"
+      icon="pi pi-plus"
+      (onClick)="onAddNewList()"
+    ></p-button>
+  </div>
 </div>

@@ -1,19 +1,19 @@
 .footer {
   width: 100%;
   background: var(--color-side-menu);
-  padding: 3rem 0;
+  padding: 30px 0;
   box-shadow: 0 15px 20px var(--color-primary);
 
   .links {
     text-align: center;
 
     a {
-      font-size: 3rem;
+      font-size: 30px;
       color: var(--color-side-menu-icon);
       transition: all 0.3s ease-in;
 
       &:not(:last-child) {
-        margin-right: 2rem;
+        margin-right: 20px;
       }
 
       &:hover {
@@ -24,9 +24,9 @@
 
   .copyright {
     display: block;
-    margin-top: 1.5rem;
+    margin-top: 15px;
     color: var(--color-white);
-    font-size: 1.4rem;
+    font-size: 14px;
     font-family: 'Odibee Sans', cursive;
     text-align: center;
     color: var(--color-side-menu-icon);

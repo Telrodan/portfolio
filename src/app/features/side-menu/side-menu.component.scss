@@ -18,17 +18,17 @@
     .menu-navigation {
       display: flex;
       flex-direction: column;
-      padding: 3rem;
+      padding: 30px;
 
       .close-button {
         color: var(--color-side-menu-icon);
         background-color: transparent;
         border: none;
-        font-size: 3.5rem;
+        font-size: 35px;
         cursor: pointer;
         transition: all 0.3s ease-in;
         align-self: flex-start;
-        margin-bottom: 2rem;
+        margin-bottom: 20px;
 
         &:hover {
           color: var(--color-white);
@@ -38,15 +38,15 @@
       .navigation-link {
         padding: 1rem;
         color: var(--color-primary);
-        font-size: 2.5rem;
+        font-size: 25px;
         transition: all 0.3s ease-in;
         font-family: 'Odibee Sans', cursive;
         letter-spacing: 1px;
         border-radius: 5px;
-        padding-right: 1rem;
+        padding-right: 10px;
 
         &:not(:last-child) {
-          margin-bottom: 1rem;
+          margin-bottom: 10px;
         }
 
         &--active {
@@ -63,12 +63,12 @@
 
     .hide-side-menu-button {
       position: absolute;
-      bottom: 2rem;
-      left: 2rem;
+      bottom: 20px;
+      left: 20px;
       color: var(--color-side-menu-icon);
       background-color: transparent;
       border: none;
-      font-size: 1.6rem;
+      font-size: 16px;
       transition: all 0.3s ease-in;
       cursor: pointer;
 
@@ -81,7 +81,7 @@
       }
 
       i {
-        margin-right: 0.5rem;
+        margin-right: 5px;
       }
     }
   }
@@ -89,12 +89,12 @@
 
 .show-side-menu-button {
   position: fixed;
-  right: 1.5rem;
+  right: 15px;
   top: 50%;
   color: var(--color-side-menu-icon);
   background-color: transparent;
   border: none;
-  font-size: 3rem;
+  font-size: 30px;
   transition: all 0.3s ease-in;
   cursor: pointer;
 
@@ -107,7 +107,7 @@
   }
 
   i {
-    border-radius: 50rem;
+    border-radius: 500px;
     box-shadow: 0 0 10px var(--color-secondary);
   }
 }

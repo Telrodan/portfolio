@@ -1,0 +1,20 @@
+.add-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h2 {
+    margin-bottom: 1.875em;
+  }
+
+  label {
+    margin: 2rem 0 0.8rem;
+    font-size: 1.2rem;
+  }
+
+  .priority-wrapper {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}

@@ -5,10 +5,10 @@
   justify-content: center;
 
   img {
-    width: 55rem;
+    width: 50%;
 
     @include mobile() {
-      margin-top: 15rem;
+      margin-top: 150px;
       width: 100%;
     }
   }

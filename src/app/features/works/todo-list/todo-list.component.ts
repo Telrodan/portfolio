@@ -1,62 +1,50 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { v4 as uuidv4 } from 'uuid';
-import { TodoList } from 'src/app/core/models/todo-list.model';
-import { MessageService } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import { TodoListService } from 'src/app/core/services/todo-list.service';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { AddListComponent } from './add-list/add-list.component';
+import { EditListComponent } from './edit-list/edit-list.component';
+import { TodoList } from 'src/app/core/models/todo-list.model';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
-  styleUrls: ['./todo-list.component.scss'],
-  providers: [MessageService]
+  styleUrls: ['./todo-list.component.scss']
 })
-export class TodoListComponent implements OnInit {
+export class TodoListComponent implements OnInit, OnDestroy {
   public newListName: string = '';
   public newTaskName: string = '';
-  public lists: any;
+  public isLoading: boolean = true;
+  public lists: any = [];
+  public displayedLists: any = [];
+  private componentSubscriptions: Subscription[] = [];
 
   constructor(
     public dialog: MatDialog,
-    private messageService: MessageService,
     public todoListService: TodoListService
   ) {}
 
-  ngOnInit(): void {
-    this.todoListService.getTodoLists().subscribe((res) => {
-      console.log(res);
-      // const convertedLists = Object.entries(res).map((entry) => entry[1]);
-      this.lists = res;
+  public ngOnInit(): void {
+    this.componentSubscriptions.push(
+      this.todoListService.getTodoLists().subscribe((res) => {
+        this.lists = res;
+        this.setDisplayedLists();
+        this.isLoading = false;
+      })
+    );
+  }
+
+  public ngOnDestroy(): void {
+    this.componentSubscriptions.forEach((subscription) => {
+      subscription.unsubscribe();
     });
   }
 
   public onAddNewList(): void {
     this.dialog.open(AddListComponent, {
-      height: '50vh'
+      height: '30rem'
     });
-    // if (this.newListName.trim()) {
-    //   const newList: TodoList = {
-    //     id: uuidv4(),
-    //     listName:
-    //       this.newListName.charAt(0).toUpperCase() + this.newListName.slice(1),
-    //     tasks: []
-    //   };
-    //   this.messageService.add({
-    //     severity: 'success',
-    //     summary: 'Success',
-    //     detail: 'To-do list added.'
-    //   });
-    //   this.todoListService.addNewList(newList);
-    //   this.newListName = '';
-    // } else {
-    //   this.messageService.add({
-    //     severity: 'warn',
-    //     summary: 'Warn',
-    //     detail: 'Enter a list name.'
-    //   });
-    // }
   }
 
   public onAddNewTask(listId: string): void {
@@ -68,5 +56,25 @@ export class TodoListComponent implements OnInit {
     //   name: this.newTaskName.charAt(0).toUpperCase() + this.newTaskName.slice(1)
     // };
     // this.todoListService.addNewTask(newTask);
+  }
+
+  public onEditList(list: TodoList): void {
+    this.todoListService.selectList(list);
+    this.dialog.open(EditListComponent, {});
+  }
+
+  public paginate(event: any): void {
+    this.displayedLists = [];
+    const start = event.first;
+    const end = event.first + event.rows;
+    this.setDisplayedLists(start, end);
+  }
+
+  private setDisplayedLists(start: number = 0, end: number = 3) {
+    for (let i = start; i < end; i++) {
+      if (this.lists[i]) {
+        this.displayedLists.push(this.lists[i]);
+      }
+    }
   }
 }

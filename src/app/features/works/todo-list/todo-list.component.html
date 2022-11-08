@@ -1,28 +1,18 @@
-<p-toast></p-toast>
 <button class="close-button" mat-dialog-close>
   <i class="pi pi-times"></i>
 </button>
-<div class="todo-list">
+<div class="spinner" *ngIf="isLoading">
+  <p-progressSpinner></p-progressSpinner>
+</div>
+<div class="todo-list" *ngIf="!isLoading">
   <h1 class="heading primary-heading">To-do List</h1>
   <div class="add-list-group">
     <p>Add new list</p>
     <p-button icon="pi pi-plus" (onClick)="onAddNewList()"></p-button>
   </div>
-  <div class="add-list-group">
-    <span class="p-float-label">
-      <input
-        id="float-input"
-        type="text"
-        pInputText
-        [(ngModel)]="newTaskName"
-      />
-      <label for="float-input">Task name</label>
-    </span>
-  </div>
-
-  <div>
+  <div class="lists-wrapper">
     <p-card
-      *ngFor="let list of lists"
+      *ngFor="let list of displayedLists"
       [header]="list.listName"
       [subheader]="'Priority: ' + list.priority"
       [style]="{ margin: '20px', width: '360px' }"
@@ -35,8 +25,18 @@
           icon="pi pi-plus"
           (onClick)="onAddNewTask(list.id)"
         ></p-button>
-        <p-button icon="pi pi-file-edit"></p-button>
+        <p-button
+          icon="pi pi-file-edit"
+          (onClick)="onEditList(list)"
+        ></p-button>
       </ng-template>
     </p-card>
   </div>
+  <p-paginator
+    [rows]="3"
+    [totalRecords]="lists.length"
+    [rowsPerPageOptions]="[3, 6, 9]"
+    [pageLinkSize]="3"
+    (onPageChange)="paginate($event)"
+  ></p-paginator>
 </div>

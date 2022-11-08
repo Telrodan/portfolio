@@ -3,32 +3,32 @@
 .contact {
   display: flex;
   width: 70%;
-  padding: 3rem;
-  margin: 5rem auto 0;
+  padding: 30px;
+  margin: 50px auto 0;
   background-color: var(--color-tertiary);
   border-radius: 5px;
 
   @include mobile {
     flex-direction: column;
     width: 100%;
-    padding: 2rem;
-    margin: 5rem auto 10rem;
+    padding: 20px;
+    margin: 50px auto 100px;
   }
 
   .header {
     width: 50%;
-    padding-right: 8rem;
+    padding-right: 80px;
 
     @include mobile {
       width: 100%;
       padding: 0;
-      margin-bottom: 5rem;
+      margin-bottom: 50px;
     }
 
     &__heading {
       font-family: 'Odibee Sans', cursive;
       font-weight: 400;
-      font-size: 3.5rem;
+      font-size: 35px;
 
       span {
         color: var(--color-primary);
@@ -37,14 +37,14 @@
       @include mobile {
         width: 100%;
         padding: 0;
-        margin-bottom: 3rem;
+        margin-bottom: 30px;
         text-align: center;
       }
     }
 
     &__illustration {
       width: 60%;
-      margin: 5rem auto 0;
+      margin: 50px auto 0;
     }
   }
 
@@ -58,10 +58,10 @@
 
     .form {
       .form-heading {
-        margin-bottom: 1rem;
+        margin-bottom: 10px;
       }
       .form-textarea {
-        margin-bottom: 2rem;
+        margin-bottom: 20px;
       }
     }
   }
