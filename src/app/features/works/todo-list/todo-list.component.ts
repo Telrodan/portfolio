@@ -43,7 +43,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   public onAddNewList(): void {
     this.dialog.open(AddListComponent, {
-      height: '30rem'
+      height: '400px'
     });
   }
 

@@ -17,7 +17,7 @@ export class AddListComponent implements OnInit {
   public newListName: string = '';
   public selectedPriority: Priority = { name: '' };
 
-  public priorities = [{ name: 'High' }, { name: 'Medium' }, { name: 'Low' }];
+  public priorities = [{ name: 'Low' }, { name: 'Medium' }, { name: 'High' }];
 
   constructor(
     private messageService: MessageService,
