@@ -13,7 +13,7 @@ export class TodoListService {
   public todoLists: Array<TodoList> = [];
   private selectedList: TodoList = {
     id: '',
-    listName: 'string',
+    name: 'string',
     tasks: [],
     priority: 'string'
   };
@@ -21,6 +21,7 @@ export class TodoListService {
   constructor(private http: HttpClient) {}
 
   public getTodoLists(): Observable<Array<TodoList>> {
+    this.todoLists = [];
     return forkJoin({
       tasks: ajax.getJSON<Array<Task>>(environment.todoListTaskDatabase),
       lists: ajax.getJSON<Array<TodoList>>(environment.todoListDatabase)
@@ -42,9 +43,19 @@ export class TodoListService {
     );
   }
 
-  public selectList(list: TodoList): void {
+  public setList(list: TodoList): void {
     this.selectedList = list;
-    console.log(this.selectedList);
+  }
+
+  public getList(): TodoList {
+    const list = this.selectedList;
+    this.selectedList = {
+      id: '',
+      name: 'string',
+      tasks: [],
+      priority: 'string'
+    };
+    return list;
   }
 
   public addNewList(list: TodoList): void {

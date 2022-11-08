@@ -3,9 +3,10 @@ import { v4 as uuidv4 } from 'uuid';
 import { MessageService } from 'primeng/api';
 import { TodoList } from 'src/app/core/models/todo-list.model';
 import { TodoListService } from 'src/app/core/services/todo-list.service';
+import { MatDialogRef } from '@angular/material/dialog';
 
 interface Priority {
-  name: string;
+  priority: string;
 }
 
 @Component({
@@ -15,13 +16,18 @@ interface Priority {
 })
 export class AddListComponent implements OnInit {
   public newListName: string = '';
-  public selectedPriority: Priority = { name: '' };
+  public selectedPriority: Priority = { priority: '' };
 
-  public priorities = [{ name: 'Low' }, { name: 'Medium' }, { name: 'High' }];
+  public priorities = [
+    { priority: 'Low' },
+    { priority: 'Medium' },
+    { priority: 'High' }
+  ];
 
   constructor(
     private messageService: MessageService,
-    private todoListService: TodoListService
+    private todoListService: TodoListService,
+    public dialogRef: MatDialogRef<AddListComponent>
   ) {}
 
   ngOnInit(): void {}
@@ -30,19 +36,18 @@ export class AddListComponent implements OnInit {
     if (this.newListName.trim()) {
       const newList: TodoList = {
         id: uuidv4(),
-        listName:
+        name:
           this.newListName.charAt(0).toUpperCase() + this.newListName.slice(1),
-        priority: this.selectedPriority.name,
+        priority: this.selectedPriority.priority,
         tasks: []
       };
-      console.log(newList);
+      this.todoListService.addNewList(newList);
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
         detail: 'To-do list added.'
       });
-      this.todoListService.addNewList(newList);
-      this.newListName = '';
+      this.dialogRef.close();
     } else {
       this.messageService.add({
         severity: 'warn',

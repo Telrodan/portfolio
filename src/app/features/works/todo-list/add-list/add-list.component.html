@@ -1,6 +1,17 @@
-<div class="add-list">
+<button class="close-button" mat-dialog-close>
+  <i class="pi pi-times"></i>
+</button>
+<div class="todo-list-action-modal">
   <h2>Add new list</h2>
-
+  <div class="priority-wrapper">
+    <label>Priority</label>
+    <p-dropdown
+      [options]="priorities"
+      [(ngModel)]="selectedPriority"
+      optionLabel="priority"
+      [showTransitionOptions]="'100ms'"
+    ></p-dropdown>
+  </div>
   <div class="p-inputgroup">
     <span class="p-inputgroup-addon"><i class="pi pi-list"></i></span>
     <input
@@ -11,20 +22,18 @@
     />
   </div>
 
-  <div class="priority-wrapper">
-    <label>Priority</label>
-    <p-dropdown
-      [style]="{ marginBottom: '2rem' }"
-      [options]="priorities"
-      [(ngModel)]="selectedPriority"
-      optionLabel="name"
-      optionGroupLabe="Priority"
-      [showTransitionOptions]="'100ms'"
-    ></p-dropdown>
-  </div>
   <p-button
+    style="margin: 30px 0 10px"
     label="Add new list"
     icon="pi pi-plus"
     (onClick)="onAddNewList()"
   ></p-button>
+  <button
+    pButton
+    pRipple
+    label="Cancel"
+    icon="pi pi-replay"
+    class="p-button-warning"
+    mat-dialog-close
+  ></button>
 </div>

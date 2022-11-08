@@ -1,6 +1,6 @@
 export interface TodoList {
   id: string;
-  listName: string;
+  name: string;
   tasks: Array<Object>;
   priority: string;
 }

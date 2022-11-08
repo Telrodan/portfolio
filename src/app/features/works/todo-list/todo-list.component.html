@@ -13,13 +13,11 @@
   <div class="lists-wrapper">
     <p-card
       *ngFor="let list of displayedLists"
-      [header]="list.listName"
+      [header]="list.name"
       [subheader]="'Priority: ' + list.priority"
       [style]="{ margin: '20px', width: '360px' }"
     >
-      <p *ngFor="let task of list.tasks">
-        {{ task.name }}
-      </p>
+      <p *ngFor="let task of list.tasks">- {{ task.name }}</p>
       <ng-template pTemplate="footer">
         <p-button
           icon="pi pi-plus"

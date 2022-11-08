@@ -1,1 +1,49 @@
+<div class="todo-list-action-modal">
+  <h2>Edit list</h2>
 
+  <div class="priority-wrapper">
+    <label>Priority</label>
+    <p-dropdown
+      [options]="priorities"
+      [(ngModel)]="priority"
+      optionLabel="priority"
+      [showTransitionOptions]="'100ms'"
+    ></p-dropdown>
+  </div>
+  <div class="p-inputgroup">
+    <span class="p-inputgroup-addon"><i class="pi pi-list"></i></span>
+    <input
+      type="text"
+      pInputText
+      placeholder="List name"
+      [(ngModel)]="newListName"
+    />
+  </div>
+  <button
+    pButton
+    pRipple
+    style="margin: 30px 0 10px"
+    type="button"
+    label="Submit"
+    class="p-button-success"
+    icon="pi pi-check-circle"
+    (onClick)="onSubmit()"
+  ></button>
+  <button
+    pButton
+    pRipple
+    label="Cancel"
+    icon="pi pi-replay"
+    class="p-button-warning"
+    mat-dialog-close
+  ></button>
+  <button
+    pButton
+    pRipple
+    style="margin-top: 10px"
+    label="Delete"
+    icon="pi pi-times"
+    class="p-button-danger"
+    (onClick)="onDelete()"
+  ></button>
+</div>

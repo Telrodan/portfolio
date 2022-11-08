@@ -1,1 +1,28 @@
-<p>add-task works!</p>
+<div class="todo-list-action-modal">
+  <h2>Add new task</h2>
+
+  <div class="p-inputgroup">
+    <span class="p-inputgroup-addon"><i class="pi pi-list"></i></span>
+    <input
+      type="text"
+      pInputText
+      placeholder="Task"
+      [(ngModel)]="newTaskName"
+    />
+  </div>
+
+  <p-button
+    style="margin: 30px 0 10px"
+    label="Add new task"
+    icon="pi pi-plus"
+    (onClick)="onSubmit()"
+  ></p-button>
+  <button
+    pButton
+    pRipple
+    label="Cancel"
+    icon="pi pi-replay"
+    class="p-button-warning"
+    mat-dialog-close
+  ></button>
+</div>

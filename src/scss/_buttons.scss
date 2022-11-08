@@ -18,3 +18,16 @@
     margin-right: 5px;
   }
 }
+
+.close-button {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+
+  i {
+    font-size: 24px;
+  }
+}

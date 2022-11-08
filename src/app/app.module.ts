@@ -25,6 +25,7 @@ import { DropdownModule } from 'primeng/dropdown';
 import { MessageService } from 'primeng/api';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
+import { EditListComponent } from './features/works/todo-list/edit-list/edit-list.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
     ContactComponent,
     TodoListComponent,
     AddTaskComponent,
-    AddListComponent
+    AddListComponent,
+    EditListComponent
   ],
   imports: [
     BrowserModule,

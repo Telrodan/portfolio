@@ -29,8 +29,8 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.componentSubscriptions.push(
       this.todoListService.getTodoLists().subscribe((res) => {
         this.lists = res;
-        this.setDisplayedLists();
         this.isLoading = false;
+        this.setDisplayedLists();
       })
     );
   }
@@ -43,23 +43,16 @@ export class TodoListComponent implements OnInit, OnDestroy {
 
   public onAddNewList(): void {
     this.dialog.open(AddListComponent, {
-      height: '400px'
+      panelClass: 'custom-todo-modal'
     });
   }
 
   public onAddNewTask(listId: string): void {
     this.dialog.open(AddTaskComponent, {});
-    // const newTask: Task = {
-    //   id: uuidv4(),
-    //   listId: uuidv4(),
-    //   checked: false,
-    //   name: this.newTaskName.charAt(0).toUpperCase() + this.newTaskName.slice(1)
-    // };
-    // this.todoListService.addNewTask(newTask);
   }
 
   public onEditList(list: TodoList): void {
-    this.todoListService.selectList(list);
+    this.todoListService.setList(list);
     this.dialog.open(EditListComponent, {});
   }
 
