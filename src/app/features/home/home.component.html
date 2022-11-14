@@ -1,20 +1,39 @@
 <div class="home">
   <div class="header">
     <div class="header__container">
-      <h3 class="header__heading">This is</h3>
-      <h1 class="header__name">Keresztes<span>-</span>Nagy Bence</h1>
-      <h2 class="header__title">FrontEnd Developer<span>.</span></h2>
-      <a class="header__link" (click)="scrollToElement(aboutMe)"
-        ><i class="fa-solid fa-user"></i>About me</a
+      <p class="header__this-is text-teal-300">This is</p>
+      <h1 class="header__my-name">
+        Keresztes<span class="text-teal-300">-</span>Nagy Bence
+      </h1>
+      <h2
+        class="header__profession text-blue-400"
+        [ngStyle]="{ 'border-bottom': '1px solid var(--blue-400)' }"
       >
-      <a class="header__link" routerLink="/contact"
-        ><i class="fa-solid fa-envelope"></i>Contact</a
-      >
+        FrontEnd Developer
+      </h2>
       <a
-        class="header__cv-button button-primary"
-        href="../../../assets/Keresztes-Nagy-Bence-CV.pdf"
-        ><i class="fa-solid fa-file"></i>Download Resume</a
+        class="header__link text-900 hover:text-700"
+        (click)="scrollToElement(aboutMe)"
       >
+        <i class="pi pi-user text-teal-300"></i> About me</a
+      >
+      <a class="header__link text-900 hover:text-700" routerLink="/contact"
+        ><i class="pi pi-envelope text-teal-300"></i>Contact</a
+      >
+
+      <a
+        download
+        href="../../../assets/Keresztes-Nagy-Bence-CV.pdf"
+        pButton
+        type="button"
+        icon="pi pi-file"
+        label="Download Resume"
+        [ngStyle]="{
+          background: 'var(--teal-300)',
+          border: 'none',
+          'margin-top': '10px'
+        }"
+      ></a>
     </div>
     <img
       class="header__illustration"
@@ -24,83 +43,100 @@
   </div>
 
   <div class="details" #aboutMe>
-    <div class="details__card">
+    <div class="card">
       <img
-        class="details__card__illustration"
+        class="card__illustration"
         src="../../../assets/about-me.svg"
         alt="About me illustration"
       />
-      <div class="details__card__content">
-        <h3 class="details__card__heading">About <span>me</span></h3>
-        <p class="details__card__description">
+      <div class="card__content">
+        <h3 class="card__title text-blue-400">
+          About <span class="text-900">me</span>
+        </h3>
+        <p class="card__description">
           Enthusiastic self-taught Frontend Developer, learning to code and
           practicing in my spare time, seeking an entry-level position to use my
           skills in coding.
         </p>
         <a
+          download
           href="../../../assets/Keresztes-Nagy-Bence-CV.pdf"
-          class="details__card__button button-primary"
-          ><i class="fa-solid fa-file"></i>Download Resume</a
-        >
+          pButton
+          type="button"
+          icon="pi pi-file"
+          label="Download Resume"
+          [ngStyle]="{
+            background: 'var(--teal-300)',
+            border: 'none'
+          }"
+        ></a>
       </div>
     </div>
-    <div class="details__card">
-      <div class="details__card__content">
-        <h3 class="details__card__heading">Skills</h3>
-        <p class="details__card__description">
+    <div class="card">
+      <div class="card__content">
+        <h3 class="card__title text-900">Skills</h3>
+        <p class="card__description">
           Technologies I learned and worked with so far.
         </p>
-        <div class="details__card__icon-wrapper">
-          <div class="details__card__icon">
+        <div class="card__icon-wrapper">
+          <div class="card__icon text-teal-300">
             <i class="fa-brands fa-html5 fa-fw"></i>
             <p>HTML5</p>
           </div>
-          <div class="details__card__icon">
+          <div class="card__icon text-teal-300">
             <i class="fa-brands fa-css3-alt fa-fw"></i>
             <p>CSS3</p>
           </div>
-          <div class="details__card__icon">
+          <div class="card__icon text-teal-300">
             <i class="fa-brands fa-sass fa-fw"></i>
             <p>SASS</p>
           </div>
-          <div class="details__card__icon">
+          <div class="card__icon text-teal-300">
             <i class="fa-brands fa-square-js fa-fw"></i>
             <p>JavaScript</p>
           </div>
-          <div class="details__card__icon">
+          <div class="card__icon text-teal-300">
             <i class="fa-brands fa-angular fa-fw"></i>
             <p>Angular</p>
           </div>
-          <div class="details__card__icon">
+          <div class="card__icon text-teal-300">
             <i class="fa-brands fa-git fa-fw"></i>
             <p>Git</p>
           </div>
-          <div class="details__card__icon">
+          <div class="card__icon text-teal-300">
             <i class="fa-brands fa-github fa-fw"></i>
             <p>GitHub</p>
           </div>
         </div>
       </div>
       <img
-        class="details__card__illustration"
+        class="card__illustration"
         src="../../../assets/skills.svg"
         alt="Skills illustration"
       />
     </div>
-    <div class="details__card">
+    <div class="card">
       <img
-        class="details__card__illustration"
+        class="card__illustration"
         src="../../../assets/projects.svg"
         alt="About me illustration"
       />
-      <div class="details__card__content">
-        <h3 class="details__card__heading">Works</h3>
-        <p class="details__card__description">
+      <div class="card__content">
+        <h3 class="card__title text-900">Works</h3>
+        <p class="card__description">
           I enjoy creating things that live on the internet.
         </p>
-        <a routerLink="/works" class="details__card__button button-primary"
-          ><i class="fa-solid fa-layer-group"></i>Works</a
-        >
+        <a
+          routerLink="/works"
+          pButton
+          type="button"
+          icon="pi pi-folder"
+          label="Works"
+          [ngStyle]="{
+            background: 'var(--teal-300)',
+            border: 'none'
+          }"
+        ></a>
       </div>
     </div>
   </div>

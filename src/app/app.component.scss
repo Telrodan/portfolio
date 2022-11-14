@@ -1,14 +1,11 @@
 @import 'mixins';
 
 .app-layout {
-  background-color: var(--color-background);
-
   .app-content {
-    min-height: 100vh;
-    padding: 0 7rem;
+    padding: 0 70px;
 
     @include mobile() {
-      padding: 0 2rem;
+      padding: 0 20px;
     }
   }
 }

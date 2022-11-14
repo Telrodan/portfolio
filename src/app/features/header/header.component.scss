@@ -1,71 +1,7 @@
-@import 'mixins';
-
 .header {
-  display: flex;
-  align-items: center;
-  width: 100%;
-  padding: 30px 70px;
-
-  @include mobile {
-    padding: 15px 20px;
-  }
-
-  .logo {
+  &__logo {
     display: flex;
     font-family: 'Odibee Sans', cursive;
-    font-size: 30px;
-
-    i {
-      transform: translateY(3px);
-      margin-right: 5px;
-      font-size: 25px;
-    }
-  }
-
-  .navigation {
-    margin-left: auto;
-
-    @include mobile() {
-      display: none;
-    }
-
-    &__link {
-      padding: 0 3px 5px;
-      color: var(--color-white);
-      font-size: 16px;
-      transition: all 0.3s ease-in;
-      cursor: pointer;
-
-      &:not(:last-child) {
-        margin-right: 3.5rem;
-      }
-
-      &:hover {
-        color: var(--color-primary);
-      }
-
-      i {
-        margin-right: 7px;
-        color: var(--color-primary);
-      }
-
-      &--active {
-        color: var(--color-primary);
-      }
-    }
-  }
-
-  .hamburger-button {
-    display: none;
-    margin-left: auto;
-    color: var(--color-primary);
-    background-color: transparent;
-    border: none;
-    font-size: 35px;
-    cursor: pointer;
-
-    @include mobile {
-      display: block;
-    }
+    font-size: 34px;
   }
 }

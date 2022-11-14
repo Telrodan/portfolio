@@ -1,44 +1,7 @@
 .footer {
-  width: 100%;
-  background: var(--color-side-menu);
-  padding: 30px 0;
-  box-shadow: 0 15px 20px var(--color-primary);
-
-  .links {
-    text-align: center;
-
-    a {
-      font-size: 30px;
-      color: var(--color-side-menu-icon);
-      transition: all 0.3s ease-in;
-
-      &:not(:last-child) {
-        margin-right: 20px;
-      }
-
-      &:hover {
-        color: var(--color-white);
-      }
-    }
-  }
-
-  .copyright {
-    display: block;
-    margin-top: 15px;
-    color: var(--color-white);
-    font-size: 14px;
+  &__logo {
+    display: flex;
     font-family: 'Odibee Sans', cursive;
-    text-align: center;
-    color: var(--color-side-menu-icon);
-    transition: all 0.3s ease-in;
-
-    &:hover {
-      color: var(--color-white);
-    }
-
-    i {
-      margin: 0 0.5rem;
-      color: var(--color-primary);
-    }
+    font-size: 34px;
   }
 }
