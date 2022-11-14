@@ -1,6 +1,8 @@
+import { Task } from './task.model';
+
 export interface TodoList {
   id: string;
   name: string;
-  tasks: Array<Object>;
+  tasks: Array<Task>;
   priority: string;
 }

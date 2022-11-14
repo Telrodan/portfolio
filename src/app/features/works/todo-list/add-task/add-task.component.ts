@@ -1,4 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { Task } from 'src/app/core/models/task.model';
+import { TodoList } from 'src/app/core/models/todo-list.model';
+import { TodoListService } from 'src/app/core/services/todo-list.service';
+import { v4 as uuidv4 } from 'uuid';
 
 @Component({
   selector: 'app-add-task',
@@ -7,16 +11,23 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddTaskComponent implements OnInit {
   public newTaskName: string = '';
-  constructor() {}
+  private list: TodoList;
+
+  constructor(private todoListService: TodoListService) {
+    this.list = todoListService.getList();
+  }
 
   ngOnInit(): void {}
 
-  public onSubmit(): void {}
+  public onSubmit(): void {
+    const newTask: Task = {
+      id: uuidv4(),
+      listId: this.list.id,
+      checked: false,
+      name: this.newTaskName.charAt(0).toUpperCase() + this.newTaskName.slice(1)
+    };
+    this.list.tasks.push(newTask);
+    this.todoListService.addNewTask(newTask);
+    console.log(this.list);
+  }
 }
-// const newTask: Task = {
-//   id: uuidv4(),
-//   listId: uuidv4(),
-//   checked: false,
-//   name: this.newTaskName.charAt(0).toUpperCase() + this.newTaskName.slice(1)
-// };
-// this.todoListService.addNewTask(newTask);

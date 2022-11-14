@@ -12,17 +12,21 @@
   </div>
   <div class="lists-wrapper">
     <p-card
-      *ngFor="let list of displayedLists"
+      *ngFor="let list of lists"
       [header]="list.name"
       [subheader]="'Priority: ' + list.priority"
       [style]="{ margin: '20px', width: '360px' }"
     >
-      <p *ngFor="let task of list.tasks">- {{ task.name }}</p>
+      <div class="tasks-wrapper" *ngFor="let task of list.tasks">
+        <p>- {{ task.name }}</p>
+        <div class="task-controls">
+          <button><i class="pi pi-check"></i></button>
+          <button><i class="pi pi-file-edit"></i></button>
+          <button><i class="pi pi-trash"></i></button>
+        </div>
+      </div>
       <ng-template pTemplate="footer">
-        <p-button
-          icon="pi pi-plus"
-          (onClick)="onAddNewTask(list.id)"
-        ></p-button>
+        <p-button icon="pi pi-plus" (onClick)="onAddNewTask(list)"></p-button>
         <p-button
           icon="pi pi-file-edit"
           (onClick)="onEditList(list)"
@@ -30,11 +34,4 @@
       </ng-template>
     </p-card>
   </div>
-  <p-paginator
-    [rows]="3"
-    [totalRecords]="lists.length"
-    [rowsPerPageOptions]="[3, 6, 9]"
-    [pageLinkSize]="3"
-    (onPageChange)="paginate($event)"
-  ></p-paginator>
 </div>

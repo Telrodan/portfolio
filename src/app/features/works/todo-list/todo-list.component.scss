@@ -20,8 +20,9 @@
   }
 
   .lists-wrapper {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 360px);
+    column-gap: 60px;
     justify-content: center;
     width: 80%;
     margin-bottom: 30px;

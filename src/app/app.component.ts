@@ -1,12 +1,16 @@
 import { DOCUMENT } from '@angular/common';
 import { Component, HostListener, OnInit, Inject } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { TodoList } from './core/models/todo-list.model';
 import { SideMenuService } from './core/services/side-menu.service';
+import { TodoListService } from './core/services/todo-list.service';
 import { isMobileView } from './shared/utils/mobile-view';
+import * as TodoListActions from './core/store/todo-list.actions';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.scss'],
+  styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements OnInit {
   public isMobileView: boolean = false;
@@ -15,10 +19,17 @@ export class AppComponent implements OnInit {
 
   constructor(
     @Inject(DOCUMENT) private document: Document,
-    private sideMenuService: SideMenuService
+    private sideMenuService: SideMenuService,
+    private store: Store<{ todoList: { todoLists: TodoList[] } }>,
+    private todoListService: TodoListService
   ) {}
 
   public ngOnInit(): void {
+    this.todoListService.getTodoLists().subscribe((todoLists) => {
+      this.store.dispatch(new TodoListActions.AddLists(todoLists));
+      console.log(todoLists);
+    });
+
     this.onResize();
     this.sideMenuService.isSideMenuShowing.subscribe(
       (boolean) => (this.isSideMenuShowing = boolean)

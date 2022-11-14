@@ -1,8 +1,6 @@
-<button class="close-button" mat-dialog-close>
-  <i class="pi pi-times"></i>
-</button>
 <div class="todo-list-action-modal">
   <h2>Add new list</h2>
+  <!-- <form [formGroup]="addListForm" (ngSubmit)="onSubmit()"></form> -->
   <div class="priority-wrapper">
     <label>Priority</label>
     <p-dropdown
@@ -23,7 +21,6 @@
   </div>
 
   <p-button
-    style="margin: 30px 0 10px"
     label="Add new list"
     icon="pi pi-plus"
     (onClick)="onAddNewList()"
@@ -35,5 +32,6 @@
     icon="pi pi-replay"
     class="p-button-warning"
     mat-dialog-close
+    type="button"
   ></button>
 </div>

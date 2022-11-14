@@ -6,6 +6,8 @@
     <p-dropdown
       [options]="priorities"
       [(ngModel)]="priority"
+      [lazy]="true"
+      [optionValue]="priority.priority"
       optionLabel="priority"
       [showTransitionOptions]="'100ms'"
     ></p-dropdown>
@@ -19,6 +21,11 @@
       [(ngModel)]="newListName"
     />
   </div>
+  <p-button
+    label="Add new list"
+    icon="pi pi-plus"
+    (onClick)="onSubmitChanges()"
+  ></p-button>
   <button
     pButton
     pRipple
@@ -27,7 +34,7 @@
     label="Submit"
     class="p-button-success"
     icon="pi pi-check-circle"
-    (onClick)="onSubmit()"
+    (click)="onSubmitChanges()"
   ></button>
   <button
     pButton

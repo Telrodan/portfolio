@@ -10,13 +10,8 @@ import { environment } from 'src/environments/environment';
   providedIn: 'root'
 })
 export class TodoListService {
-  public todoLists: Array<TodoList> = [];
-  private selectedList: TodoList = {
-    id: '',
-    name: 'string',
-    tasks: [],
-    priority: 'string'
-  };
+  public todoLists: TodoList[];
+  private selectedList: TodoList;
 
   constructor(private http: HttpClient) {}
 
