@@ -11,18 +11,14 @@
   }
 
   .logo {
-    color: var(--color-white);
+    display: flex;
     font-family: 'Odibee Sans', cursive;
-    font-size: 45px;
-
-    i,
-    span {
-      color: var(--color-primary);
-    }
+    font-size: 30px;
 
     i {
+      transform: translateY(3px);
       margin-right: 5px;
-      font-size: 40px;
+      font-size: 25px;
     }
   }
 

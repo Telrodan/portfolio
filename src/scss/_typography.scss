@@ -8,13 +8,9 @@
 // font-family: 'Open Sans', sans-serif;
 
 @import 'mixins';
-:root {
-  --font-famly: 'Roboto', sans-serif;
-}
 
 body {
-  color: var(--color-white);
-  font-family: var(--font-famly);
+  font-family: var(--font-family);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

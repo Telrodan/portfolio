@@ -29,6 +29,7 @@ import { EditListComponent } from './features/works/todo-list/edit-list/edit-lis
 import { StoreModule } from '@ngrx/store';
 import { todoListReducer } from './core/store/todo-list.reducer';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
+import { StyleClassModule } from 'primeng/styleclass';
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
     FormsModule,
     ToastModule,
     HttpClientModule,
+    StyleClassModule,
     CardModule,
     DropdownModule,
     PaginatorModule,

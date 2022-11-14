@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
     private store: Store<{ todoList: { todoLists: TodoList[] } }>,
     private todoListService: TodoListService,
     private themeService: ThemeService,
-    public appConfig: AppConfig
+    private appConfig: AppConfig
   ) {}
 
   public ngOnInit(): void {
@@ -47,16 +47,6 @@ export class AppComponent implements OnInit {
         this.document.body.style.overflowY = 'auto';
       }
     });
-  }
-
-  public changeTheme(theme: string): void {
-    let themeElement = document.getElementById('theme-link');
-    console.log(themeElement);
-    themeElement.setAttribute(
-      'href',
-      themeElement.getAttribute('href').replace(this.appConfig.theme, theme)
-    );
-    this.appConfig.theme = theme;
   }
 
   @HostListener('window:resize', ['$event'])

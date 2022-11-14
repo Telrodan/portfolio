@@ -1,34 +1,73 @@
-<header class="header">
-  <a aria-label="Logo, Home link" class="logo" routerLink="home"
-    ><i class="fa-solid fa-code"></i>KNB<span>.</span>
+<div
+  class="header surface-overlay py-3 px-6 shadow-2 flex align-items-center justify-content-between relative lg:static"
+  style="min-height: 80px"
+>
+  <a
+    aria-label="Logo, Home"
+    class="logo mr-0 lg:mr-6"
+    [ngStyle]="{ color: 'var(--blue-400)' }"
+    routerLink="home"
+  >
+    KNB.
   </a>
-  <nav class="navigation">
-    <a
-      class="navigation__link"
-      routerLink="/home"
-      routerLinkActive="navigation__link--active"
-      ><i class="fa-solid fa-house"></i>Home</a
+  <a
+    pRipple
+    class="cursor-pointer block lg:hidden text-700"
+    pStyleClass="@next"
+    enterClass="hidden"
+    leaveToClass="hidden"
+    [hideOnOutsideClick]="true"
+  >
+    <i class="pi pi-bars text-4xl"></i>
+  </a>
+  <div
+    class="align-items-center flex-grow-1 justify-content-between hidden lg:flex absolute lg:static w-full surface-overlay left-0 top-100 z-1 shadow-2 lg:shadow-none"
+  >
+    <ul
+      class="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row"
     >
-    <a
-      class="navigation__link"
-      routerLink="/works"
-      routerLinkActive="navigation__link--active"
-      ><i class="fa-solid fa-layer-group"></i>Works</a
-    >
-    <a
-      class="navigation__link"
-      routerLink="/blog"
-      routerLinkActive="navigation__link--active"
-      ><i class="fa-solid fa-comment"></i>Blog</a
-    >
-    <a
-      class="navigation__link"
-      routerLink="/contact"
-      routerLinkActive="navigation__link--active"
-      ><i class="fa-solid fa-envelope"></i>Contact</a
-    >
-  </nav>
-  <button class="hamburger-button" (click)="onOpenSideMenu()">
-    <i class="fa-solid fa-bars"></i>
-  </button>
-</header>
+      <li>
+        <a
+          pRipple
+          class="flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-colors transition-duration-150"
+          routerLink="home"
+        >
+          <i class="pi pi-home mr-2"></i>
+          <span>Home</span>
+        </a>
+      </li>
+      <li>
+        <a
+          pRipple
+          class="flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-colors transition-duration-150"
+          routerLink="works"
+        >
+          <i class="pi pi-folder mr-2"></i>
+          <span>Works</span>
+        </a>
+      </li>
+      <li>
+        <a
+          pRipple
+          class="flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-colors transition-duration-150"
+          routerLink="blog"
+        >
+          <i class="pi pi-comment mr-2"></i>
+          <span>Blog</span>
+        </a>
+      </li>
+      <li>
+        <a
+          pRipple
+          class="flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-colors transition-duration-150"
+          routerLink="contact"
+        >
+          <i class="pi pi-chart-line mr-2"></i>
+          <span>Contact</span>
+        </a>
+      </li>
+      <button (click)="changeTheme('light')">Light</button>
+      <button (click)="changeTheme('dark')">Dark</button>
+    </ul>
+  </div>
+</div>

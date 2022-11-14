@@ -3,5 +3,5 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class AppConfig {
-  theme: string = 'light';
+  theme: string = 'dark';
 }
