@@ -6,6 +6,8 @@ import { SideMenuService } from './core/services/side-menu.service';
 import { TodoListService } from './core/services/todo-list.service';
 import { isMobileView } from './shared/utils/mobile-view';
 import * as TodoListActions from './core/store/todo-list.actions';
+import { ThemeService } from './core/services/theme.service';
+import { AppConfig } from './app.config';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +23,9 @@ export class AppComponent implements OnInit {
     @Inject(DOCUMENT) private document: Document,
     private sideMenuService: SideMenuService,
     private store: Store<{ todoList: { todoLists: TodoList[] } }>,
-    private todoListService: TodoListService
+    private todoListService: TodoListService,
+    private themeService: ThemeService,
+    public appConfig: AppConfig
   ) {}
 
   public ngOnInit(): void {
@@ -43,6 +47,16 @@ export class AppComponent implements OnInit {
         this.document.body.style.overflowY = 'auto';
       }
     });
+  }
+
+  public changeTheme(theme: string): void {
+    let themeElement = document.getElementById('theme-link');
+    console.log(themeElement);
+    themeElement.setAttribute(
+      'href',
+      themeElement.getAttribute('href').replace(this.appConfig.theme, theme)
+    );
+    this.appConfig.theme = theme;
   }
 
   @HostListener('window:resize', ['$event'])
