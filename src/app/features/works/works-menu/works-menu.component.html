@@ -1,0 +1,51 @@
+<div class="surface-section px-4 py-5 md:px-6 lg:px-8">
+  <div
+    class="flex md:align-items-center md:justify-content-between flex-column md:flex-row pb-4 border-bottom-1 surface-border"
+  >
+    <div class="mb-3 lg:mb-0">
+      <div class="flex align-items-center mb-2">
+        <i class="pi pi-folder text-2xl mr-3 text-500"></i>
+        <span class="text-3xl font-medium text-900">Works</span>
+      </div>
+      <div class="text-500 mr-0 md:mr-3">
+        I will post all my work here with the git repository, a brief
+        description, and the technologies I used.
+      </div>
+    </div>
+  </div>
+</div>
+<div class="works-wrapper p-4">
+  <p-card
+    header="To-do List"
+    [style]="{ width: '360px' }"
+    styleClass="p-card-shadow"
+  >
+    <p>
+      This is a simple to-do app, with editable lists and tasks. I created this
+      project to practice CRUD operations and NgRx.
+    </p>
+    <div class="technologies mt-4">
+      <p-chip label="HTML" class="mr-2"></p-chip>
+      <p-chip label="SCSS" class="mr-2"></p-chip>
+      <p-chip label="Angular" class="mr-2"></p-chip>
+      <p-chip label="NgRx" class="mr-2"></p-chip>
+    </div>
+    <ng-template pTemplate="footer">
+      <p-button
+        routerLink="../todo-list"
+        label="Demo"
+        icon="pi pi-desktop"
+      ></p-button>
+      <p-button
+        label="Code"
+        icon="pi pi-github"
+        [style]="{ 'margin-left': '20px' }"
+        (onClick)="
+          onNavigate(
+            'https://github.com/Telrodan/prortfolio/tree/master/src/app/features/works/todo-list'
+          )
+        "
+      ></p-button>
+    </ng-template>
+  </p-card>
+</div>

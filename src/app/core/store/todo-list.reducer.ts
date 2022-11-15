@@ -1,3 +1,4 @@
+import { Task } from '../models/task.model';
 import * as TodoListActions from './todo-list.actions';
 
 const initialState = {
@@ -41,6 +42,24 @@ export function todoListReducer(
         todoLists: state.todoLists.filter((todoList, todoListIndex) => {
           return todoListIndex !== action.payload;
         })
+      };
+    case TodoListActions.CHECK_TASK:
+      const ownerListIndex = state.todoLists.findIndex(
+        (todoList) => todoList.id === action.payload.listId
+      );
+      const taskIndex = state.todoLists[ownerListIndex].tasks.findIndex(
+        (task: Task) => task.id === action.payload.id
+      );
+      const checkedTask = {
+        ...state.todoLists[ownerListIndex].tasks[taskIndex],
+        ...action.payload
+      };
+      const checkedTodoLists = [...state.todoLists];
+      console.log(checkedTodoLists);
+      checkedTodoLists[ownerListIndex].tasks[taskIndex] = { ...action.payload };
+      return {
+        ...state,
+        todoLists: checkedTodoLists
       };
     default:
       return state;

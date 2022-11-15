@@ -7,15 +7,22 @@ import { ContactComponent } from './features/contact/contact.component';
 import { TodoListComponent } from './features/works/todo-list/todo-list.component';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 
+const worksModule = () =>
+  import('./features/works/works.module').then((m) => m.WorksModule);
+
 const routes: Routes = [
   { path: '', redirectTo: '/home', pathMatch: 'full' },
   { path: 'home', component: HomeComponent },
-  { path: 'works', component: WorksComponent },
+  {
+    path: 'works',
+    component: WorksComponent,
+    loadChildren: worksModule
+  },
   { path: 'blog', component: BlogComponent },
   { path: 'contact', component: ContactComponent },
   { path: 'dev', component: TodoListComponent },
   { path: 'not-found', component: NotFoundComponent },
-  { path: '**', redirectTo: '/not-found' }
+  { path: '**', pathMatch: 'full', redirectTo: '/not-found' }
 ];
 
 @NgModule({

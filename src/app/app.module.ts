@@ -12,7 +12,6 @@ import { ContactComponent } from './features/contact/contact.component';
 import { ButtonModule } from 'primeng/button';
 import { TodoListComponent } from './features/works/todo-list/todo-list.component';
 import { DialogModule } from 'primeng/dialog';
-import { MatDialogModule } from '@angular/material/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
@@ -20,7 +19,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { CardModule } from 'primeng/card';
 import { AddTaskComponent } from './features/works/todo-list/add-task/add-task.component';
 import { AddListComponent } from './features/works/todo-list/add-list/add-list.component';
-import { DropdownModule } from 'primeng/dropdown';
 import { MessageService } from 'primeng/api';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
@@ -39,9 +37,7 @@ import { StyleClassModule } from 'primeng/styleclass';
     WorksComponent,
     BlogComponent,
     ContactComponent,
-    TodoListComponent,
     AddTaskComponent,
-    AddListComponent,
     EditListComponent,
     NotFoundComponent
   ],
@@ -49,19 +45,17 @@ import { StyleClassModule } from 'primeng/styleclass';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
+    HttpClientModule,
+    ReactiveFormsModule,
     ButtonModule,
     DialogModule,
-    MatDialogModule,
     InputTextModule,
     FormsModule,
     ToastModule,
-    HttpClientModule,
     StyleClassModule,
     CardModule,
-    DropdownModule,
     PaginatorModule,
     ProgressSpinnerModule,
-    ReactiveFormsModule,
     StoreModule.forRoot({ todoList: todoListReducer })
   ],
   providers: [MessageService],
