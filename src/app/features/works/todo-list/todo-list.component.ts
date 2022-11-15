@@ -23,9 +23,9 @@ export class TodoListComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject();
 
   public finishedTasks: number;
-  public tasksToDo: number;
+  public unfinishedTasks: number;
   public finishedLists: number;
-  public listsToFinish: number;
+  public unfinishedLists: number;
 
   public splitTaskButtonItems: MenuItem[];
 
@@ -48,10 +48,15 @@ export class TodoListComponent implements OnInit, OnDestroy {
         tap((todoLists) => {
           const extractedLists = todoLists.todoLists;
           this.todoLists = extractedLists;
+          this.finishedTasks = this.getFinishedTasks();
+          this.unfinishedTasks = this.getUnfinishedTasks();
+          this.finishedLists = this.getFinishedLists();
+          this.unfinishedLists = this.getUnfinishedLists();
         }),
         takeUntil(this.destroy$)
       )
       .subscribe();
+
     this.splitTaskButtonItems = [
       {
         label: 'Edit',
@@ -68,6 +73,53 @@ export class TodoListComponent implements OnInit, OnDestroy {
         }
       }
     ];
+  }
+
+  public getFinishedLists(): number {
+    let finishedLists = 0;
+    this.todoLists.forEach((todoList) => {
+      let counter = 0;
+      let tasks = todoList.tasks.length;
+      todoList.tasks.forEach((task) => {
+        if (task.checked) counter++;
+      });
+      if (counter === tasks) finishedLists++;
+    });
+    return finishedLists;
+  }
+
+  public getUnfinishedLists(): number {
+    let finishedLists = 0;
+    this.todoLists.forEach((todoList) => {
+      let counter = 0;
+      let tasks = todoList.tasks.length;
+      todoList.tasks.forEach((task) => {
+        if (task.checked) counter++;
+      });
+      if (counter < tasks) finishedLists++;
+    });
+    console.log(finishedLists);
+    return finishedLists;
+  }
+
+  public getFinishedTasks(): number {
+    let counter = 0;
+    this.todoLists.forEach((todoList) => {
+      todoList.tasks.forEach((task) => {
+        if (task.checked) counter++;
+      });
+    });
+    return counter;
+  }
+
+  public getUnfinishedTasks(): number {
+    let counter = 0;
+    this.todoLists.forEach((todoList) => {
+      todoList.tasks.forEach((task) => {
+        if (!task.checked) counter++;
+      });
+    });
+    return counter;
   }
 
   public ngOnDestroy(): void {
