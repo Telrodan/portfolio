@@ -1,11 +1,9 @@
 @import 'mixins';
 
-.app-layout {
-  .app-content {
-    padding: 0 70px;
+.app-content {
+  // padding: 0 70px;
 
-    @include mobile() {
-      padding: 0 20px;
-    }
+  @include mobile() {
+    // padding: 0 20px;
   }
 }

@@ -4,7 +4,6 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './features/footer/footer.component';
 import { HeaderComponent } from './features/header/header.component';
-import { SideMenuComponent } from './features/side-menu/side-menu.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomeComponent } from './features/home/home.component';
 import { WorksComponent } from './features/works/works.component';
@@ -36,7 +35,6 @@ import { StyleClassModule } from 'primeng/styleclass';
     AppComponent,
     FooterComponent,
     HeaderComponent,
-    SideMenuComponent,
     HomeComponent,
     WorksComponent,
     BlogComponent,
