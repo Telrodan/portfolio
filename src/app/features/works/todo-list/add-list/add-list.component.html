@@ -1,16 +1,6 @@
-<div class="todo-list-action-modal">
-  <h2>Add new list</h2>
-  <!-- <form [formGroup]="addListForm" (ngSubmit)="onSubmit()"></form> -->
-  <div class="priority-wrapper">
-    <label>Priority</label>
-    <p-dropdown
-      [options]="priorities"
-      [(ngModel)]="selectedPriority"
-      optionLabel="priority"
-      [showTransitionOptions]="'100ms'"
-    ></p-dropdown>
-  </div>
-  <div class="p-inputgroup">
+<!-- <form [formGroup]="addListForm" (ngSubmit)="onSubmit()"></form> -->
+<div class="add-new-list flex flex-column">
+  <div class="p-inputgroup mb-5">
     <span class="p-inputgroup-addon"><i class="pi pi-list"></i></span>
     <input
       type="text"
@@ -19,19 +9,31 @@
       [(ngModel)]="newListName"
     />
   </div>
-
-  <p-button
-    label="Add new list"
-    icon="pi pi-plus"
-    (onClick)="onAddNewList()"
-  ></p-button>
+  <div class="priority-wrapper">
+    <h5 class="mb-2">Priority</h5>
+    <div *ngFor="let priority of priorities" class="field-checkbox">
+      <p-radioButton
+        [inputId]="priority.key"
+        name="category"
+        [value]="priority"
+        [(ngModel)]="selectedPriority"
+      ></p-radioButton>
+      <label [for]="priority.key">{{ priority.priority }}</label>
+    </div>
+  </div>
   <button
     pButton
     pRipple
-    label="Cancel"
+    label="Submit"
+    icon="pi pi-plus"
+    class="mb-3"
+    (click)="onAddNewList()"
+  ></button>
+  <button
+    pButton
+    pRipple
+    label="Back"
     icon="pi pi-replay"
-    class="p-button-warning"
-    mat-dialog-close
-    type="button"
+    class="p-button-danger"
   ></button>
 </div>

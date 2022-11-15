@@ -6,7 +6,6 @@ import * as TodoListActions from '../../../../core/store/todo-list.actions';
 import { Store } from '@ngrx/store';
 import { MessageService } from 'primeng/api';
 import { MatDialogRef } from '@angular/material/dialog';
-import { ListPriority } from '../add-list/add-list.component';
 
 @Component({
   selector: 'app-edit-list',
@@ -16,7 +15,7 @@ import { ListPriority } from '../add-list/add-list.component';
 export class EditListComponent implements OnInit {
   public list: TodoList;
   public newListName: string;
-  public priority: ListPriority;
+  public priority;
   public priorities = [
     { priority: 'Low' },
     { priority: 'Medium' },

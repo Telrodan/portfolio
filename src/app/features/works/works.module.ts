@@ -10,8 +10,8 @@ import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { SplitButtonModule } from 'primeng/splitbutton';
 import { TodoListComponent } from './todo-list/todo-list.component';
 import { AddListComponent } from './todo-list/add-list/add-list.component';
-import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
+import { RadioButtonModule } from 'primeng/radiobutton';
 
 @NgModule({
   declarations: [
@@ -28,8 +28,8 @@ import { FormsModule } from '@angular/forms';
     ChipModule,
     DynamicDialogModule,
     SplitButtonModule,
-    DropdownModule,
-    FormsModule
+    FormsModule,
+    RadioButtonModule
   ]
 })
 export class WorksModule {}

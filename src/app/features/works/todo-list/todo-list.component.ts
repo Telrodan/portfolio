@@ -1,13 +1,15 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { Subject, Subscription, tap, takeUntil } from 'rxjs';
-import { TodoListService } from 'src/app/core/services/todo-list.service';
-import { AddTaskComponent } from './add-task/add-task.component';
+import {
+  Subject,
+  Subscription,
+  tap,
+  takeUntil,
+  Observable,
+  filter
+} from 'rxjs';
 import { AddListComponent } from './add-list/add-list.component';
-import { EditListComponent } from './edit-list/edit-list.component';
 import { TodoList } from 'src/app/core/models/todo-list.model';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { DialogService } from 'primeng/dynamicdialog';
 import { MenuItem } from 'primeng/api';
 import { Task } from 'src/app/core/models/task.model';
@@ -21,20 +23,14 @@ import * as TodoListActions from '../../../core/store/todo-list.actions';
 })
 export class TodoListComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject();
-
   public finishedTasks: number;
   public unfinishedTasks: number;
   public finishedLists: number;
   public unfinishedLists: number;
-
   public splitTaskButtonItems: MenuItem[];
-
   public newListName: string;
   public newTaskName: string;
-  public isLoading = false;
   public todoLists: TodoList[];
-  public displayedLists: TodoList[];
-  private componentSubscriptions: Subscription[] = [];
 
   constructor(
     public dialogService: DialogService,
@@ -45,17 +41,20 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.store$
       .select('todoList')
       .pipe(
-        tap((todoLists) => {
-          const extractedLists = todoLists.todoLists;
-          this.todoLists = extractedLists;
-          this.finishedTasks = this.getFinishedTasks();
-          this.unfinishedTasks = this.getUnfinishedTasks();
-          this.finishedLists = this.getFinishedLists();
-          this.unfinishedLists = this.getUnfinishedLists();
+        tap((data) => {
+          this.todoLists = data.todoLists;
         }),
         takeUntil(this.destroy$)
       )
-      .subscribe();
+      .subscribe(() => {
+        this.finishedTasks = this.getFinishedTasks();
+        this.unfinishedTasks = this.getUnfinishedTasks();
+        this.finishedLists = this.getFinishedLists();
+        this.unfinishedLists = this.getUnfinishedLists();
+        console.log(this.todoLists);
+      });
+
+    console.log(this.todoLists);
 
     this.splitTaskButtonItems = [
       {
@@ -125,25 +124,23 @@ export class TodoListComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.destroy$.next(false);
     this.destroy$.complete();
+
+    console.log('bamm');
   }
 
   public onAddNewList(): void {
     const ref = this.dialogService.open(AddListComponent, {
       header: 'Add new list',
-      width: '50%'
+      width: '350px'
     });
+
+    console.log(this.todoLists);
   }
 
   public onAddNewTask(): void {}
 
   public onEditList(list: TodoList): void {}
 
-  public paginate(event: any): void {
-    this.displayedLists = [];
-    const start = event.first;
-    const end = event.first + event.rows;
-    // this.setDisplayedLists(start, end);
-  }
   onCheckTask(task: Task) {
     const checkedTask: Task = {
       ...task,
@@ -153,12 +150,4 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
   onUpdateTask() {}
   onDeleteTask() {}
-  // private setDisplayedLists(start: number = 0, end: number = 3) {
-  //   this.displayedLists = [];
-  //   for (let i = start; i < end; i++) {
-  //     if (this.lists[i]) {
-  //       this.displayedLists.push(this.lists[i]);
-  //     }
-  //   }
-  // }
 }
