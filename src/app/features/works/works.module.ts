@@ -12,13 +12,19 @@ import { TodoListComponent } from './todo-list/todo-list.component';
 import { AddListComponent } from './todo-list/add-list/add-list.component';
 import { FormsModule } from '@angular/forms';
 import { RadioButtonModule } from 'primeng/radiobutton';
+import { AddTaskComponent } from './todo-list/add-task/add-task.component';
+import { InputTextModule } from 'primeng/inputtext';
+import { EditListComponent } from './todo-list/edit-list/edit-list.component';
+import { DropdownModule } from 'primeng/dropdown';
 
 @NgModule({
   declarations: [
-    UserTrackingComponent,
-    WorksMenuComponent,
     TodoListComponent,
-    AddListComponent
+    AddListComponent,
+    EditListComponent,
+    AddTaskComponent,
+    UserTrackingComponent,
+    WorksMenuComponent
   ],
   imports: [
     CommonModule,
@@ -29,7 +35,9 @@ import { RadioButtonModule } from 'primeng/radiobutton';
     DynamicDialogModule,
     SplitButtonModule,
     FormsModule,
-    RadioButtonModule
+    RadioButtonModule,
+    InputTextModule,
+    DropdownModule
   ]
 })
 export class WorksModule {}

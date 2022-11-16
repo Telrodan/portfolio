@@ -1,28 +1,20 @@
-<div class="todo-list-action-modal">
-  <h2>Add new task</h2>
-
-  <div class="p-inputgroup">
+<div class="flex flex-column">
+  <div class="p-inputgroup mb-5">
     <span class="p-inputgroup-addon"><i class="pi pi-ellipsis-h"></i></span>
     <input
       type="text"
       pInputText
-      placeholder="Task"
+      placeholder="Task name"
       [(ngModel)]="newTaskName"
     />
   </div>
 
-  <p-button
-    style="margin: 30px 0 10px"
-    label="Add new task"
-    icon="pi pi-plus"
-    (onClick)="onSubmit()"
-  ></p-button>
   <button
     pButton
     pRipple
-    label="Cancel"
-    icon="pi pi-replay"
-    class="p-button-warning"
-    mat-dialog-close
+    label="Submit"
+    icon="pi pi-check-circle"
+    class="mt-2"
+    (click)="onSubmit()"
   ></button>
 </div>

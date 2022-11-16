@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { TodoList } from 'src/app/core/models/todo-list.model';
-import { TodoListService } from 'src/app/core/services/todo-list.service';
-
-import * as TodoListActions from '../../../../core/store/todo-list.actions';
 import { Store } from '@ngrx/store';
+import * as TodoListActions from '../../../../core/store/todo-list.actions';
+
 import { MessageService } from 'primeng/api';
-import { MatDialogRef } from '@angular/material/dialog';
+import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { TodoList } from 'src/app/core/models/todo-list.model';
 
 @Component({
   selector: 'app-edit-list',
@@ -13,52 +12,53 @@ import { MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./edit-list.component.scss']
 })
 export class EditListComponent implements OnInit {
-  public list: TodoList;
-  public newListName: string;
-  public priority;
+  public todoList: TodoList;
+  public listName: string;
   public priorities = [
-    { priority: 'Low' },
-    { priority: 'Medium' },
-    { priority: 'High' }
+    { priority: 'Low', key: 'L' },
+    { priority: 'Medium', key: 'M' },
+    { priority: 'High', key: 'H' }
   ];
+  public selectedPriority;
 
   constructor(
-    private todoListService: TodoListService,
+    public dialogRef: DynamicDialogRef,
+    public dialogConfig: DynamicDialogConfig,
     private messageService: MessageService,
-    public dialogRef: MatDialogRef<EditListComponent>,
     private store: Store<{ todoList: { todoLists: TodoList[] } }>
   ) {}
 
   ngOnInit(): void {
-    this.list = this.todoListService.getList();
-    this.newListName = this.list.name;
+    this.todoList = this.dialogConfig.data;
+    this.listName = this.todoList.name;
+    this.selectedPriority = this.todoList.priority;
+    this.selectedPriority =
+      this.priorities[
+        this.priorities.findIndex(
+          (priority) => priority.priority === this.todoList.priority
+        )
+      ];
   }
 
-  public onSubmitChanges() {
-    console.log(
-      this.newListName.charAt(0).toUpperCase() + this.newListName.slice(1)
-    );
-    if (this.newListName.trim()) {
-      console.log('asdasd');
+  public onSubmit() {
+    if (this.listName.trim()) {
       const updatedList: TodoList = {
-        ...this.list,
-        name:
-          this.newListName.charAt(0).toUpperCase() + this.newListName.slice(1),
-        priority: this.priority.priority
+        ...this.todoList,
+        name: this.listName.charAt(0).toUpperCase() + this.listName.slice(1),
+        priority: this.selectedPriority.priority
       };
-      console.log(updatedList);
       this.store.dispatch(
         new TodoListActions.UpdateList({
           id: updatedList.id,
           todoList: updatedList
         })
       );
+      this.dialogRef.close();
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
-        detail: 'To-do list added.'
+        detail: 'To-do list updated.'
       });
-      this.dialogRef.close();
     } else {
       this.messageService.add({
         severity: 'warn',

@@ -37,8 +37,6 @@ import { StyleClassModule } from 'primeng/styleclass';
     WorksComponent,
     BlogComponent,
     ContactComponent,
-    AddTaskComponent,
-    EditListComponent,
     NotFoundComponent
   ],
   imports: [

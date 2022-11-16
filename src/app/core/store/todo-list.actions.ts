@@ -6,8 +6,6 @@ export const ADD_LIST = 'ADD_LIST';
 export const ADD_LISTS = 'ADD_LISTS';
 export const UPDATE_LIST = 'UPDATE_LIST';
 export const DELETE_LIST = 'DELETE_LIST';
-export const ADD_TASK = 'ADD_TASK';
-export const CHECK_TASK = 'CHECK_TASK';
 
 export class AddList implements Action {
   readonly type = ADD_LIST;
@@ -29,19 +27,4 @@ export class DeleteList implements Action {
   constructor(public payload: number) {}
 }
 
-export class AddTask implements Action {
-  readonly type = ADD_TASK;
-  constructor(public payload: Task) {}
-}
-
-export class CheckTask implements Action {
-  readonly type = CHECK_TASK;
-  constructor(public payload: Task) {}
-}
-
-export type TodoListActions =
-  | AddList
-  | AddLists
-  | UpdateList
-  | DeleteList
-  | CheckTask;
+export type TodoListActions = AddList | AddLists | UpdateList | DeleteList;

@@ -1,56 +1,33 @@
-<div class="todo-list-action-modal">
-  <h2>Edit list</h2>
-
-  <div class="priority-wrapper">
-    <label>Priority</label>
-    <p-dropdown
-      [options]="priorities"
-      [(ngModel)]="priority"
-      [lazy]="true"
-      [optionValue]="priority.priority"
-      optionLabel="priority"
-      [showTransitionOptions]="'100ms'"
-    ></p-dropdown>
-  </div>
-  <div class="p-inputgroup">
+<div class="add-new-list flex flex-column">
+  <div class="p-inputgroup mb-5">
     <span class="p-inputgroup-addon"><i class="pi pi-list"></i></span>
     <input
       type="text"
       pInputText
       placeholder="List name"
-      [(ngModel)]="newListName"
+      [(ngModel)]="listName"
     />
   </div>
-  <p-button
-    label="Add new list"
-    icon="pi pi-plus"
-    (onClick)="onSubmitChanges()"
-  ></p-button>
+
+  <div class="priority-wrapper">
+    <p class="mb-3 text-xl">Priority</p>
+    <div *ngFor="let priority of priorities" class="field-checkbox">
+      <p-radioButton
+        [inputId]="priority.key"
+        name="category"
+        [value]="priority"
+        [(ngModel)]="selectedPriority"
+      ></p-radioButton>
+      <label [for]="priority.key">{{ priority.priority }}</label>
+    </div>
+  </div>
+
   <button
     pButton
     pRipple
-    style="margin: 30px 0 10px"
-    type="button"
     label="Submit"
-    class="p-button-success"
     icon="pi pi-check-circle"
-    (click)="onSubmitChanges()"
-  ></button>
-  <button
-    pButton
-    pRipple
-    label="Cancel"
-    icon="pi pi-replay"
-    class="p-button-warning"
-    mat-dialog-close
-  ></button>
-  <button
-    pButton
-    pRipple
-    style="margin-top: 10px"
-    label="Delete"
-    icon="pi pi-times"
-    class="p-button-danger"
-    (onClick)="onDelete()"
+    class="mt-2"
+    (click)="onSubmit()"
   ></button>
 </div>

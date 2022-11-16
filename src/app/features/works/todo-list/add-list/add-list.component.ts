@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { Store } from '@ngrx/store';
+import * as TodoListActions from '../../../../core/store/todo-list.actions';
 import { v4 as uuidv4 } from 'uuid';
 import { MessageService } from 'primeng/api';
 import { TodoList } from 'src/app/core/models/todo-list.model';
-import { MatDialogRef } from '@angular/material/dialog';
-import { Store } from '@ngrx/store';
-import * as TodoListActions from '../../../../core/store/todo-list.actions';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 
 @Component({
   selector: 'app-add-list',
@@ -12,7 +12,7 @@ import * as TodoListActions from '../../../../core/store/todo-list.actions';
   styleUrls: ['./add-list.component.scss']
 })
 export class AddListComponent implements OnInit {
-  public newListName: string;
+  public newListName: string = '';
   public priorities = [
     { priority: 'Low', key: 'L' },
     { priority: 'Medium', key: 'M' },
@@ -21,6 +21,7 @@ export class AddListComponent implements OnInit {
   public selectedPriority;
 
   constructor(
+    public dialogRef: DynamicDialogRef,
     private messageService: MessageService,
     private store: Store<{ todoList: { todoLists: TodoList[] } }>
   ) {}
@@ -29,10 +30,7 @@ export class AddListComponent implements OnInit {
     this.selectedPriority = this.priorities[0];
   }
 
-  public onSubmit(): void {}
-
-  public onAddNewList(): void {
-    console.log(this.newListName);
+  public onSubmit(): void {
     if (this.newListName.trim()) {
       const newList: TodoList = {
         id: uuidv4(),
@@ -41,8 +39,8 @@ export class AddListComponent implements OnInit {
         priority: this.selectedPriority.priority,
         tasks: []
       };
-      // this.todoListService.addNewList(newList);
       this.store.dispatch(new TodoListActions.AddList(newList));
+      this.dialogRef.close();
       this.messageService.add({
         severity: 'success',
         summary: 'Success',

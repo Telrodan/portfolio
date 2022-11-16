@@ -1,5 +1,5 @@
 <!-- <form [formGroup]="addListForm" (ngSubmit)="onSubmit()"></form> -->
-<div class="add-new-list flex flex-column">
+<div class="flex flex-column">
   <div class="p-inputgroup mb-5">
     <span class="p-inputgroup-addon"><i class="pi pi-list"></i></span>
     <input
@@ -9,8 +9,9 @@
       [(ngModel)]="newListName"
     />
   </div>
+
   <div class="priority-wrapper">
-    <h5 class="mb-2">Priority</h5>
+    <p class="mb-3 text-xl">Priority</p>
     <div *ngFor="let priority of priorities" class="field-checkbox">
       <p-radioButton
         [inputId]="priority.key"
@@ -21,19 +22,13 @@
       <label [for]="priority.key">{{ priority.priority }}</label>
     </div>
   </div>
+
   <button
     pButton
     pRipple
     label="Submit"
-    icon="pi pi-plus"
-    class="mb-3"
-    (click)="onAddNewList()"
-  ></button>
-  <button
-    pButton
-    pRipple
-    label="Back"
-    icon="pi pi-replay"
-    class="p-button-danger"
+    icon="pi pi-check-circle"
+    class="mt-2"
+    (click)="onSubmit()"
   ></button>
 </div>

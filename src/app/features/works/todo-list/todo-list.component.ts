@@ -14,6 +14,8 @@ import { DialogService } from 'primeng/dynamicdialog';
 import { MenuItem } from 'primeng/api';
 import { Task } from 'src/app/core/models/task.model';
 import * as TodoListActions from '../../../core/store/todo-list.actions';
+import { AddTaskComponent } from './add-task/add-task.component';
+import { EditListComponent } from './edit-list/edit-list.component';
 
 @Component({
   selector: 'app-todo-list',
@@ -124,8 +126,6 @@ export class TodoListComponent implements OnInit, OnDestroy {
   public ngOnDestroy(): void {
     this.destroy$.next(false);
     this.destroy$.complete();
-
-    console.log('bamm');
   }
 
   public onAddNewList(): void {
@@ -133,21 +133,25 @@ export class TodoListComponent implements OnInit, OnDestroy {
       header: 'Add new list',
       width: '350px'
     });
-
-    console.log(this.todoLists);
   }
 
-  public onAddNewTask(): void {}
-
-  public onEditList(list: TodoList): void {}
-
-  onCheckTask(task: Task) {
-    const checkedTask: Task = {
-      ...task,
-      checked: true
-    };
-    this.store$.dispatch(new TodoListActions.CheckTask(checkedTask));
+  public onEditList(list: TodoList): void {
+    const ref = this.dialogService.open(EditListComponent, {
+      header: 'Edit list',
+      width: '350px',
+      data: list
+    });
   }
+
+  public onAddNewTask(list: TodoList): void {
+    const ref = this.dialogService.open(AddTaskComponent, {
+      header: 'Add new task',
+      width: '350px',
+      data: list
+    });
+  }
+
+  onCheckTask(task: Task) {}
   onUpdateTask() {}
   onDeleteTask() {}
 }
