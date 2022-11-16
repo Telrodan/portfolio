@@ -1,11 +1,28 @@
-.todo-list {
+@import 'mixins';
+
+.list-container {
   display: flex;
-  flex-direction: column;
+  flex-wrap: wrap;
+
+  @include mobile {
+    flex-direction: column;
+  }
+
+  .list-card {
+    margin: 0 20px 20px 0;
+
+    @include mobile {
+      margin: 20px 0;
+    }
+  }
 }
 
 .task-container {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 15px;
+
+  &:not(:last-child) {
+    margin-bottom: 15px;
+  }
 }

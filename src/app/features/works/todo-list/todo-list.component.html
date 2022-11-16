@@ -1,4 +1,4 @@
-<div class="todo-list">
+<div class="todo-list flex flex-column">
   <div class="surface-ground px-4 py-5 md:px-6 lg:px-8">
     <div class="grid">
       <div class="col-12 md:col-6 lg:col-3">
@@ -100,9 +100,10 @@
         <div class="border-top-1 border-300 left-0 absolute w-full"></div>
       </div>
 
-      <div style="min-height: 20rem" class="grid">
+      <div style="min-height: 20rem" class="list-container">
         <div
-          class="surface-200 p-2 shadow-2 border-round max-w-25rem"
+          style="min-width: 310px"
+          class="surface-200 p-2 shadow-2 border-round list-card"
           *ngFor="let list of todoLists"
         >
           <div class="surface-border border-round p-3">
@@ -115,7 +116,7 @@
           >
             <div class="task-container" *ngFor="let task of list.tasks">
               <p
-                class="text-lg"
+                class="text-lg task"
                 [ngStyle]="{
                   'text-decoration': task.checked ? 'line-through' : 'none',
                   opacity: task.checked ? '50%' : '100%'
