@@ -1,4 +1,4 @@
-<div class="surface-section px-4 py-5 md:px-6 lg:px-8">
+<div class="surface-ground px-3 pt-2 md:px-4 lg:px-6">
   <div
     class="flex md:align-items-center md:justify-content-between flex-column md:flex-row pb-4 border-bottom-1 surface-border"
   >
@@ -7,28 +7,27 @@
         <i class="pi pi-folder text-2xl mr-3 text-500"></i>
         <span class="text-3xl font-medium text-900">Works</span>
       </div>
-      <div class="text-500 mr-0 md:mr-3">
+      <div class="text-teal-300 mr-0 md:mr-3">
         I will post all my work here with the git repository, a brief
         description, and the technologies I used.
       </div>
     </div>
   </div>
 </div>
-<div class="works-wrapper p-4">
+<div class="p-4 md:p-6 lg:p-7">
   <p-card
     header="To-do List"
-    [style]="{ width: '360px' }"
-    styleClass="p-card-shadow"
+    styleClass="xl:w-3 lg:w-4 md:w-6 sm:w-full text-blue-500"
   >
-    <p>
+    <p class="text-800">
       This is a simple to-do app, with editable lists and tasks. I created this
       project to practice CRUD operations and NgRx.
     </p>
     <div class="technologies mt-4">
-      <p-chip label="HTML" class="mr-2"></p-chip>
-      <p-chip label="SCSS" class="mr-2"></p-chip>
-      <p-chip label="Angular" class="mr-2"></p-chip>
-      <p-chip label="NgRx" class="mr-2"></p-chip>
+      <p-chip label="HTML" class="mr-2" styleClass="text-teal-300"></p-chip>
+      <p-chip label="SCSS" class="mr-2" styleClass="text-teal-300"></p-chip>
+      <p-chip label="Angular" class="mr-2" styleClass="text-teal-300"></p-chip>
+      <p-chip label="NgRx" class="mr-2" styleClass="text-teal-300"></p-chip>
     </div>
     <ng-template pTemplate="footer">
       <p-button
@@ -39,7 +38,7 @@
       <p-button
         label="Code"
         icon="pi pi-github"
-        [style]="{ 'margin-left': '20px' }"
+        styleClass="ml-5"
         (onClick)="
           onNavigate(
             'https://github.com/Telrodan/prortfolio/tree/master/src/app/features/works/todo-list'

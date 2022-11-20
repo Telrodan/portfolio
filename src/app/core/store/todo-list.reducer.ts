@@ -41,6 +41,10 @@ export function todoListReducer(
           return todoListIndex !== action.payload;
         })
       };
+    case TodoListActions.CHECK_TASK:
+      return {
+        ...state
+      };
     default:
       return state;
   }

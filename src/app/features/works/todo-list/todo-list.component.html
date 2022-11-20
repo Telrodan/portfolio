@@ -1,5 +1,5 @@
 <div class="todo-list flex flex-column">
-  <div class="surface-ground px-4 py-5 md:px-6 lg:px-8">
+  <div class="surface-ground px-4 py-5 md:px-6 lg:px-7">
     <div class="grid">
       <div class="col-12 md:col-6 lg:col-3">
         <div class="surface-card shadow-2 p-3 border-round">
@@ -90,7 +90,7 @@
     icon="pi pi-plus"
     (onClick)="onAddNewList()"
   ></p-button>
-  <div class="p-2">
+  <div class="px-2 md:px:7 lg:px-8 pb-5">
     <div class="surface-card p-4 shadow-2 border-round">
       <p class="text-5xl mb-5 text-center font-light">To-do lists</p>
 
@@ -100,10 +100,10 @@
         <div class="border-top-1 border-300 left-0 absolute w-full"></div>
       </div>
 
-      <div style="min-height: 20rem" class="list-container">
+      <div style="min-height: 20rem" class="flex flex-wrap">
         <div
           style="min-width: 310px"
-          class="surface-200 p-2 shadow-2 border-round list-card"
+          class="surface-200 p-2 shadow-2 border-round list-card mr-5"
           *ngFor="let list of todoLists"
         >
           <div class="surface-border border-round p-3">
@@ -131,7 +131,7 @@
                 label="Done"
                 icon="pi pi-check"
                 [model]="splitTaskButtonItems"
-                (onClick)="onCheckTask(task)"
+                (onClick)="onCheckTask(list, task.id)"
               ></p-splitButton>
             </div>
           </div>

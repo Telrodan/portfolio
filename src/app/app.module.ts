@@ -10,23 +10,20 @@ import { WorksComponent } from './features/works/works.component';
 import { BlogComponent } from './features/blog/blog.component';
 import { ContactComponent } from './features/contact/contact.component';
 import { ButtonModule } from 'primeng/button';
-import { TodoListComponent } from './features/works/todo-list/todo-list.component';
 import { DialogModule } from 'primeng/dialog';
 import { InputTextModule } from 'primeng/inputtext';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ToastModule } from 'primeng/toast';
 import { HttpClientModule } from '@angular/common/http';
 import { CardModule } from 'primeng/card';
-import { AddTaskComponent } from './features/works/todo-list/add-task/add-task.component';
-import { AddListComponent } from './features/works/todo-list/add-list/add-list.component';
 import { MessageService } from 'primeng/api';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { EditListComponent } from './features/works/todo-list/edit-list/edit-list.component';
 import { StoreModule } from '@ngrx/store';
 import { todoListReducer } from './core/store/todo-list.reducer';
 import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { StyleClassModule } from 'primeng/styleclass';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -56,7 +53,13 @@ import { StyleClassModule } from 'primeng/styleclass';
     ProgressSpinnerModule,
     StoreModule.forRoot({ todoList: todoListReducer })
   ],
-  providers: [MessageService],
+  providers: [
+    MessageService,
+    {
+      provide: LocationStrategy,
+      useClass: HashLocationStrategy
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

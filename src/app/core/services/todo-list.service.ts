@@ -5,6 +5,7 @@ import { ajax } from 'rxjs/ajax';
 import { TodoList } from '../models/todo-list.model';
 import { Task } from '../models/task.model';
 import { environment } from 'src/environments/environment';
+// import TODO_LIST_DATA from '../../../assets/dummy-data/TODO_LIST_DATA';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,18 @@ export class TodoListService {
   private selectedList: TodoList;
 
   constructor(private http: HttpClient) {}
+
+  public getTodoLists$(): any {
+    // return forkJoin({
+    //   lists: this.http.get<TodoList[]>(TODO_LIST_DATA.LISTS),
+    //   tasks: this.http.get<Task[]>(TODO_LIST_DATA.TASKS)
+    // }).pipe(
+    //   map(({ lists, tasks }) => {
+    //     console.log(lists);
+    //     console.log(tasks);
+    //   })
+    // );
+  }
 
   public getTodoLists(): Observable<Array<TodoList>> {
     this.todoLists = [];

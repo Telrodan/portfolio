@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { AppConfig } from 'src/app/app.config';
-import { SideMenuService } from 'src/app/core/services/side-menu.service';
 
 @Component({
   selector: 'portfolio-header',

@@ -151,7 +151,21 @@ export class TodoListComponent implements OnInit, OnDestroy {
     });
   }
 
-  onCheckTask(task: Task) {}
+  onCheckTask(list: TodoList, taskId: string) {
+    // this.store$.dispatch(
+    //   new TodoListActions.CheckTask({
+    //     taskId: taskId,
+    //     todoList: list
+    //   })
+    // );
+
+    const taskIndex = list.tasks.findIndex((task) => task.id === taskId);
+    const updatedTasks: Task[] = [...list.tasks];
+    updatedTasks[taskIndex].checked = !updatedTasks[taskIndex].checked;
+
+    // updatedList.tasks[taskIndex].checked = !list.tasks[taskIndex].checked;
+    console.log(list.tasks[taskIndex].checked);
+  }
   onUpdateTask() {}
   onDeleteTask() {}
 }
