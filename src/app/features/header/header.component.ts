@@ -1,23 +1,20 @@
-import { Component, OnInit } from '@angular/core';
-import { AppConfig } from 'src/app/app.config';
+import { Component } from '@angular/core';
+import { ThemeService } from 'src/app/core/services/theme.service';
 
 @Component({
   selector: 'portfolio-header',
   templateUrl: './header.component.html',
-  styleUrls: ['./header.component.scss']
+  styleUrls: ['./header.component.scss'],
 })
-export class HeaderComponent implements OnInit {
-  constructor(private appConfig: AppConfig) {}
-
-  public ngOnInit(): void {}
+export class HeaderComponent {
+  constructor(private themeService: ThemeService) {}
 
   public changeTheme(theme: string): void {
-    let themeElement = document.getElementById('theme-link');
-    console.log(themeElement);
+    let themeElement: HTMLElement = document.getElementById('theme-link');
     themeElement.setAttribute(
       'href',
-      themeElement.getAttribute('href').replace(this.appConfig.theme, theme)
+      themeElement.getAttribute('href').replace(this.themeService.theme, theme)
     );
-    this.appConfig.theme = theme;
+    this.themeService.theme = theme;
   }
 }

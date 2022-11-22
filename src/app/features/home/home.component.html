@@ -2,19 +2,13 @@
   <div class="header">
     <div class="header__container">
       <p class="header__this-is text-teal-300">This is</p>
-      <h1 class="header__my-name">
-        Keresztes<span class="text-teal-300">-</span>Nagy Bence
-      </h1>
+      <h1 class="header__my-name">Keresztes<span class="text-teal-300">-</span>Nagy Bence</h1>
       <h2
         class="header__profession text-blue-400"
-        [ngStyle]="{ 'border-bottom': '1px solid var(--blue-400)' }"
-      >
+        [ngStyle]="{ 'border-bottom': '1px solid var(--blue-400)' }">
         FrontEnd Developer
       </h2>
-      <a
-        class="header__link text-900 hover:text-700"
-        (click)="scrollToElement(aboutMe)"
-      >
+      <a class="header__link text-900 hover:text-700" (click)="scrollToElement(aboutMe)">
         <i class="pi pi-user text-teal-300"></i> About me</a
       >
       <a class="header__link text-900 hover:text-700" routerLink="/contact"
@@ -31,33 +25,28 @@
         [ngStyle]="{
           background: 'var(--teal-300)',
           border: 'none',
-          'margin-top': '10px'
-        }"
-      ></a>
+          marginTop: '10px'
+        }"></a>
     </div>
     <img
       class="header__illustration"
-      src="../../../assets/landing-illustration-01.svg"
-      alt="Computer illustration"
-    />
+      src="../../../assets/images/landing-01.svg"
+      alt="Header Illustration" />
   </div>
 
   <div class="details" #aboutMe>
     <div class="card">
       <img
         class="card__illustration"
-        src="../../../assets/about-me.svg"
-        alt="About me illustration"
-      />
+        src="../../../assets/images/landing-02.svg"
+        alt="About Me Illustration" />
       <div class="card__content">
-        <h3 class="card__title text-blue-400">
-          About <span class="text-900">me</span>
-        </h3>
+        <h3 class="card__title text-blue-400">About me</h3>
         <p class="card__description">
-          I started my coding journey back in 2021 on Udemy. I'm an enthusiastic
-          self-taught front-end developer, learning to code and practice in my
-          spare time. I'm from Hungary but I lived in the UK for nearly 10
-          years. I'm seeking an entry-level position to use my skills in coding.
+          I started my coding journey back in 2021 on Udemy. I'm an enthusiastic self-taught
+          front-end developer, learning to code and practice in my spare time. I'm from Hungary but
+          I lived in the UK for nearly 10 years. I'm seeking an entry-level position to use my
+          skills in coding.
         </p>
         <a
           download
@@ -69,16 +58,15 @@
           [ngStyle]="{
             background: 'var(--teal-300)',
             border: 'none'
-          }"
-        ></a>
+          }"></a>
       </div>
     </div>
     <div class="card">
       <div class="card__content">
-        <h3 class="card__title text-900">Skills</h3>
+        <h3 class="card__title text-blue-400">Skills</h3>
         <p class="card__description">
-          Technologies I learned and worked with so far. But in the future, I'm
-          planning to learn NodeJS, Express, and MongoDB.
+          Technologies I learned and worked with so far. But in the future, I'm planning to learn
+          NodeJS, Express, and MongoDB.
         </p>
         <div class="card__icon-wrapper">
           <div class="card__icon text-teal-300">
@@ -122,21 +110,18 @@
       </div>
       <img
         class="card__illustration"
-        src="../../../assets/skills.svg"
-        alt="Skills illustration"
-      />
+        src="../../../assets/images/landing-03.svg"
+        alt="Skills Illustration" />
     </div>
     <div class="card">
       <img
         class="card__illustration"
-        src="../../../assets/projects.svg"
-        alt="About me illustration"
-      />
+        src="../../../assets/images/landing-04.svg"
+        alt="About Me Illustration" />
       <div class="card__content">
-        <h3 class="card__title text-900">Works</h3>
+        <h3 class="card__title text-blue-400">Works</h3>
         <p class="card__description">
-          I love creating things that live on the internet. Especially if it's
-          working. :)
+          I love creating things that live on the internet. Especially if it's working. :)
         </p>
         <a
           routerLink="/works"
@@ -147,8 +132,7 @@
           [ngStyle]="{
             background: 'var(--teal-300)',
             border: 'none'
-          }"
-        ></a>
+          }"></a>
       </div>
     </div>
   </div>

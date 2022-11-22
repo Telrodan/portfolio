@@ -1,0 +1,18 @@
+@mixin mobile {
+  @media (max-width: 700px) {
+    @content;
+  }
+}
+// 0px ---> breakpoint
+@mixin until-breakpoint($breakpoint) {
+  @media only screen and (max-width: calc($breakpoint - 1px)) {
+    @content;
+  }
+}
+
+// breakpoint ---> ~
+@mixin from-breakpoint($breakpoint) {
+  @media only screen and (min-width: $breakpoint) {
+    @content;
+  }
+}

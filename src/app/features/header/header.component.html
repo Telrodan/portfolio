@@ -1,13 +1,11 @@
 <div
-  class="header surface-overlay px-3 md:px-6 lg:px-6 shadow-4 flex align-items-center justify-content-between relative lg:static mb-2"
-  style="min-height: 80px"
->
+  class="header surface-overlay flex align-items-center justify-content-between relative lg:static px-3 md:px-4 lg:px-5 shadow-4 mb-2"
+  style="min-height: 80px">
   <a
     aria-label="Logo, Home"
     class="header__logo mr-0 lg:mr-6"
     [ngStyle]="{ color: 'var(--blue-400)' }"
-    routerLink="home"
-  >
+    routerLink="home">
     KNB.
   </a>
   <a
@@ -16,22 +14,17 @@
     pStyleClass="@next"
     enterClass="hidden"
     leaveToClass="hidden"
-    [hideOnOutsideClick]="true"
-  >
+    [hideOnOutsideClick]="true">
     <i class="pi pi-bars text-4xl"></i>
   </a>
   <div
-    class="align-items-center flex-grow-1 justify-content-between hidden lg:flex absolute lg:static w-full surface-overlay left-0 top-100 z-1 shadow-2 lg:shadow-none"
-  >
-    <ul
-      class="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row"
-    >
+    class="align-items-center flex-grow-1 justify-content-between hidden lg:flex absolute lg:static w-full surface-overlay left-0 top-100 z-1 shadow-2 lg:shadow-none">
+    <ul class="list-none p-0 m-0 flex lg:align-items-center select-none flex-column lg:flex-row">
       <li>
         <a
           pRipple
           class="flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-colors transition-duration-150"
-          routerLink="home"
-        >
+          routerLink="home">
           <i class="pi pi-home mr-2"></i>
           <span>Home</span>
         </a>
@@ -40,8 +33,7 @@
         <a
           pRipple
           class="flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-colors transition-duration-150"
-          routerLink="works/menu"
-        >
+          routerLink="works">
           <i class="pi pi-folder mr-2"></i>
           <span>Works</span>
         </a>
@@ -50,8 +42,7 @@
         <a
           pRipple
           class="flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-colors transition-duration-150"
-          routerLink="blog"
-        >
+          routerLink="blog">
           <i class="pi pi-comment mr-2"></i>
           <span>Blog</span>
         </a>
@@ -60,8 +51,7 @@
         <a
           pRipple
           class="flex px-6 p-3 lg:px-3 lg:py-2 align-items-center text-600 hover:text-900 hover:surface-100 font-medium border-round cursor-pointer transition-colors transition-duration-150"
-          routerLink="contact"
-        >
+          routerLink="contact">
           <i class="pi pi-envelope mr-2"></i>
           <span>Contact</span>
         </a>

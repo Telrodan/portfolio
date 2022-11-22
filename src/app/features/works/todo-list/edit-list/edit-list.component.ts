@@ -9,7 +9,7 @@ import { TodoList } from 'src/app/core/models/todo-list.model';
 @Component({
   selector: 'app-edit-list',
   templateUrl: './edit-list.component.html',
-  styleUrls: ['./edit-list.component.scss']
+  styleUrls: ['./edit-list.component.scss'],
 })
 export class EditListComponent implements OnInit {
   public todoList: TodoList;
@@ -17,26 +17,25 @@ export class EditListComponent implements OnInit {
   public priorities = [
     { priority: 'Low', key: 'L' },
     { priority: 'Medium', key: 'M' },
-    { priority: 'High', key: 'H' }
+    { priority: 'High', key: 'H' },
   ];
-  public selectedPriority;
+  public selectedPriority = {};
 
   constructor(
     public dialogRef: DynamicDialogRef,
     public dialogConfig: DynamicDialogConfig,
     private messageService: MessageService,
     private store: Store<{ todoList: { todoLists: TodoList[] } }>
-  ) {}
-
-  ngOnInit(): void {
+  ) {
     this.todoList = this.dialogConfig.data;
     this.listName = this.todoList.name;
+  }
+
+  ngOnInit(): void {
     this.selectedPriority = this.todoList.priority;
     this.selectedPriority =
       this.priorities[
-        this.priorities.findIndex(
-          (priority) => priority.priority === this.todoList.priority
-        )
+        this.priorities.findIndex((priority) => priority.priority === this.todoList.priority)
       ];
   }
 
@@ -45,25 +44,25 @@ export class EditListComponent implements OnInit {
       const updatedList: TodoList = {
         ...this.todoList,
         name: this.listName.charAt(0).toUpperCase() + this.listName.slice(1),
-        priority: this.selectedPriority.priority
+        // priority: this.selectedPriority.priority,
       };
       this.store.dispatch(
         new TodoListActions.UpdateList({
           id: updatedList.id,
-          todoList: updatedList
+          todoList: updatedList,
         })
       );
       this.dialogRef.close();
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
-        detail: 'To-do list updated.'
+        detail: 'To-do list updated.',
       });
     } else {
       this.messageService.add({
         severity: 'warn',
         summary: 'Warn',
-        detail: 'Enter a list name.'
+        detail: 'Enter a list name.',
       });
     }
   }

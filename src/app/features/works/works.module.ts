@@ -16,6 +16,8 @@ import { AddTaskComponent } from './todo-list/add-task/add-task.component';
 import { InputTextModule } from 'primeng/inputtext';
 import { EditListComponent } from './todo-list/edit-list/edit-list.component';
 import { DropdownModule } from 'primeng/dropdown';
+import { RouterModule } from '@angular/router';
+import { WorksComponent } from './works.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { DropdownModule } from 'primeng/dropdown';
     EditListComponent,
     AddTaskComponent,
     UserTrackingComponent,
-    WorksMenuComponent
+    WorksMenuComponent,
+    WorksComponent,
   ],
   imports: [
     CommonModule,
@@ -37,7 +40,8 @@ import { DropdownModule } from 'primeng/dropdown';
     FormsModule,
     RadioButtonModule,
     InputTextModule,
-    DropdownModule
-  ]
+    DropdownModule,
+    RouterModule,
+  ],
 })
 export class WorksModule {}

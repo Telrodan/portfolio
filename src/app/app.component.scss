@@ -1,7 +1,7 @@
 @import 'mixins';
 
 .app-content {
-  // padding: 0 70px;
+  min-height: calc(100vh - 80px);
 
   @include mobile() {
     // padding: 0 20px;
