@@ -13,29 +13,32 @@
     </div>
   </div>
 </div>
-<div class="p-4 md:p-6 lg:p-7">
-  <p-card header="To-do List" styleClass="xl:w-3 lg:w-4 md:w-6 sm:w-full text-blue-500">
-    <p class="text-800">
-      This is a simple to-do app, with editable lists and tasks. I created this project to practice
-      CRUD operations and NgRx.
+<div class="works-container md:p-6 lg:p-7 mx-auto">
+  <p-card
+    [header]="project.projectName"
+    class="work-card"
+    styleClass="w-20rem h-18rem text-blue-500"
+    *ngFor="let project of workData">
+    <p class="text-800 h-4rem">
+      {{ project.projectDescription }}
     </p>
     <div class="technologies mt-4">
-      <p-chip label="HTML" class="mr-2" styleClass="text-teal-300"></p-chip>
-      <p-chip label="SCSS" class="mr-2" styleClass="text-teal-300"></p-chip>
-      <p-chip label="Angular" class="mr-2" styleClass="text-teal-300"></p-chip>
-      <p-chip label="NgRx" class="mr-2" styleClass="text-teal-300"></p-chip>
+      <p-chip
+        [label]="technology"
+        class="mr-2"
+        styleClass="text-teal-300"
+        *ngFor="let technology of project.projectTechnologies"></p-chip>
     </div>
     <ng-template pTemplate="footer">
-      <p-button routerLink="todo-list" label="Demo" icon="pi pi-desktop"></p-button>
+      <p-button
+        (onClick)="onNavigate(project.projectDemoUrl)"
+        label="Demo"
+        icon="pi pi-desktop"></p-button>
       <p-button
         label="Code"
         icon="pi pi-github"
         styleClass="ml-5"
-        (onClick)="
-          onNavigate(
-            'https://github.com/Telrodan/prortfolio/tree/master/src/app/features/works/todo-list'
-          )
-        "></p-button>
+        (onClick)="onNavigate(project.projectCodeUrl)"></p-button>
     </ng-template>
   </p-card>
 </div>

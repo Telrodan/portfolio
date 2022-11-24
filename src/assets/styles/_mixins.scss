@@ -3,6 +3,11 @@
     @content;
   }
 }
+$screen-sm: 540px;
+$screen-md: 720px;
+$screen-lg: 1267px;
+$screen-xl: 1440px;
+
 // 0px ---> breakpoint
 @mixin until-breakpoint($breakpoint) {
   @media only screen and (max-width: calc($breakpoint - 1px)) {

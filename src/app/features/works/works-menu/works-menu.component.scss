@@ -1,1 +1,21 @@
+@import 'mixins';
 
+.works-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 20rem);
+  justify-content: center;
+  column-gap: 20px;
+  margin: 0 auto;
+
+  @include until-breakpoint($screen-sm) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+    column-gap: 0;
+  }
+}
+
+.work-card {
+  margin: 10px 0;
+}
