@@ -1,62 +1,50 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import {
-  Subject,
-  Subscription,
-  tap,
-  takeUntil,
-  Observable,
-  filter
-} from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { AddListComponent } from './add-list/add-list.component';
 import { TodoList } from 'src/app/core/models/todo-list.model';
-import { Store } from '@ngrx/store';
-import { DialogService } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MenuItem } from 'primeng/api';
 import { Task } from 'src/app/core/models/task.model';
-import * as TodoListActions from '../../../core/store/todo-list.actions';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { EditListComponent } from './edit-list/edit-list.component';
+import { TodoListService } from 'src/app/core/services/todo-list.service';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 
 @Component({
   selector: 'app-todo-list',
   templateUrl: './todo-list.component.html',
   styleUrls: ['./todo-list.component.scss'],
-  providers: [DialogService]
+  providers: [DialogService],
 })
 export class TodoListComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject();
+  public todoLists: TodoList[];
+  public isLoading = true;
   public finishedTasks: number;
   public unfinishedTasks: number;
   public finishedLists: number;
   public unfinishedLists: number;
   public splitTaskButtonItems: MenuItem[];
-  public newListName: string;
-  public newTaskName: string;
-  public todoLists: TodoList[];
+  public selectedTask: Task;
+  public selectedList: TodoList;
 
-  constructor(
-    public dialogService: DialogService,
-    private store$: Store<{ todoList: { todoLists: TodoList[] } }>
-  ) {}
+  constructor(public dialogService: DialogService, private todoListService: TodoListService) {}
 
   public ngOnInit(): void {
-    this.store$
-      .select('todoList')
-      .pipe(
-        tap((data) => {
-          this.todoLists = data.todoLists;
-        }),
-        takeUntil(this.destroy$)
-      )
-      .subscribe(() => {
-        this.finishedTasks = this.getFinishedTasks();
-        this.unfinishedTasks = this.getUnfinishedTasks();
-        this.finishedLists = this.getFinishedLists();
-        this.unfinishedLists = this.getUnfinishedLists();
-        console.log(this.todoLists);
-      });
+    this.todoListService
+      .getLists$()
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(() => (this.isLoading = false));
 
-    console.log(this.todoLists);
+    this.todoListService.todoListChanges
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((resTodoLists) => {
+        this.todoLists = resTodoLists;
+        this.finishedLists = this.getFinishedLists();
+        this.finishedTasks = this.getFinishedTasks();
+        this.unfinishedLists = this.getUnfinishedLists();
+        this.unfinishedTasks = this.getUnfinishedTasks();
+      });
 
     this.splitTaskButtonItems = [
       {
@@ -64,16 +52,64 @@ export class TodoListComponent implements OnInit, OnDestroy {
         icon: 'pi pi-cog',
         command: () => {
           this.onUpdateTask();
-        }
+        },
       },
       {
         label: 'Delete',
         icon: 'pi pi-times',
         command: () => {
           this.onDeleteTask();
-        }
-      }
+        },
+      },
     ];
+  }
+
+  public onAddNewList(): void {
+    const ref = this.dialogService.open(AddListComponent, {
+      header: 'Add new list',
+      width: '350px',
+    });
+  }
+
+  public onEditList(list: TodoList): void {
+    const ref = this.dialogService.open(EditListComponent, {
+      header: 'Edit list',
+      width: '350px',
+      data: list,
+    });
+  }
+
+  public onAddNewTask(list: TodoList): void {
+    const ref = this.dialogService.open(AddTaskComponent, {
+      header: 'Add new task',
+      width: '350px',
+      data: list,
+    });
+  }
+
+  public onCheckTask(list: TodoList, taskId: string): void {
+    const taskIndex = list.tasks.findIndex((task) => task.id === taskId);
+    list.tasks[taskIndex].checked = !list.tasks[taskIndex].checked;
+    this.todoListService.todoListChanges.next(this.todoLists);
+  }
+
+  public onUpdateTask(): void {
+    const ref = this.dialogService.open(EditTaskComponent, {
+      header: 'Edit task',
+      width: '350px',
+      data: [this.selectedList, this.selectedTask],
+    });
+  }
+
+  public onDeleteTask(): void {
+    const taskIndex = this.selectedList.tasks.findIndex((task) => task.id === this.selectedTask.id);
+    this.selectedList.tasks.splice(taskIndex, 1);
+    this.todoListService.todoListChanges.next(this.todoLists);
+  }
+
+  public setListAndTask(list: TodoList, task: Task) {
+    this.selectedList = list;
+    this.selectedTask = task;
   }
 
   public getFinishedLists(): number {
@@ -81,10 +117,12 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.todoLists.forEach((todoList) => {
       let counter = 0;
       let tasks = todoList.tasks.length;
-      todoList.tasks.forEach((task) => {
-        if (task.checked) counter++;
-      });
-      if (counter === tasks) finishedLists++;
+      if (tasks !== 0) {
+        todoList.tasks.forEach((task) => {
+          if (task.checked) counter++;
+        });
+        if (counter === tasks) finishedLists++;
+      }
     });
     return finishedLists;
   }
@@ -127,45 +165,4 @@ export class TodoListComponent implements OnInit, OnDestroy {
     this.destroy$.next(false);
     this.destroy$.complete();
   }
-
-  public onAddNewList(): void {
-    const ref = this.dialogService.open(AddListComponent, {
-      header: 'Add new list',
-      width: '350px'
-    });
-  }
-
-  public onEditList(list: TodoList): void {
-    const ref = this.dialogService.open(EditListComponent, {
-      header: 'Edit list',
-      width: '350px',
-      data: list
-    });
-  }
-
-  public onAddNewTask(list: TodoList): void {
-    const ref = this.dialogService.open(AddTaskComponent, {
-      header: 'Add new task',
-      width: '350px',
-      data: list
-    });
-  }
-
-  onCheckTask(list: TodoList, taskId: string) {
-    // this.store$.dispatch(
-    //   new TodoListActions.CheckTask({
-    //     taskId: taskId,
-    //     todoList: list
-    //   })
-    // );
-
-    const taskIndex = list.tasks.findIndex((task) => task.id === taskId);
-    const updatedTasks: Task[] = [...list.tasks];
-    updatedTasks[taskIndex].checked = !updatedTasks[taskIndex].checked;
-
-    // updatedList.tasks[taskIndex].checked = !list.tasks[taskIndex].checked;
-    console.log(list.tasks[taskIndex].checked);
-  }
-  onUpdateTask() {}
-  onDeleteTask() {}
 }

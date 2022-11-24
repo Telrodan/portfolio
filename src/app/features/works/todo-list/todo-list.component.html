@@ -1,21 +1,21 @@
-<div class="todo-list flex flex-column">
+<div *ngIf="isLoading" class="mx-auto flex justify-content-center pt-8">
+  <p-progressSpinner strokeWidth="3"></p-progressSpinner>
+</div>
+<div *ngIf="!isLoading" class="todo-list flex flex-column">
   <div class="surface-ground px-4 py-5 md:px-6 lg:px-7">
     <div class="grid">
       <div class="col-12 md:col-6 lg:col-3">
         <div class="surface-card shadow-2 p-3 border-round">
           <div class="flex justify-content-between mb-3">
             <div>
-              <span class="block text-teal-300 font-medium mb-3"
-                >Finished tasks</span
-              >
+              <span class="block text-teal-300 font-medium mb-3">Finished tasks</span>
               <div class="text-900 font-medium text-xl">
                 {{ finishedTasks }}
               </div>
             </div>
             <div
               class="flex align-items-center justify-content-center bg-green-100 border-round"
-              style="width: 2.5rem; height: 2.5rem"
-            >
+              style="width: 2.5rem; height: 2.5rem">
               <i class="pi pi-ellipsis-h text-blue-600 text-xl"></i>
             </div>
           </div>
@@ -25,17 +25,14 @@
         <div class="surface-card shadow-2 p-3 border-round">
           <div class="flex justify-content-between mb-3">
             <div>
-              <span class="block text-500 font-medium mb-3 text-teal-300"
-                >Tasks to do</span
-              >
+              <span class="block text-500 font-medium mb-3 text-teal-300">Tasks to do</span>
               <div class="text-900 font-medium text-xl">
                 {{ unfinishedTasks }}
               </div>
             </div>
             <div
               class="flex align-items-center justify-content-center bg-red-100 border-round"
-              style="width: 2.5rem; height: 2.5rem"
-            >
+              style="width: 2.5rem; height: 2.5rem">
               <i class="pi pi-ellipsis-h text-blue-600 text-xl"></i>
             </div>
           </div>
@@ -45,17 +42,14 @@
         <div class="surface-card shadow-2 p-3 border-round">
           <div class="flex justify-content-between mb-3">
             <div>
-              <span class="block text-500 font-medium mb-3 text-teal-300"
-                >Finished lists</span
-              >
+              <span class="block text-500 font-medium mb-3 text-teal-300">Finished lists</span>
               <div class="text-900 font-medium text-xl">
                 {{ finishedLists }}
               </div>
             </div>
             <div
               class="flex align-items-center justify-content-center bg-green-100 border-round"
-              style="width: 2.5rem; height: 2.5rem"
-            >
+              style="width: 2.5rem; height: 2.5rem">
               <i class="pi pi-list text-blue-600 text-xl"></i>
             </div>
           </div>
@@ -65,17 +59,14 @@
         <div class="surface-card shadow-2 p-3 border-round">
           <div class="flex justify-content-between mb-3">
             <div>
-              <span class="block font-medium mb-3 text-teal-300"
-                >Lists to finish</span
-              >
+              <span class="block font-medium mb-3 text-teal-300">Lists to finish</span>
               <div class="text-900 font-medium text-xl">
                 {{ unfinishedLists }}
               </div>
             </div>
             <div
               class="flex align-items-center justify-content-center bg-red-100 border-round"
-              style="width: 2.5rem; height: 2.5rem"
-            >
+              style="width: 2.5rem; height: 2.5rem">
               <i class="pi pi-list text-blue-600 text-xl"></i>
             </div>
           </div>
@@ -88,40 +79,31 @@
     label="Add new list"
     class="align-self-center m-5"
     icon="pi pi-plus"
-    (onClick)="onAddNewList()"
-  ></p-button>
+    (onClick)="onAddNewList()"></p-button>
   <div class="px-2 md:px:7 lg:px-8 pb-5">
     <div class="surface-card p-4 shadow-2 border-round">
       <p class="text-5xl mb-5 text-center font-light">To-do lists</p>
 
-      <div
-        class="flex w-full relative align-items-center justify-content-center mb-5"
-      >
+      <div class="flex w-full relative align-items-center justify-content-center mb-5">
         <div class="border-top-1 border-300 left-0 absolute w-full"></div>
       </div>
 
-      <div style="min-height: 20rem" class="flex flex-wrap">
+      <div style="min-height: 20rem" class="list-container">
         <div
-          style="min-width: 310px"
-          class="surface-200 p-2 shadow-2 border-round list-card mr-5"
-          *ngFor="let list of todoLists"
-        >
+          class="surface-200 p-2 shadow-2 border-round list-card mr-5 mb-5"
+          *ngFor="let list of todoLists">
           <div class="surface-border border-round p-3">
             <p class="text-2xl text-center mb-1">{{ list.name }}</p>
             <p class="text-base text-center">Priority: {{ list.priority }}</p>
           </div>
-          <div
-            class="surface-border border-round p-3"
-            style="min-height: 20rem"
-          >
+          <div class="surface-border border-round p-3" style="min-height: 20rem">
             <div class="task-container" *ngFor="let task of list.tasks">
               <p
                 class="text-lg task"
                 [ngStyle]="{
                   'text-decoration': task.checked ? 'line-through' : 'none',
                   opacity: task.checked ? '50%' : '100%'
-                }"
-              >
+                }">
                 {{ task.name }}
               </p>
 
@@ -131,24 +113,19 @@
                 label="Done"
                 icon="pi pi-check"
                 [model]="splitTaskButtonItems"
-                (onClick)="onCheckTask(list, task.id)"
-              ></p-splitButton>
+                (onDropdownClick)="setListAndTask(list, task)"
+                (onClick)="onCheckTask(list, task.id)"></p-splitButton>
             </div>
           </div>
           <div
-            class="surface-border border-round mt-3 p-2 flex justify-content-between"
-          >
+            class="card-footer surface-border border-round mt-3 p-2 flex justify-content-between">
             <p-button
               label="Add new task"
               icon="pi pi-plus"
-              (onClick)="onAddNewTask(list)"
-            ></p-button>
+              class="mb-3 md:mb-0"
+              (onClick)="onAddNewTask(list)"></p-button>
 
-            <p-button
-              label="Edit list"
-              icon="pi pi-cog"
-              (onClick)="onEditList(list)"
-            ></p-button>
+            <p-button label="Edit list" icon="pi pi-cog" (onClick)="onEditList(list)"></p-button>
           </div>
         </div>
       </div>

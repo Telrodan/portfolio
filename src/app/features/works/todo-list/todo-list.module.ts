@@ -8,8 +8,15 @@ import { EditListComponent } from './edit-list/edit-list.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 import { RadioButtonModule } from 'primeng/radiobutton';
 import { SplitButtonModule } from 'primeng/splitbutton';
+import { InputTextModule } from 'primeng/inputtext';
+import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
-const PRIMENG_MODULES = [RadioButtonModule, SplitButtonModule];
+const PRIMENG_MODULES = [
+  RadioButtonModule,
+  SplitButtonModule,
+  InputTextModule,
+  ProgressSpinnerModule,
+];
 
 @NgModule({
   declarations: [

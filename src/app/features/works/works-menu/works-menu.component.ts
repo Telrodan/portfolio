@@ -14,9 +14,9 @@ export class WorksMenuComponent implements OnInit {
       {
         projectName: 'To-do List (Angular)',
         projectDescription:
-          'This is a to-do app, with editable lists and tasks. I created this project to practice CRUD operations and NgRx.',
-        projectTechnologies: ['HTML', 'SCSS', 'Angular', 'NgRx'],
-        projectDemoUrl: 'http://localhost:4200/#/works/todo-list',
+          'This is a to-do list app, with editable lists and tasks. I created this project to practice CRUD operations and RxJs.',
+        projectTechnologies: ['HTML', 'SCSS', 'Angular', 'RxJs'],
+        projectDemoUrl: 'https://knb-portfolio.hu/#/works/todo-list',
         projectCodeUrl:
           'https://github.com/Telrodan/prortfolio/tree/master/src/app/features/works/todo-list',
       },

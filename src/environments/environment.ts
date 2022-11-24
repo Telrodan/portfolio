@@ -4,10 +4,7 @@
 
 export const environment = {
   production: false,
-  todoListDatabase:
-    'https://portfolio-bence-kn-default-rtdb.europe-west1.firebasedatabase.app/todo-list.json',
-  todoListTaskDatabase:
-    'https://portfolio-bence-kn-default-rtdb.europe-west1.firebasedatabase.app/todo-task.json'
+  baseUrl: 'https://knb-portfolio-default-rtdb.europe-west1.firebasedatabase.app/',
 };
 
 /*

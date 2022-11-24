@@ -1,12 +1,7 @@
 <div class="add-new-list flex flex-column">
   <div class="p-inputgroup mb-5">
     <span class="p-inputgroup-addon"><i class="pi pi-list"></i></span>
-    <input
-      type="text"
-      pInputText
-      placeholder="List name"
-      [(ngModel)]="listName"
-    />
+    <input type="text" pInputText placeholder="List name" [(ngModel)]="listName" />
   </div>
 
   <div class="priority-wrapper">
@@ -16,8 +11,7 @@
         [inputId]="priority.key"
         name="category"
         [value]="priority"
-        [(ngModel)]="selectedPriority"
-      ></p-radioButton>
+        [(ngModel)]="selectedPriority"></p-radioButton>
       <label [for]="priority.key">{{ priority.priority }}</label>
     </div>
   </div>
@@ -28,6 +22,12 @@
     label="Submit"
     icon="pi pi-check-circle"
     class="mt-2"
-    (click)="onSubmit()"
-  ></button>
+    (click)="onSubmit()"></button>
+  <button
+    pButton
+    pRipple
+    label="Delete"
+    icon="pi pi-minus"
+    class="mt-2 p-button-danger"
+    (click)="onDelete()"></button>
 </div>

@@ -1,1 +1,14 @@
-<p>edit-task works!</p>
+<div class="flex flex-column">
+  <div class="p-inputgroup mb-5">
+    <span class="p-inputgroup-addon"><i class="pi pi-ellipsis-h"></i></span>
+    <input type="text" pInputText placeholder="Task name" [(ngModel)]="newTaskName" />
+  </div>
+
+  <button
+    pButton
+    pRipple
+    label="Submit"
+    icon="pi pi-check-circle"
+    class="mt-2"
+    (click)="onSubmit()"></button>
+</div>
