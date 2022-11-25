@@ -1,108 +1,85 @@
-<!-- <div class="contact">
-  <div class="header">
-    <h2 class="header__title">
-      Drop me a <span>message</span>. I would like to hear from
-      <span>you</span>.
-    </h2>
-    <img
-      class="header__illustration"
-      src="../../../assets/message.svg"
-      alt="Message illustration"
-    />
-  </div>
-  <div class="form__container">
-    <form action="" class="form">
-      <h2 class="form-heading">Get in <span>Touch</span></h2>
-      <input type="text" class="form-input" required placeholder="Name" />
-      <input type="email" class="form-input" required placeholder="Email" />
-      <textarea
-        name=""
-        class="form-textarea"
-        id=""
-        cols="30"
-        rows="10"
-        placeholder="Message..."
-      ></textarea>
-      <button class="form-button button-primary">Send Message</button>
-    </form>
-  </div>
-</div> -->
-<div class="surface-ground px-4 py-8 md:px-6 lg:px-8">
-  <div class="text-900 font-medium text-xl mb-3">Profile</div>
-  <p class="m-0 mb-4 p-0 text-600 line-height-3 mr-3">
-    Odio euismod lacinia at quis risus sed vulputate odio. Non nisi est sit
-    amet. Egestas integer eget aliquet nibh praesent tristique magna.
-  </p>
-  <div class="surface-card p-4 shadow-2 border-round">
-    <div class="grid formgrid p-fluid">
-      <div class="field mb-4 col-12">
-        <label for="nickname2" class="font-medium text-900">Nickname</label>
-        <input id="nickname2" type="text" pInputText />
-      </div>
-      <div class="surface-border border-top-1 opacity-50 mb-3 col-12"></div>
-      <div class="field mb-4 col-12 md:col-6">
-        <label for="message" class="font-medium text-900">Message</label>
-        <textarea id="message" type="text" pInputTextarea rows="5"></textarea>
-      </div>
-      <div class="surface-border border-top-1 opacity-50 mb-3 col-12"></div>
-      <div class="field mb-4 col-12 md:col-6">
-        <label for="email2" class="font-medium text-900">Email</label>
-        <input id="email2" type="text" pInputText />
-      </div>
-      <div class="field mb-4 col-12 md:col-6">
-        <label for="country2" class="font-medium text-900">Country</label>
-        <p-dropdown
-          inputId="country2"
-          optionLabel="name"
-          [filter]="true"
-          filterBy="name"
-          [showClear]="true"
-          placeholder="Select a Country"
-        >
-          <ng-template let-country pTemplate="item">
-            <div class="flex align-items-center">
-              <img
-                src="assets/images/blocks/flag/flag_placeholder.png"
-                [class]="'mr-2 flag flag-' + country.code.toLowerCase()"
-                style="width: 18px"
-              />
-              <div>{{ country.name }}</div>
-            </div>
-          </ng-template>
-        </p-dropdown>
-      </div>
-      <div class="field mb-4 col-12 md:col-6">
-        <label for="city2" class="font-medium text-900">City</label>
-        <input id="city2" type="text" pInputText />
-      </div>
-      <div class="field mb-4 col-12 md:col-6">
-        <label for="state2" class="font-medium text-900">State</label>
-        <input id="state2" type="text" pInputText />
-      </div>
-      <div class="surface-border border-top-1 opacity-50 mb-3 col-12"></div>
-      <div class="field mb-4 col-12">
-        <label for="website2" class="font-medium text-900">Website</label>
-        <div class="p-inputgroup">
-          <span class="p-inputgroup-addon">www</span>
-          <input id="website2" type="text" pInputText />
+<div *ngIf="!isMessageSent && !isLoading" class="surface-section px-4 py-8 md:px-6 lg:px-8">
+  <div class="grid">
+    <div class="col-12 md:col-6">
+      <form class="p-fluid pr-0 md:pr-6" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
+        <div class="field">
+          <label for="name" class="font-medium text-teal-300">Name</label>
+          <input
+            id="name"
+            type="text"
+            pInputText
+            class="py-3 px-2 text-lg"
+            formControlName="name" />
+          <p
+            class="text-red-400"
+            *ngIf="!contactForm.get('name').valid && contactForm.get('name').touched">
+            This field is required.
+          </p>
         </div>
-      </div>
-      <div class="surface-border border-top-1 opacity-50 mb-3 col-12"></div>
-      <div class="field mb-4 col-12">
-        <label for="privacy2" class="font-medium text-900">Privacy</label>
-        <div class="flex align-items-center">
-          <span class="ml-2 text-900">Share my data with contacts</span>
+        <div class="field">
+          <label for="email" class="font-medium text-teal-300">Email</label>
+          <input
+            id="email"
+            type="text"
+            pInputText
+            class="py-3 px-2 text-lg"
+            formControlName="email" />
+          <p
+            class="text-red-400"
+            *ngIf="!contactForm.get('email').valid && contactForm.get('email').touched">
+            This field is required.
+          </p>
         </div>
+        <div class="field">
+          <label for="subject" class="font-medium text-teal-300">Subject</label>
+          <input
+            id="subject"
+            type="text"
+            pInputText
+            class="py-3 px-2 text-lg"
+            formControlName="subject" />
+          <p
+            class="text-red-400"
+            *ngIf="!contactForm.get('subject').valid && contactForm.get('subject').touched">
+            This field is required.
+          </p>
+        </div>
+        <div class="field">
+          <label for="message" class="font-medium text-teal-300">Message</label>
+          <textarea
+            id="message"
+            pInputTextarea
+            rows="6"
+            [autoResize]="true"
+            class="py-3 px-2 text-lg"
+            formControlName="message"></textarea>
+          <p
+            class="text-red-400"
+            *ngIf="!contactForm.get('message').valid && contactForm.get('message').touched">
+            This field is required.
+          </p>
+        </div>
+        <button pButton pRipple label="Send Message" icon="pi pi-send" class="w-auto"></button>
+      </form>
+    </div>
+    <div class="col-12 md:col-6 bg-no-repeat bg-right-bottom">
+      <div class="text-900 text-2xl font-medium mb-6 text-blue-300">Contact Me</div>
+      <div class="text-700 line-height-3 mb-6">
+        Drop me a message. I would like to hear from you.
       </div>
-      <div class="surface-border border-top-1 opacity-50 mb-3 col-12"></div>
-      <div class="col-12">
-        <button
-          pButton
-          pRipple
-          label="Save Changes"
-          class="w-auto mt-3"
-        ></button>
-      </div>
+      <img
+        class="message-illustration w-15rem"
+        src="../../../assets/images/contact-message.svg"
+        alt="Message illustration" />
     </div>
   </div>
+</div>
+<p-progressSpinner *ngIf="!isMessageSent && isLoading"></p-progressSpinner>
+<div *ngIf="isMessageSent && !isLoading" class="message-sent mt-8">
+  <h1 class="text-teal-300 mb-3">Thank you for your message.</h1>
+  <h3 class="text-blue-300 mb-8">I will reply as soon as I can.</h3>
+  <img
+    class="message-illustration w-15rem"
+    src="../../../assets/images/contact-message.svg"
+    alt="Message illustration" />
 </div>

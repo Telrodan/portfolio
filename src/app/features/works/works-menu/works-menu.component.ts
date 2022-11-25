@@ -21,11 +21,11 @@ export class WorksMenuComponent implements OnInit {
           'https://github.com/Telrodan/prortfolio/tree/master/src/app/features/works/todo-list',
       },
       {
-        projectName: 'Projectify',
-        projectDescription: 'This is my first SCSS and JavaScript practice project. (not finished)',
-        projectTechnologies: ['HTML', 'SCSS', 'JavaScript'],
-        projectDemoUrl: 'https://telrodan.github.io/Projectify/',
-        projectCodeUrl: 'https://github.com/Telrodan/Projectify/',
+        projectName: 'Natours',
+        projectDescription: 'This is a SCSS course project.',
+        projectTechnologies: ['HTML', 'SCSS'],
+        projectDemoUrl: 'https://telrodan.github.io/Natours/',
+        projectCodeUrl: 'https://github.com/Telrodan/Natours/',
       },
       {
         projectName: 'To-do List (JavaScript)',
@@ -47,13 +47,6 @@ export class WorksMenuComponent implements OnInit {
         projectTechnologies: ['HTML', 'CSS', 'JavaScript'],
         projectDemoUrl: 'https://telrodan.github.io/Guess-My-Number/',
         projectCodeUrl: 'https://github.com/Telrodan/Guess-My-Number/',
-      },
-      {
-        projectName: 'Natours',
-        projectDescription: 'This is a SCSS course project.',
-        projectTechnologies: ['HTML', 'SCSS'],
-        projectDemoUrl: 'https://telrodan.github.io/Natours/',
-        projectCodeUrl: 'https://github.com/Telrodan/Natours/',
       },
       {
         projectName: 'Trillo',

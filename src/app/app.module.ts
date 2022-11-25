@@ -21,13 +21,16 @@ import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { StyleClassModule } from 'primeng/styleclass';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CoreModule } from './core/core.module';
-
+import { InputTextareaModule } from 'primeng/inputtextarea';
+import { InputTextModule } from 'primeng/inputtext';
 const PRIMENG_MODULES = [
   ToastModule,
   StyleClassModule,
   PaginatorModule,
   ProgressSpinnerModule,
   ButtonModule,
+  InputTextareaModule,
+  InputTextModule,
 ];
 
 @NgModule({
