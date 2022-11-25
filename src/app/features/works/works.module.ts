@@ -9,11 +9,19 @@ import { ChipModule } from 'primeng/chip';
 import { CardModule } from 'primeng/card';
 
 import { ButtonModule } from 'primeng/button';
+import { UserTrackingModule } from './user-tracking/user-tracking.module';
 
 const PRIMENG_MODULES = [ChipModule, ButtonModule, CardModule];
 
 @NgModule({
   declarations: [WorksMenuComponent, WorksComponent],
-  imports: [RouterModule, CommonModule, WorksRoutingModule, TodoListModule, ...PRIMENG_MODULES],
+  imports: [
+    RouterModule,
+    CommonModule,
+    WorksRoutingModule,
+    TodoListModule,
+    UserTrackingModule,
+    ...PRIMENG_MODULES,
+  ],
 })
 export class WorksModule {}
