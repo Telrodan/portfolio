@@ -12,6 +12,15 @@ export class WorksMenuComponent implements OnInit {
   constructor() {
     this.workData = [
       {
+        projectName: 'User Tracking',
+        projectDescription:
+          'This is a user tracking app. I created this project to practice CRUD operations and NgRx. (not finished)',
+        projectTechnologies: ['HTML', 'SCSS', 'Angular', 'NgRx'],
+        projectDemoUrl: 'https://knb-portfolio.hu/#/works/user-tracking',
+        projectCodeUrl:
+          'https://github.com/Telrodan/portfolio/tree/master/src/app/features/works/user-tracking',
+      },
+      {
         projectName: 'To-do List (Angular)',
         projectDescription:
           'This is a to-do list app, with editable lists and tasks. I created this project to practice CRUD operations and RxJs.',

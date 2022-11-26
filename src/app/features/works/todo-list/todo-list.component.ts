@@ -27,6 +27,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   public splitTaskButtonItems: MenuItem[];
   public selectedTask: Task;
   public selectedList: TodoList;
+  public ref: DynamicDialogRef;
 
   constructor(public dialogService: DialogService, private todoListService: TodoListService) {}
 
@@ -65,14 +66,14 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   public onAddNewList(): void {
-    const ref = this.dialogService.open(AddListComponent, {
+    this.ref = this.dialogService.open(AddListComponent, {
       header: 'Add new list',
       width: '350px',
     });
   }
 
   public onEditList(list: TodoList): void {
-    const ref = this.dialogService.open(EditListComponent, {
+    this.ref = this.dialogService.open(EditListComponent, {
       header: 'Edit list',
       width: '350px',
       data: list,
@@ -80,7 +81,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   public onAddNewTask(list: TodoList): void {
-    const ref = this.dialogService.open(AddTaskComponent, {
+    this.ref = this.dialogService.open(AddTaskComponent, {
       header: 'Add new task',
       width: '350px',
       data: list,
@@ -94,7 +95,7 @@ export class TodoListComponent implements OnInit, OnDestroy {
   }
 
   public onUpdateTask(): void {
-    const ref = this.dialogService.open(EditTaskComponent, {
+    this.ref = this.dialogService.open(EditTaskComponent, {
       header: 'Edit task',
       width: '350px',
       data: [this.selectedList, this.selectedTask],
