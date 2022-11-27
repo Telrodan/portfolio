@@ -1,13 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { TodoList } from 'src/app/core/models/todo-list.model';
 import { TodoListService } from 'src/app/core/services/todo-list.service';
 
 @Component({
-  selector: 'app-edit-list',
+  selector: 'portfolio-edit-list',
   templateUrl: './edit-list.component.html',
   styleUrls: ['./edit-list.component.scss'],
+  providers: [ConfirmationService],
 })
 export class EditListComponent implements OnInit {
   public todoList: TodoList;
@@ -20,6 +21,7 @@ export class EditListComponent implements OnInit {
   ];
 
   constructor(
+    private confirmationService: ConfirmationService,
     public dialogRef: DynamicDialogRef,
     public dialogConfig: DynamicDialogConfig,
     private todoListService: TodoListService,
@@ -59,7 +61,19 @@ export class EditListComponent implements OnInit {
   }
 
   public onDelete() {
-    this.todoListService.deleteList(this.todoList);
-    this.dialogRef.close();
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to delete this list?',
+      header: 'Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.messageService.add({
+          severity: 'success',
+          summary: 'Success',
+          detail: 'List deleted.',
+        });
+        this.todoListService.deleteList(this.todoList);
+        this.dialogRef.close();
+      },
+    });
   }
 }

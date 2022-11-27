@@ -2,7 +2,12 @@ import * as UserTrackingActions from './user-tracking.actions';
 
 const initialState = {
   users: [],
-  loggedInUser: [],
+  loggedInUser: [
+    {
+      username: 'Admin',
+      password: 'test',
+    },
+  ],
 };
 
 export function userTrackingReducer(

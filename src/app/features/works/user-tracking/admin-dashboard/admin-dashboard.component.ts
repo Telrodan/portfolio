@@ -2,7 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import * as UserTrackingActions from '../../../../core/store/user-tracking.actions';
 import { LoggedInUser, User } from 'src/app/core/models/user.model';
-import { ConfirmationService, ConfirmEventType, MessageService } from 'primeng/api';
+import { ConfirmationService, MessageService } from 'primeng/api';
 
 @Component({
   selector: 'portfolio-admin-dashboard',

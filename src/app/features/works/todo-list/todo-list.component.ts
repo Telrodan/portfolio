@@ -3,7 +3,7 @@ import { Subject, takeUntil } from 'rxjs';
 import { AddListComponent } from './add-list/add-list.component';
 import { TodoList } from 'src/app/core/models/todo-list.model';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
 import { Task } from 'src/app/core/models/task.model';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { EditListComponent } from './edit-list/edit-list.component';
@@ -19,34 +19,42 @@ import { EditTaskComponent } from './edit-task/edit-task.component';
 export class TodoListComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject();
   public todoLists: TodoList[];
-  public isLoading = true;
   public finishedTasks: number;
   public unfinishedTasks: number;
   public finishedLists: number;
   public unfinishedLists: number;
+  public isLoading = true;
   public splitTaskButtonItems: MenuItem[];
   public selectedTask: Task;
   public selectedList: TodoList;
   public ref: DynamicDialogRef;
 
-  constructor(public dialogService: DialogService, private todoListService: TodoListService) {}
+  constructor(
+    private messageService: MessageService,
+    public dialogService: DialogService,
+    private todoListService: TodoListService
+  ) {}
 
   public ngOnInit(): void {
-    this.todoListService
-      .getLists$()
-      .pipe(takeUntil(this.destroy$))
-      .subscribe(() => (this.isLoading = false));
-
+    this.todoListService.getLists$().pipe(takeUntil(this.destroy$)).subscribe();
     this.todoListService.todoListChanges
       .pipe(takeUntil(this.destroy$))
       .subscribe((resTodoLists) => {
         this.todoLists = resTodoLists;
-        this.finishedLists = this.getFinishedLists();
-        this.finishedTasks = this.getFinishedTasks();
-        this.unfinishedLists = this.getUnfinishedLists();
-        this.unfinishedTasks = this.getUnfinishedTasks();
+        this.isLoading = false;
+        this.initTodoListStats();
+        this.initSplitButtons();
       });
+  }
 
+  public initTodoListStats(): void {
+    this.finishedLists = this.getFinishedLists();
+    this.finishedTasks = this.getFinishedTasks();
+    this.unfinishedLists = this.getUnfinishedLists();
+    this.unfinishedTasks = this.getUnfinishedTasks();
+  }
+
+  public initSplitButtons(): void {
     this.splitTaskButtonItems = [
       {
         label: 'Edit',
@@ -106,9 +114,14 @@ export class TodoListComponent implements OnInit, OnDestroy {
     const taskIndex = this.selectedList.tasks.findIndex((task) => task.id === this.selectedTask.id);
     this.selectedList.tasks.splice(taskIndex, 1);
     this.todoListService.todoListChanges.next(this.todoLists);
+    this.messageService.add({
+      severity: 'success',
+      summary: 'Success',
+      detail: 'Task deleted.',
+    });
   }
 
-  public setListAndTask(list: TodoList, task: Task) {
+  public setListAndTask(list: TodoList, task: Task): void {
     this.selectedList = list;
     this.selectedTask = task;
   }

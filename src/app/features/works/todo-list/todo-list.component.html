@@ -1,8 +1,9 @@
 <div *ngIf="isLoading" class="mx-auto flex justify-content-center pt-8">
   <p-progressSpinner strokeWidth="3"></p-progressSpinner>
 </div>
+
 <div *ngIf="!isLoading" class="todo-list flex flex-column">
-  <div class="surface-ground px-4 py-5 md:px-6 lg:px-7">
+  <div class="surface-ground py-5 md:px-6 lg:px-7">
     <div class="grid">
       <div class="col-12 md:col-6 lg:col-3">
         <div class="surface-card shadow-2 p-3 border-round">
@@ -77,12 +78,12 @@
   <p-button
     styleClass="p-button-success"
     label="Add new list"
-    class="align-self-center m-5"
+    class="align-self-center mb-6"
     icon="pi pi-plus"
     (onClick)="onAddNewList()"></p-button>
-  <div class="px-2 md:px:7 lg:px-8 pb-5">
-    <div class="surface-card p-4 shadow-2 border-round">
-      <p class="text-5xl mb-5 text-center font-light">To-do lists</p>
+  <div class="md:px:7 lg:px-8 pb-5" *ngIf="todoLists.length">
+    <div class="surface-50 p-2 md:p-4 border-round">
+      <p class="text-5xl text-blue-300 mb-5 text-center font-light">To-do lists</p>
 
       <div class="flex w-full relative align-items-center justify-content-center mb-5">
         <div class="border-top-1 border-300 left-0 absolute w-full"></div>
@@ -90,26 +91,29 @@
 
       <div style="min-height: 20rem" class="list-container">
         <div
-          class="surface-200 p-2 shadow-2 border-round list-card mr-5 mb-5"
+          class="surface-card p-2 shadow-2 border-round list-card mr-5 mb-5"
           *ngFor="let list of todoLists">
           <div class="surface-border border-round p-3">
-            <p class="text-2xl text-center mb-1">{{ list.name }}</p>
-            <p class="text-base text-center">Priority: {{ list.priority }}</p>
+            <p class="text-2xl text-center mb-1 text-teal-300">{{ list.name }}</p>
+            <p class="text-base text-center text-600">Priority: {{ list.priority }}</p>
           </div>
           <div class="surface-border border-round p-3" style="min-height: 20rem">
-            <div class="task-container" *ngFor="let task of list.tasks">
+            <div
+              class="task-container"
+              [ngStyle]="{ opacity: task.checked ? '30%' : '100%' }"
+              *ngFor="let task of list.tasks">
               <p
                 class="text-lg task"
+                [ngClass]="task.checked ? 'text-300' : 'text-green-200'"
                 [ngStyle]="{
-                  'text-decoration': task.checked ? 'line-through' : 'none',
-                  opacity: task.checked ? '50%' : '100%'
+                  'text-decoration': task.checked ? 'line-through' : 'none'
                 }">
                 {{ task.name }}
               </p>
 
               <p-splitButton
                 class="ml-5"
-                styleClass="p-button-sm p-button-secondary"
+                styleClass="p-button-sm p-button-info"
                 label="Done"
                 icon="pi pi-check"
                 [model]="splitTaskButtonItems"
@@ -123,8 +127,13 @@
               label="Add new task"
               icon="pi pi-plus"
               class="mb-3 md:mb-0"
+              styleClass="p-button-success"
               (onClick)="onAddNewTask(list)"></p-button>
-            <p-button label="Edit list" icon="pi pi-cog" (onClick)="onEditList(list)"></p-button>
+            <p-button
+              label="Edit list"
+              icon="pi pi-cog"
+              styleClass="p-button-secondary"
+              (onClick)="onEditList(list)"></p-button>
           </div>
         </div>
       </div>
