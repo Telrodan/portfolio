@@ -10,8 +10,10 @@ import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { UserTrackingModule } from './user-tracking/user-tracking.module';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { DividerModule } from 'primeng/divider';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
-const PRIMENG_MODULES = [ChipModule, ButtonModule, CardModule, ConfirmDialogModule];
+const PRIMENG_MODULES = [ChipModule, ButtonModule, CardModule, ConfirmDialogModule, DividerModule];
 
 @NgModule({
   declarations: [WorksMenuComponent, WorksComponent],
@@ -21,6 +23,8 @@ const PRIMENG_MODULES = [ChipModule, ButtonModule, CardModule, ConfirmDialogModu
     WorksRoutingModule,
     TodoListModule,
     UserTrackingModule,
+    FormsModule,
+    ReactiveFormsModule,
     ...PRIMENG_MODULES,
   ],
 })
