@@ -1,13 +1,12 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { Observable, Subject, takeUntil } from 'rxjs';
+import { Subject, takeUntil } from 'rxjs';
 import { LoggedInUser, User } from 'src/app/core/models/user.model';
 import { UserTrackingService } from 'src/app/core/services/user-tracking.service';
 import * as UserTrackingActions from '../../../core/store/user-tracking.actions';
 import { MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { UserInfoComponent } from './user-info/user-info.component';
 
 @Component({
   selector: 'app-user-tracking',
@@ -17,10 +16,10 @@ import { UserInfoComponent } from './user-info/user-info.component';
 })
 export class UserTrackingComponent implements OnInit, OnDestroy {
   private destroy$ = new Subject();
-  public user: User;
   public users: User[];
-  public isLoggedIn = false;
+  public isLoggedIn = true;
   public loginForm: FormGroup;
+  public loggedInUser: LoggedInUser;
   public ref: DynamicDialogRef;
 
   constructor(
@@ -48,8 +47,11 @@ export class UserTrackingComponent implements OnInit, OnDestroy {
       .select('userTracking')
       .pipe(takeUntil(this.destroy$))
       .subscribe((store) => {
-        this.user = store.loggedInUser;
+        this.loggedInUser = store.loggedInUser;
         this.users = store.users[0];
+        this.isLoggedIn = this.loggedInUser[0] ? true : false;
+        console.log(this.loggedInUser[0]);
+        console.log(this.loggedInUser[0] ? true : false);
       });
   }
   public ngOnDestroy(): void {
@@ -66,6 +68,7 @@ export class UserTrackingComponent implements OnInit, OnDestroy {
       };
       this.isLoggedIn = true;
       this.store$.dispatch(new UserTrackingActions.LoginUser(user));
+      this.loginForm.reset();
       this.messageService.add({
         severity: 'success',
         summary: 'Success',
@@ -78,15 +81,5 @@ export class UserTrackingComponent implements OnInit, OnDestroy {
         detail: 'Please fill the required fields.',
       });
     }
-  }
-
-  public onUserInfo(user: User): void {
-    this.ref = this.dialogService.open(UserInfoComponent, {
-      header: 'User Profile',
-      width: '90%',
-      data: user,
-      baseZIndex: 10000,
-      maximizable: true,
-    });
   }
 }

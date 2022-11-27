@@ -1,0 +1,14 @@
+@import 'mixins';
+
+.card {
+  min-width: 400px;
+
+  @include until-breakpoint($screen-sm) {
+    min-width: 100%;
+  }
+  .avatar {
+    padding: 15px;
+    font-size: 42px;
+    border-radius: 500px;
+  }
+}

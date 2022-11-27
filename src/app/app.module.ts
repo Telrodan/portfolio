@@ -16,7 +16,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { MessageService } from 'primeng/api';
 import { PaginatorModule } from 'primeng/paginator';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
-import { NotFoundComponent } from './shared/not-found/not-found.component';
 import { StyleClassModule } from 'primeng/styleclass';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 import { CoreModule } from './core/core.module';
@@ -24,6 +23,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputTextModule } from 'primeng/inputtext';
 import { userTrackingReducer } from './core/store/user-tracking.reducer';
 import { WorksModule } from './features/works/works.module';
+import { SharedModule } from './shared/shared.module';
 
 const PRIMENG_MODULES = [
   ToastModule,
@@ -43,10 +43,10 @@ const PRIMENG_MODULES = [
     HomeComponent,
     BlogComponent,
     ContactComponent,
-    NotFoundComponent,
   ],
   imports: [
     CoreModule,
+    SharedModule,
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,

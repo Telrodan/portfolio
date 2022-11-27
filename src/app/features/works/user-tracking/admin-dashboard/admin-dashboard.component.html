@@ -1,0 +1,75 @@
+<div class="surface-ground px-4 py-5 md:px-6 lg:px-8">
+  <div class="surface-card shadow-2 border-round flex p-3 flex-column md:flex-row">
+    <div
+      class="border-bottom-1 md:border-right-1 md:border-bottom-none surface-border flex-auto p-3">
+      <div class="flex align-items-center mb-3">
+        <i class="pi pi-user text-blue-500 text-xl mr-2"></i>
+        <span class="text-500 font-medium">Welcome back!</span>
+      </div>
+      <p class="block text-900 text-xl">{{ loggedInUser[0].username }}</p>
+      <p class="block text-500 mb-4 text-md">Status: administrator</p>
+      <p-button
+        label="Logout"
+        icon="pi pi-power-off"
+        styleClass="p-button-danger"
+        (onClick)="onLogout()"></p-button>
+    </div>
+    <div
+      class="border-bottom-1 md:border-right-1 md:border-bottom-none surface-border flex-auto p-3">
+      <div class="flex align-items-center mb-3">
+        <i class="pi pi-sliders-h text-orange-500 text-xl mr-2"></i>
+        <span class="text-500 font-medium">User list view</span>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton
+          name="userListView"
+          value="grid-list"
+          [(ngModel)]="userListView"
+          inputId="grid-list"></p-radioButton>
+        <label for="grid-list">Grid list</label>
+      </div>
+      <div class="field-radiobutton">
+        <p-radioButton
+          name="userListView"
+          value="stacked-list"
+          [(ngModel)]="userListView"
+          inputId="stacked-list"></p-radioButton>
+        <label for="stacked-list">Stacked list</label>
+      </div>
+    </div>
+    <div
+      class="border-bottom-1 md:border-right-1 md:border-bottom-none surface-border flex-auto p-3">
+      <div class="flex align-items-center mb-3">
+        <i class="pi pi-users text-cyan-500 text-xl mr-2"></i>
+        <span class="text-500 font-medium">Users stats</span>
+      </div>
+      <span class="block text-900 font-medium mb-4 text-xl"
+        >Registered users: {{ users.length }}</span
+      >
+    </div>
+    <div class="flex-auto p-3">
+      <div class="flex align-items-center mb-3">
+        <i class="pi pi-list text-purple-500 text-xl mr-2"></i>
+        <span class="text-500 font-medium">Actions</span>
+      </div>
+      <div class="flex flex-column">
+        <p-button label="Add user" icon="pi pi-plus" styleClass="p-button-succes"></p-button>
+        <p-button
+          label="Delete user"
+          icon="pi pi-times"
+          styleClass="p-button-danger my-2"></p-button>
+        <p-button
+          label="Clear database"
+          icon="pi pi-power-off"
+          styleClass="p-button-danger"></p-button>
+      </div>
+    </div>
+  </div>
+</div>
+<portfolio-user-grid-list
+  [users]="users"
+  *ngIf="userListView === 'grid-list'"></portfolio-user-grid-list>
+<portfolio-user-stacked-list
+  [users]="users"
+  *ngIf="userListView === 'stacked-list'"></portfolio-user-stacked-list>
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

@@ -15,6 +15,11 @@ export function userTrackingReducer(
         ...state,
         loggedInUser: [...state.loggedInUser, action.payload],
       };
+    case UserTrackingActions.LOGOUT_USER:
+      return {
+        ...state,
+        loggedInUser: [],
+      };
     case UserTrackingActions.ADD_USER:
       return {
         ...state,

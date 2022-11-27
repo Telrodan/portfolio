@@ -9,8 +9,9 @@ import { ChipModule } from 'primeng/chip';
 import { CardModule } from 'primeng/card';
 import { ButtonModule } from 'primeng/button';
 import { UserTrackingModule } from './user-tracking/user-tracking.module';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
-const PRIMENG_MODULES = [ChipModule, ButtonModule, CardModule];
+const PRIMENG_MODULES = [ChipModule, ButtonModule, CardModule, ConfirmDialogModule];
 
 @NgModule({
   declarations: [WorksMenuComponent, WorksComponent],

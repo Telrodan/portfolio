@@ -1,5 +1,7 @@
 <div class="user-tracking">
-  <div class="surface-card p-4 shadow-2 border-round w-full lg:w-6" *ngIf="!isLoggedIn">
+  <div
+    class="surface-card mt-8 p-4 shadow-2 mx-auto border-round w-full lg:w-6"
+    *ngIf="!isLoggedIn">
     <div class="text-center mb-5">
       <div class="text-900 text-3xl font-medium mb-3">Welcome Back</div>
       <p class="text-300">You can enter anything</p>
@@ -36,35 +38,8 @@
         type="submit"></button>
     </form>
   </div>
-  <div class="surface-ground" *ngIf="isLoggedIn">
-    <div class="grid">
-      <div class="card col-12 md:col-6 xl:col-3 p-3" *ngFor="let user of users">
-        <div class="surface-card shadow-2 border-rounded p-4">
-          <div class="flex flex-column align-items-center mb-3">
-            <i class="mb-3 bg-green-300 text-100 pi pi-user avatar"></i>
-            <span class="font-medium text-900 text-xl mb-1">{{ user.name }}</span>
-            <span class="text-600 font-medium mb-2">{{ user.company.name }}</span>
-            <span class="text-600 surface-200 p-2 border-round">{{ user.website }}</span>
-          </div>
-          <div class="pt-3 border-top-1 surface-border flex">
-            <button
-              pButton
-              pRipple
-              type="button"
-              label="Info"
-              class="flex-auto mr-2 p-button-outlined p-button-plain border-green-500"
-              style="border-radius: 30px"
-              (click)="onUserInfo(user)"></button>
-            <button
-              pButton
-              pRipple
-              type="button"
-              label="Edit"
-              class="flex-auto ml-2 p-button-outlined p-button-plain border-green-500"
-              style="border-radius: 30px"></button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
+  <portfolio-admin-dashboard
+    [loggedInUser]="loggedInUser"
+    [users]="users"
+    *ngIf="isLoggedIn"></portfolio-admin-dashboard>
 </div>
