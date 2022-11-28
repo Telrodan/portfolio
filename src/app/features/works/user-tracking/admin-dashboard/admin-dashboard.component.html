@@ -6,7 +6,7 @@
         <i class="pi pi-user text-blue-500 text-xl mr-2"></i>
         <span class="text-500 font-medium">Welcome back!</span>
       </div>
-      <p class="block text-900 text-xl">{{ loggedInUser[0].username }}</p>
+      <p class="block text-900 text-xl">{{ loggedInUser.username }}</p>
       <p class="block text-500 mb-4 text-md">Status: administrator</p>
       <p-button
         label="Logout"
@@ -61,19 +61,17 @@
         <p-button
           label="Delete user"
           icon="pi pi-times"
-          styleClass="p-button-danger my-2"></p-button>
-        <p-button
-          label="Clear database"
-          icon="pi pi-power-off"
-          styleClass="p-button-danger"></p-button>
+          styleClass="p-button-danger my-2"
+          (onClick)="onUserDelete()"></p-button>
       </div>
     </div>
   </div>
 </div>
 <portfolio-user-grid-list
   [users]="users"
+  [isUserDeleteOn]="isUserDeleteOn"
   *ngIf="userListView === 'grid-list'"></portfolio-user-grid-list>
 <portfolio-user-stacked-list
   [users]="users"
+  [isUserDeleteOn]="isUserDeleteOn"
   *ngIf="userListView === 'stacked-list'"></portfolio-user-stacked-list>
-<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

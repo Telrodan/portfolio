@@ -5,16 +5,17 @@ import { LoggedInUser, User } from 'src/app/core/models/user.model';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { UserEditComponent } from '../user-edit/user-edit.component';
+import * as fromUserTracking from '../../../../core/store/user-tracking.reducer';
 
 @Component({
   selector: 'portfolio-admin-dashboard',
   templateUrl: './admin-dashboard.component.html',
   styleUrls: ['./admin-dashboard.component.scss'],
-  providers: [ConfirmationService, DialogService],
 })
 export class AdminDashboardComponent implements OnInit, OnChanges {
   @Input() public loggedInUser: LoggedInUser;
   @Input() public users: User[] = [];
+  public isUserDeleteOn = false;
   public userListView = 'grid-list';
   public registeredUsers: number;
   public ref: DynamicDialogRef;
@@ -22,11 +23,16 @@ export class AdminDashboardComponent implements OnInit, OnChanges {
   constructor(
     public dialogService: DialogService,
     private confirmationService: ConfirmationService,
-    private store$: Store<{ userTracking }>,
+    private store$: Store<fromUserTracking.AppState>,
     private messageService: MessageService
   ) {}
 
-  public ngOnInit(): void {}
+  public ngOnInit(): void {
+    this.store$.subscribe((res) => {
+      console.log(res);
+      this.loggedInUser = res.userTracking.loggedInUser;
+    });
+  }
 
   public ngOnChanges(changes: SimpleChanges): void {
     this.registeredUsers = this.users.length;
@@ -53,5 +59,9 @@ export class AdminDashboardComponent implements OnInit, OnChanges {
       header: 'Add new user',
       styleClass: 'w-full md:w-6',
     });
+  }
+
+  public onUserDelete(): void {
+    this.isUserDeleteOn = !this.isUserDeleteOn;
   }
 }

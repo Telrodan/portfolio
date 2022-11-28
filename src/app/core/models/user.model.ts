@@ -1,5 +1,6 @@
 export interface User {
   id: string;
+  index?: number;
   name: string;
   username: boolean;
   email: string;

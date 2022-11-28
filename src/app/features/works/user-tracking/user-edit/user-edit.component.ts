@@ -1,18 +1,21 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { MenuItem, MessageService } from 'primeng/api';
+import { takeUntil, Subject } from 'rxjs';
 import { v4 as uuidv4 } from 'uuid';
-import { DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { MenuItem, MessageService } from 'primeng/api';
+import { DynamicDialogRef } from 'primeng/dynamicdialog';
 import { User } from 'src/app/core/models/user.model';
 import * as UserTrackingActions from '../../../../core/store/user-tracking.actions';
+import * as fromUserTracking from '../../../../core/store/user-tracking.reducer';
 
 @Component({
   selector: 'portfolio-edit-user',
   templateUrl: './user-edit.component.html',
   styleUrls: ['./user-edit.component.scss'],
 })
-export class UserEditComponent implements OnInit {
+export class UserEditComponent implements OnInit, OnDestroy {
+  private destroy$ = new Subject<boolean>();
   public user: User;
   public userForm: FormGroup;
   public isEditMode = false;
@@ -21,17 +24,27 @@ export class UserEditComponent implements OnInit {
 
   constructor(
     private messageService: MessageService,
-    private store$: Store<{ userTracking }>,
-    public dialogConfig: DynamicDialogConfig,
+    private store$: Store<fromUserTracking.AppState>,
     public dialogRef: DynamicDialogRef
   ) {
-    this.user = this.dialogConfig.data;
-    this.isEditMode = this.user ? true : false;
+    this.steps = [{ label: 'Personal' }, { label: 'Adress' }, { label: 'Company' }];
   }
 
   public ngOnInit(): void {
-    this.steps = [{ label: 'Personal' }, { label: 'Adress' }, { label: 'Company' }];
-    this.initUserForm();
+    this.store$
+      .select('userTracking')
+      .pipe(takeUntil(this.destroy$))
+      .subscribe((storeDTO) => {
+        this.isEditMode = storeDTO.editedUser ? true : false;
+        this.user = storeDTO.editedUser;
+        this.initUserForm();
+      });
+  }
+
+  public ngOnDestroy(): void {
+    this.store$.dispatch(new UserTrackingActions.StopEdit());
+    this.destroy$.next(false);
+    this.destroy$.complete();
   }
 
   public onNext(): void {
@@ -49,6 +62,7 @@ export class UserEditComponent implements OnInit {
         ...this.userForm.value,
       };
       this.store$.dispatch(new UserTrackingActions.UpdateUser(user));
+      this.store$.dispatch(new UserTrackingActions.StopEdit());
       this.dialogRef.close();
       this.messageService.add({
         severity: 'success',

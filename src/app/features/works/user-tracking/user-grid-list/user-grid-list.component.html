@@ -26,6 +26,17 @@
             style="border-radius: 30px"
             (click)="onUserEdit(user)"></button>
         </div>
+        <div class="pt-3 surface-border flex">
+          <button
+            *ngIf="isUserDeleteOn"
+            pButton
+            pRipple
+            type="button"
+            label="Delete"
+            class="flex-auto mr-2 p-button-danger p-button-plain"
+            style="border-radius: 30px"
+            (click)="onDeleteUser(user)"></button>
+        </div>
       </div>
     </div>
   </div>
