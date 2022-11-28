@@ -1,4 +1,4 @@
-<div *ngIf="!isMessageSent && !isLoading" class="surface-section px-4 py-8 md:px-6 lg:px-8">
+<div *ngIf="!isLoading && !isMessageSent" class="surface-section px-4 py-8 md:px-6 lg:px-8">
   <div class="grid">
     <div class="col-12 md:col-6">
       <form class="p-fluid pr-0 md:pr-6" [formGroup]="contactForm" (ngSubmit)="onSubmit()">
@@ -74,8 +74,8 @@
     </div>
   </div>
 </div>
-<p-progressSpinner *ngIf="!isMessageSent && isLoading"></p-progressSpinner>
-<div *ngIf="isMessageSent && !isLoading" class="message-sent mt-8">
+<p-progressSpinner *ngIf="isLoading && !isMessageSent"></p-progressSpinner>
+<div *ngIf="isMessageSent" class="message-sent mt-8">
   <h1 class="text-teal-300 mb-3">Thank you for your message.</h1>
   <h3 class="text-blue-300 mb-8">I will reply as soon as I can.</h3>
   <img

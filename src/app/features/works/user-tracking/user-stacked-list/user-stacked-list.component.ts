@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { User } from 'src/app/core/models/user.model';
+import { UserEditComponent } from '../user-edit/user-edit.component';
 import { UserInfoComponent } from '../user-info/user-info.component';
 
 @Component({
@@ -21,6 +22,14 @@ export class UserStackedListComponent {
       data: user,
       baseZIndex: 10000,
       maximizable: true,
+    });
+  }
+
+  public onUserEdit(user: User): void {
+    this.ref = this.dialogService.open(UserEditComponent, {
+      header: 'Edit user',
+      styleClass: 'w-full md:w-6',
+      data: user,
     });
   }
 }

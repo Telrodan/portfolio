@@ -15,7 +15,7 @@ export class WorksMenuComponent implements OnInit {
         projectName: 'User Tracking',
         projectDescription:
           'This is a user tracking app. I created this project to practice CRUD operations and NgRx. (not finished)',
-        projectTechnologies: ['HTML', 'SCSS', 'Angular', 'NgRx'],
+        projectTechnologies: ['HTML', 'SCSS', 'Angular', 'NgRx', 'PrimeNG'],
         projectDemoUrl: 'https://knb-portfolio.hu/#/works/user-tracking',
         projectCodeUrl:
           'https://github.com/Telrodan/portfolio/tree/master/src/app/features/works/user-tracking',
@@ -24,7 +24,7 @@ export class WorksMenuComponent implements OnInit {
         projectName: 'To-do List (Angular)',
         projectDescription:
           'This is a to-do list app, with editable lists and tasks. I created this project to practice CRUD operations and RxJs.',
-        projectTechnologies: ['HTML', 'SCSS', 'Angular', 'RxJs'],
+        projectTechnologies: ['HTML', 'SCSS', 'Angular', 'RxJs', 'PrimeNG'],
         projectDemoUrl: 'https://knb-portfolio.hu/#/works/todo-list',
         projectCodeUrl:
           'https://github.com/Telrodan/prortfolio/tree/master/src/app/features/works/todo-list',

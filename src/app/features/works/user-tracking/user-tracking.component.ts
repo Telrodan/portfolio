@@ -48,7 +48,8 @@ export class UserTrackingComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe((store) => {
         this.loggedInUser = store.loggedInUser;
-        this.users = store.users[0];
+        this.users = store.users;
+
         this.isLoggedIn = this.loggedInUser[0] ? true : false;
         console.log(this.loggedInUser[0]);
         console.log(this.loggedInUser[0] ? true : false);

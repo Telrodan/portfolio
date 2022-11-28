@@ -1,0 +1,118 @@
+<div class="flex-auto">
+  <p-steps [model]="steps" [activeIndex]="activeIndex" styleClass="mb-5"></p-steps>
+  <div class="flex gap-5 flex-column-reverse md:flex-row">
+    <form class="flex-auto p-fluid" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="personal" *ngIf="activeIndex === 0">
+        <div class="mb-4">
+          <label for="name" class="block font-medium text-900 mb-2">Name</label>
+          <input id="name" type="text" pInputText formControlName="name" />
+        </div>
+        <div class="mb-4">
+          <label for="username" class="block font-medium text-900 mb-2">Username</label>
+          <input id="username" type="text" pInputText formControlName="username" />
+        </div>
+        <div class="mb-4">
+          <label for="email" class="block font-medium text-900 mb-2">Email</label>
+          <input id="email" type="email" pInputText formControlName="email" />
+        </div>
+        <div class="mb-4">
+          <label for="phone" class="block font-medium text-900 mb-2">Phone</label>
+          <input id="phone" type="text" pInputText formControlName="phone" />
+        </div>
+        <div class="mb-4">
+          <label for="website" class="block font-medium text-900 mb-2">Website</label>
+          <div class="p-inputgroup">
+            <span class="p-inputgroup-addon">https://</span>
+            <input id="website" type="text" pInputText formControlName="website" />
+          </div>
+        </div>
+        <button
+          [disabled]="
+            !userForm.get('name').valid ||
+            !userForm.get('username').valid ||
+            !userForm.get('email').valid ||
+            !userForm.get('phone').valid ||
+            !userForm.get('website').valid
+          "
+          pButton
+          pRipple
+          label="Next"
+          type="button"
+          class="w-auto"
+          (click)="onNext()"></button>
+      </div>
+
+      <div class="address" *ngIf="activeIndex === 1" formGroupName="address">
+        <div class="ml-3 mb-4">
+          <label for="street" class="block font-medium text-900 mb-2">Street</label>
+          <input id="street" type="text" pInputText formControlName="street" />
+        </div>
+        <div class="ml-3 mb-4">
+          <label for="suite" class="block font-medium text-900 mb-2">Suite</label>
+          <input id="suite" type="text" pInputText formControlName="suite" />
+        </div>
+        <div class="ml-3 mb-4">
+          <label for="city" class="block font-medium text-900 mb-2">City</label>
+          <input id="city" type="text" pInputText formControlName="city" />
+        </div>
+        <div class="ml-3 mb-4">
+          <label for="zipcode" class="block font-medium text-900 mb-2">Zipcode</label>
+          <input id="zipcode" type="text" pInputText formControlName="zipcode" />
+        </div>
+        <button
+          pButton
+          pRipple
+          label="Back"
+          type="button"
+          class="w-auto p-button-danger mr-3"
+          (click)="onBack()"></button>
+        <button
+          [disabled]="
+            !userForm.get('address.street').valid ||
+            !userForm.get('address.suite').valid ||
+            !userForm.get('address.city').valid ||
+            !userForm.get('address.zipcode').valid
+          "
+          pButton
+          pRipple
+          label="Next"
+          type="button"
+          class="w-auto"
+          (click)="onNext()"></button>
+      </div>
+
+      <div class="company" *ngIf="activeIndex === 2" formGroupName="company">
+        <div class="ml-3 mb-4">
+          <label for="name" class="block font-medium text-900 mb-2">Name</label>
+          <input id="name" type="text" pInputText formControlName="name" />
+        </div>
+        <div class="ml-3 mb-4">
+          <label for="catchPhrase" class="block font-medium text-900 mb-2">Catch Phrase</label>
+          <input id="catchPhrase" type="text" pInputText formControlName="catchPhrase" />
+        </div>
+        <div class="ml-3 mb-4">
+          <label for="bs" class="block font-medium text-900 mb-2">BS</label>
+          <input id="bs" type="text" pInputText formControlName="bs" />
+        </div>
+        <button
+          pButton
+          pRipple
+          label="Back"
+          type="button"
+          class="w-auto p-button-danger mr-3"
+          (click)="onBack()"></button>
+        <button
+          [disabled]="
+            !userForm.get('company.name').valid ||
+            !userForm.get('company.catchPhrase').valid ||
+            !userForm.get('company.bs').valid
+          "
+          pButton
+          pRipple
+          label="Submit"
+          type="submit"
+          class="w-auto"></button>
+      </div>
+    </form>
+  </div>
+</div>

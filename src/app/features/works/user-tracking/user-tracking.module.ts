@@ -14,8 +14,9 @@ import { RadioButtonModule } from 'primeng/radiobutton';
 import { SharedModule } from 'src/app/shared/shared.module';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { UserStackedListComponent } from './user-stacked-list/user-stacked-list.component';
-import { EditUserComponent } from './edit-user/edit-user.component';
 import { DividerModule } from 'primeng/divider';
+import { UserEditComponent } from './user-edit/user-edit.component';
+import { StepsModule } from 'primeng/steps';
 
 const PRIMENG_MODULES = [
   CheckboxModule,
@@ -26,6 +27,7 @@ const PRIMENG_MODULES = [
   RadioButtonModule,
   ConfirmDialogModule,
   DividerModule,
+  StepsModule,
 ];
 
 @NgModule({
@@ -35,7 +37,7 @@ const PRIMENG_MODULES = [
     UserGridListComponent,
     AdminDashboardComponent,
     UserStackedListComponent,
-    EditUserComponent,
+    UserEditComponent,
   ],
   imports: [CommonModule, ReactiveFormsModule, FormsModule, SharedModule, ...PRIMENG_MODULES],
 })

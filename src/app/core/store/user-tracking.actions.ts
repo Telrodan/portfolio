@@ -3,6 +3,7 @@ import { LoggedInUser, User } from '../models/user.model';
 
 export const ADD_USER = 'ADD_USER';
 export const ADD_USERS = 'ADD_USERS';
+export const UPDATE_USER = 'UPDATE_USER';
 export const LOGIN_USER = 'LOGIN_USER';
 export const LOGOUT_USER = 'LOGOUT_USER';
 
@@ -24,5 +25,9 @@ export class AddUsers implements Action {
   readonly type = ADD_USERS;
   constructor(public payload: User[]) {}
 }
+export class UpdateUser implements Action {
+  readonly type = UPDATE_USER;
+  constructor(public payload: User) {}
+}
 
-export type UserTrackingActions = LoginUser | LogoutUser | AddUser | AddUsers;
+export type UserTrackingActions = LoginUser | LogoutUser | AddUser | AddUsers | UpdateUser;

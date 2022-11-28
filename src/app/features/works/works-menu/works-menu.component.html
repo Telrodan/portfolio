@@ -6,10 +6,7 @@
         <i class="pi pi-folder text-2xl mr-3 text-500"></i>
         <span class="text-3xl font-medium text-900">Works</span>
       </div>
-      <div class="text-teal-300 mr-0 md:mr-3">
-        I will post all my work here with the git repository, a brief description, and the
-        technologies I used.
-      </div>
+      <div class="text-teal-300 mr-0 md:mr-3">Stuff I've built so far.</div>
     </div>
   </div>
 </div>
@@ -17,28 +14,26 @@
   <p-card
     [header]="project.projectName"
     class="work-card"
-    styleClass="w-20rem  text-blue-500"
+    styleClass="w-full md:w-22rem  text-blue-500"
     *ngFor="let project of workData">
-    <p class="text-800 h-6rem h-4rem">
+    <p class="text-800 h-3rem">
       {{ project.projectDescription }}
     </p>
-    <div class="technologies mt-4">
+    <div class="technologies mt-4 h-5rem">
       <p-chip
         [label]="technology"
-        class="mr-2"
-        styleClass="text-teal-300"
+        styleClass="text-teal-300 m-1"
         *ngFor="let technology of project.projectTechnologies"></p-chip>
     </div>
-    <ng-template pTemplate="footer">
+    <div class="footer">
       <p-button
         (onClick)="onNavigate(project.projectDemoUrl)"
-        label="Demo"
+        label="Live Demo"
         icon="pi pi-desktop"></p-button>
       <p-button
-        label="Code"
+        label="Source Code"
         icon="pi pi-github"
-        styleClass="ml-5"
         (onClick)="onNavigate(project.projectCodeUrl)"></p-button>
-    </ng-template>
+    </div>
   </p-card>
 </div>

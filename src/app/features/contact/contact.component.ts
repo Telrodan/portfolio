@@ -10,8 +10,8 @@ import { MessageService } from 'primeng/api';
 })
 export class ContactComponent implements OnInit {
   public contactForm: FormGroup;
-  public isMessageSent = false;
   public body: any;
+  public isMessageSent = false;
   public isLoading = false;
 
   constructor(private messageService: MessageService, private http: HttpClient) {}
@@ -27,6 +27,7 @@ export class ContactComponent implements OnInit {
 
   public onSubmit(): void {
     if (this.contactForm.valid) {
+      this.isLoading = true;
       this.body = JSON.stringify({
         fromName: this.contactForm.controls['name'].value,
         fromMail: this.contactForm.controls['email'].value,
@@ -34,7 +35,7 @@ export class ContactComponent implements OnInit {
         subject: this.contactForm.controls['subject'].value,
         fromPhone: 'none',
       });
-      this.isLoading = true;
+
       this.sendMail();
     } else {
       this.messageService.add({

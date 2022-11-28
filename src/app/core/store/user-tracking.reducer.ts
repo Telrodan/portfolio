@@ -26,6 +26,7 @@ export function userTrackingReducer(
         loggedInUser: [],
       };
     case UserTrackingActions.ADD_USER:
+      console.log(action.payload);
       return {
         ...state,
         users: [...state.users, action.payload],
@@ -34,6 +35,23 @@ export function userTrackingReducer(
       return {
         ...state,
         users: [...state.users, ...action.payload],
+      };
+    case UserTrackingActions.UPDATE_USER:
+      console.log(state.users);
+      const userIndex = state.users.findIndex((user) => console.log(user.id));
+      console.log(action.payload.id);
+      console.log(userIndex);
+      const user = state.users[state.users.findIndex((user) => user.id === action.payload.id)];
+      const updatedUser = {
+        ...user,
+        ...action.payload,
+      };
+      const updatedUsers = [...state.users];
+      updatedUsers[state.users.findIndex((user) => user.id === action.payload.id)] = updatedUser;
+      console.log(updatedUsers);
+      return {
+        ...state,
+        users: updatedUsers,
       };
     default:
       return state;

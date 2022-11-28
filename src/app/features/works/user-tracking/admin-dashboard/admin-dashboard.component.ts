@@ -4,7 +4,7 @@ import * as UserTrackingActions from '../../../../core/store/user-tracking.actio
 import { LoggedInUser, User } from 'src/app/core/models/user.model';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { EditUserComponent } from '../edit-user/edit-user.component';
+import { UserEditComponent } from '../user-edit/user-edit.component';
 
 @Component({
   selector: 'portfolio-admin-dashboard',
@@ -49,7 +49,7 @@ export class AdminDashboardComponent implements OnInit, OnChanges {
   }
 
   public onAddNewUser(): void {
-    this.ref = this.dialogService.open(EditUserComponent, {
+    this.ref = this.dialogService.open(UserEditComponent, {
       header: 'Add new user',
       styleClass: 'w-full md:w-6',
     });
